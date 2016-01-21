@@ -1,0 +1,26 @@
+{
+  "name": "finding-nemo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "s": "nodemon ./lib/start.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/facstars/finding-nemo.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/facstars/finding-nemo/issues"
+  },
+  "homepage": "https://github.com/facstars/finding-nemo#readme",
+  "dependencies": {
+    "hapi": "^12.1.0",
+    "hoek": "^3.0.4",
+    "inert": "^3.2.0",
+    "nodemon": "^1.8.1"
+  }
+}
