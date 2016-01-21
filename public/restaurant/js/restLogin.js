@@ -17,6 +17,7 @@ var validateRestLoginDetails = function(email,pw){
     } else {
       console.log("Authenticated successfully with payload:", authData);
       localStorage.setItem('RUID',authData.auth.uid);
+      window.location.replace('../restaurantOverview')
     }
   });
 };
