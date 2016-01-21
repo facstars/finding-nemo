@@ -16,6 +16,7 @@ var validateRestLoginDetails = function(email,pw){
       console.log("Login Failed!", error);
     } else {
       console.log("Authenticated successfully with payload:", authData);
+      localStorage.setItem('RUID',authData.auth.uid);
     }
   });
 };
