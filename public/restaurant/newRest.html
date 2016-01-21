@@ -3,8 +3,40 @@
   <head>
     <meta charset="utf-8">
     <title>New Restaurant</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" crossorigin="anonymous">
   </head>
   <body>
-    New Restaurant
+    <form id="newRest">
+      <fieldset class="form-group">
+        <input type="text" class="form-control" name="restName" placeholder="Restaurant Name">
+      </fieldset>
+      <fieldset class="form-group">
+        <input type="text" class="form-control" name="address" placeholder="Address">
+      </fieldset>
+      <fieldset class="form-group">
+        <input type="text" class="form-control" name="description" placeholder="Description">
+      </fieldset>
+      <fieldset class="form-group">
+        <input type="url" class="form-control" name="image" placeholder="Image">
+      </fieldset>
+      <fieldset class="form-group">
+        <input type="time" class="form-control" name="openTime" placeholder="Opening Time">
+      </fieldset>
+      <fieldset class="form-group">
+        <input type="time" class="form-control" name="closeTime" placeholder="Closing Time">
+      </fieldset>
+      <fieldset class="form-group">
+        <input type="email" class="form-control" name="email" placeholder="Username (email address)">
+      </fieldset>
+      <fieldset class="form-group">
+        <input type="password" class="form-control" name="password" placeholder="Password">
+      </fieldset>
+      <fieldset class="form-group">
+        <input type="password" class="form-control" name="passwordConfirm" placeholder="Confirm Password">
+      </fieldset>
+      <button type="submit" class="btn btn-primary">Add New Restaurant</button>
+    </form>
   </body>
+  <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
+  <script src="./js/restValidate.js"></script>
 </html>
