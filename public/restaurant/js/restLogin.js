@@ -5,7 +5,7 @@ document.getElementById('restLogin').addEventListener('submit', function(e){
   var email=restLogin.elements.email.value;
   var pw=restLogin.elements.password.value;
   validateRestLoginDetails(email,pw);
-})
+});
 
 var validateRestLoginDetails = function(email,pw){
   ref.authWithPassword({
@@ -17,7 +17,7 @@ var validateRestLoginDetails = function(email,pw){
     } else {
       console.log("Authenticated successfully with payload:", authData);
       localStorage.setItem('RUID',authData.auth.uid);
-      window.location.replace('../restaurantOverview')
+      window.location.replace('../restaurantOverview');
     }
   });
 };
