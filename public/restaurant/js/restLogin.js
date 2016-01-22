@@ -1,11 +1,11 @@
-var ref = new Firebase("https://blistering-torch-1660.firebaseio.com");
+var ref = new Firebase("https://blistering-torch-1660.firebaseio.com/restaurants");
 
 document.getElementById('restLogin').addEventListener('submit', function(e){
   e.preventDefault();
   var email=restLogin.elements.email.value;
   var pw=restLogin.elements.password.value;
   validateRestLoginDetails(email,pw);
-})
+});
 
 var validateRestLoginDetails = function(email,pw){
   ref.authWithPassword({
@@ -17,7 +17,7 @@ var validateRestLoginDetails = function(email,pw){
     } else {
       console.log("Authenticated successfully with payload:", authData);
       localStorage.setItem('RUID',authData.auth.uid);
-      window.location.replace('../restaurantOverview')
+      window.location.replace('../restaurantOverview');
     }
   });
 };

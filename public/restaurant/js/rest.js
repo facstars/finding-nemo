@@ -7,5 +7,5 @@ var restDetails =(function(){
     document.getElementById("ruid").innerHTML=restDetailsObj.restName;
   }, function (errorObject) {
     console.log("The read failed: " + errorObject.code);
-  })
+  });
 }) ();
