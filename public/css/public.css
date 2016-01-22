@@ -1,0 +1,13 @@
+.addWalkInTableBtn{
+  bottom: 0;
+  width: 100%;
+  height: 3em;
+  background-color: grey;
+  position: fixed;
+  text-align: center;
+  text-decoration: none;
+  padding: 1em 0 2em 0;
+  color: white;
+  left: 0;
+  right: 0
+}
