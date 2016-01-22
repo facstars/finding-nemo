@@ -1,11 +1,27 @@
 var ruid=localStorage.getItem("RUID");
-var ref= new Firebase("https://blistering-torch-1660.firebaseio.com/"+ruid);
+var ref= new Firebase("https://blistering-torch-1660.firebaseio.com/restaurants/"+ruid);
 
-var restDetails =(function(){
+var loadRestDetails =(function(){
   ref.on('value', function(snapshot) {
     var restDetailsObj=snapshot.val();
-    document.getElementById("ruid").innerHTML=restDetailsObj.restName;
-  }, function (errorObject) {
-    console.log("The read failed: " + errorObject.code);
-  })
+    document.getElementById("restaurantName").innerHTML=restDetailsObj.restName;
+  }, errorHandler);
+
+  loadNumPeopleWaiting(2);
+  loadNumPeopleWaiting(4);
+  loadNumPeopleWaiting(5);
+
 }) ();
+
+function loadNumPeopleWaiting(tableNo){
+  var restaurantWaitlist=new Firebase("https://blistering-torch-1660.firebaseio.com/restaurants/"+ruid+"/waitlist/table"+tableNo);
+
+    restaurantWaitlist.on('value', function(snapshot) {
+      var numTableObj=snapshot.val();
+      document.getElementById("numPeopleWaitingTable"+tableNo).innerHTML=numTableObj.length-1;
+  }, errorHandler);
+}
+
+var errorHandler = function(errorObject) {
+  console.log("The read failed: " + errorObject.code);
+};

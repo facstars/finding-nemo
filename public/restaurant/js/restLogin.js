@@ -1,4 +1,4 @@
-var ref = new Firebase("https://blistering-torch-1660.firebaseio.com");
+var ref = new Firebase("https://blistering-torch-1660.firebaseio.com/restaurants");
 
 document.getElementById('restLogin').addEventListener('submit', function(e){
   e.preventDefault();

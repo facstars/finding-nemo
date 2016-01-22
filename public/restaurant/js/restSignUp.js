@@ -1,4 +1,4 @@
-var ref = new Firebase("https://blistering-torch-1660.firebaseio.com");
+var ref = new Firebase("https://blistering-torch-1660.firebaseio.com/restaurants");
 
 document.getElementById('newRest').addEventListener('submit', function(e){
   e.preventDefault();
@@ -24,7 +24,7 @@ var setUserAuth = function (obj){
 }
 
 var setUserDetails = function(restUserId){
-  var userDetails = new Firebase("https://blistering-torch-1660.firebaseio.com/"+restUserId);
+  var userDetails = new Firebase("https://blistering-torch-1660.firebaseio.com/restaurants/"+restUserId);
   var RestDetailsArray = ["restName", "address", "description", "image", "openTime", "closeTime"];
   var newRestDetailsObj = RestDetailsArray.reduce(function(accum, elem){
     accum[elem] = newRest.elements[elem].value;
