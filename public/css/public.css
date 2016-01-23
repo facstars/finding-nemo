@@ -1,13 +1,9 @@
-.addWalkInTableBtn{
-  bottom: 0;
-  width: 100%;
-  height: 3em;
-  background-color: grey;
-  position: fixed;
-  text-align: center;
-  text-decoration: none;
-  padding: 1em 0 2em 0;
-  color: white;
-  left: 0;
-  right: 0
+.modal-header, h4, .close {
+    background-color: #5cb85c;
+    color:white;
+    text-align: center;
+    font-size: 30px;
+}
+.modal-footer {
+    background-color: #f9f9f9;
 }
