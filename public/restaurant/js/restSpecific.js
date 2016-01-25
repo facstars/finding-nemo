@@ -14,7 +14,11 @@ function loadPeopleWaiting(table){
     restaurantWaitlist.on('value', function(snapshot) {
       var TableObj=snapshot.val();
       var waitlistNames =   Object.keys(TableObj).map(key => TableObj[key]);
-      document.getElementById("PeopleDetails").innerHTML=waitlistNames;
+
+      for (var key in waitlistNames) {
+        console.log(waitlistNames[key]);
+      document.getElementById("PeopleDetails").innerHTML+= "<li>"+waitlistNames[key].name + " --- " +waitlistNames[key].tel + " --- Guests:" + waitlistNames[key].guests+"</li>";
+    }
   }, errorHandler);
 };
 
