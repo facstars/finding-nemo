@@ -15,9 +15,10 @@ var loadRestDetails =(function(){
 
 function loadNumPeopleWaiting(tableNo){
   var restaurantWaitlist = new Firebase("https://blistering-torch-1660.firebaseio.com/restaurants/"+ruid+"/waitlist/table"+tableNo);
-    restaurantWaitlist.on('value', function(snapshot) {
-      var numTableObj=snapshot.val();
-      document.getElementById("numPeopleWaitingTable"+tableNo).innerHTML=Object.keys(numTableObj).length;
+    restaurantWaitlist.once('value', function(snapshot) {
+      var numOnWaitlist = snapshot.numChildren();
+      // console.log(numTableObj);
+      document.getElementById("numPeopleWaitingTable"+tableNo).innerHTML= numOnWaitlist;
   }, errorHandler);
 }
 
@@ -27,8 +28,8 @@ var errorHandler = function(errorObject) {
 
   document.getElementById('modalForm').addEventListener('submit', function(e){
     e.preventDefault();
-    var tempUser = new Firebase ("https://blistering-torch-1660.firebaseio.com/users/");
-    var tempUserDetails = ["name", "number", "party"];
+    var tempUser = new Firebase ("https://blistering-torch-1660.firebaseio.com");
+    var tempUserDetails = ["name", "tel", "party"];
     var tempUserDetailsObj = tempUserDetails.reduce(function(obj, detail){
       obj[detail] = modalForm[detail].value;
       return obj;
