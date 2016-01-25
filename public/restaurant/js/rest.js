@@ -17,7 +17,6 @@ function loadNumPeopleWaiting(tableNo){
   var restaurantWaitlist = new Firebase("https://blistering-torch-1660.firebaseio.com/restaurants/"+ruid+"/waitlist/table"+tableNo);
     restaurantWaitlist.on('value', function(snapshot) {
       var numTableObj=snapshot.val();
-      console.log(numTableObj);
       document.getElementById("numPeopleWaitingTable"+tableNo).innerHTML=Object.keys(numTableObj).length;
   }, errorHandler);
 }
@@ -27,26 +26,37 @@ var errorHandler = function(errorObject) {
 };
 
   document.getElementById('modalForm').addEventListener('submit', function(e){
-    var tempUser = new Firebase ("https://blistering-torch-1660.firebaseio.com/users/");
     e.preventDefault();
-    tempUser.authAnonymously(function(error, authData, modalForm) {
-      console.log(modalForm);
+    var tempUser = new Firebase ("https://blistering-torch-1660.firebaseio.com/users/");
+    var tempUserDetails = ["name", "number", "party"];
+    var tempUserDetailsObj = tempUserDetails.reduce(function(obj, detail){
+      obj[detail] = modalForm[detail].value;
+      return obj;
+    }, {});
+    tempUser.authAnonymously(function(error, authData) {
+      console.log(tempUserDetailsObj);
       if (error) {
         console.log("Login Failed!", error);
       } else {
         console.log("Authenticated successfully with payload:", authData.uid);
-        // addTempUserToWaitlist(authData);
-        // var tempUserDetails = ["name", "phone-number", "table-size"];
-        // var tempUserDetailsObj = tempUserDetails.reduce(function(obj, detail){
-        //   obj[detail] = modalForm[detail].value;
-        //   return obj;
-        // }, {});
-        // addTempUserToWaitlist(authData, tempUserDetailsObj, ruid);
+        addTempUserToWaitlist(authData, tempUserDetailsObj);
       }
     });
   });
 
-var addTempUserToWaitlist = function(authData){
-  console.log(authData.uid);
-  // restaurantWaitlist.update();
+var addTempUserToWaitlist = function(authData, tempUserDetailsObj){
+  var tempUid = authData.uid;
+  var tableNo = tempUserDetailsObj.party > 4 ? "5" : tempUserDetailsObj.party > 2 ? "4" : "2";
+  var restaurantWaitlist = new Firebase("https://blistering-torch-1660.firebaseio.com/restaurants/"+ruid+"/waitlist/table"+tableNo);
+  var waitlistObj = {};
+  waitlistObj[tempUid] = tempUserDetailsObj;
+
+  console.log(waitlistObj);
+  restaurantWaitlist.update(waitlistObj, function(error) {
+    if (error) {
+      console.log('Synchronization failed');
+    } else {
+      console.log('Synchronization succeeded');
+    }
+  });
 };
