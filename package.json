@@ -22,5 +22,8 @@
     "hoek": "^3.0.4",
     "inert": "^3.2.0",
     "nodemon": "^1.8.1"
+  },
+  "devDependencies": {
+    "firebase": "^2.4.0"
   }
 }
