@@ -15,7 +15,7 @@ var loadRestDetails =(function(){
 
 function loadNumPeopleWaiting(tableNo){
   var restaurantWaitlist = new Firebase("https://blistering-torch-1660.firebaseio.com/restaurants/"+ruid+"/waitlist/table"+tableNo);
-    restaurantWaitlist.once('value', function(snapshot) {
+    restaurantWaitlist.on('value', function(snapshot) {
       var numOnWaitlist = snapshot.numChildren();
       document.getElementById("numPeopleWaitingTable"+tableNo).innerHTML= numOnWaitlist;
   }, errorHandler);
