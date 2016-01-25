@@ -69,7 +69,6 @@ var printRestaurantNames = function(restaurantObj){
       },
       ruid: removeRestaurantModalForm.options.value
     };
-    console.log(credentials);
     var specificRestaurant = new Firebase("https://blistering-torch-1660.firebaseio.com/restaurants/" + credentials.ruid);
       specificRestaurant.remove(removeUser(credentials));
   });
