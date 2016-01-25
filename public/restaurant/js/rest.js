@@ -14,9 +14,7 @@ var loadRestDetails =(function(){
 }) ();
 
 function loadNumPeopleWaiting(tableNo){
-  var restaurantWaitlist=new Firebase("https://blistering-torch-1660.firebaseio.com/restaurants/"+ruid+"/waitlist/table"+tableNo);
-
-// https://blistering-torch-1660.firebaseio.com/restaurants/77652e1c-dadc-409e-a66e-4b20ab3e9835/waitlist/table2
+  var restaurantWaitlist = new Firebase("https://blistering-torch-1660.firebaseio.com/restaurants/"+ruid+"/waitlist/table"+tableNo);
     restaurantWaitlist.on('value', function(snapshot) {
       var numTableObj=snapshot.val();
       console.log(numTableObj);
@@ -26,4 +24,29 @@ function loadNumPeopleWaiting(tableNo){
 
 var errorHandler = function(errorObject) {
   console.log("The read failed: " + errorObject.code);
+};
+
+  document.getElementById('modalForm').addEventListener('submit', function(e){
+    var tempUser = new Firebase ("https://blistering-torch-1660.firebaseio.com/users/");
+    e.preventDefault();
+    tempUser.authAnonymously(function(error, authData, modalForm) {
+      console.log(modalForm);
+      if (error) {
+        console.log("Login Failed!", error);
+      } else {
+        console.log("Authenticated successfully with payload:", authData.uid);
+        // addTempUserToWaitlist(authData);
+        // var tempUserDetails = ["name", "phone-number", "table-size"];
+        // var tempUserDetailsObj = tempUserDetails.reduce(function(obj, detail){
+        //   obj[detail] = modalForm[detail].value;
+        //   return obj;
+        // }, {});
+        // addTempUserToWaitlist(authData, tempUserDetailsObj, ruid);
+      }
+    });
+  });
+
+var addTempUserToWaitlist = function(authData){
+  console.log(authData.uid);
+  // restaurantWaitlist.update();
 };

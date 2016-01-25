@@ -17,7 +17,7 @@ var setUserAuth = function (obj){
       console.log("error creating user", error);
     }
     else {
-      console.log("Successfully created user account with uid:" + userData.uid);
+      console.log("Successfully created restaurant account with ruid:" + userData.uid);
       setUserDetails(userData.uid);
     }
   });
@@ -59,13 +59,38 @@ var printRestaurantNames = function(restaurantObj){
     document.getElementById('options').innerHTML = html;
   };
 
-  document.getElementById('go').addEventListener('submit', function(e){
+  document.getElementById('removeRestaurantModalForm').addEventListener('submit', function(e){
+    console.log('remove clicked');
     e.preventDefault();
-    var ruid = go.elements[0].value;
-    var specificRestaurant = new Firebase("https://blistering-torch-1660.firebaseio.com/restaurants/" + ruid);
-      specificRestaurant.remove(finished());
+    var credentials = {
+      remove : {
+        email: removeRestaurantModalForm.email.value,
+        password: removeRestaurantModalForm.password.value
+      },
+      ruid: removeRestaurantModalForm.options.value
+    };
+    var specificRestaurant = new Firebase("https://blistering-torch-1660.firebaseio.com/restaurants/" + credentials.ruid);
+      specificRestaurant.remove(removeUser(credentials));
   });
 
-  var finished = function(){
-    console.log("I am the callback, restaurant deleted!");
+  var removeUser = function (credentials){
+    console.log("i am the credentials", credentials);
+    var ref = new Firebase("https://blistering-torch-1660.firebaseio.com");
+    ref.removeUser(credentials.remove, function(error) {
+      console.log("im deleting");
+      if (error) {
+        switch (error.code) {
+          case "INVALID_USER":
+          console.log("The specified user account does not exist.");
+          break;
+          case "INVALID_PASSWORD":
+          console.log("The specified user account password is incorrect.");
+          break;
+          default:
+          console.log("Error removing user:", error);
+        }
+      } else {
+        console.log("User account deleted successfully!");
+      }
+    });
   };
