@@ -57,6 +57,8 @@ var addTempUserToWaitlist = function(authData, tempUserDetailsObj){
       console.log('Synchronization failed');
     } else {
       console.log('Synchronization succeeded');
+      $('#modalForm')[0].reset();
+      $('#modal').modal('hide');
     }
   });
 };

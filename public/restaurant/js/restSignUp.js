@@ -40,7 +40,8 @@ var onComplete = function(error) {
   if (error) {
     console.log(error);
       } else {
-          console.log('Success, Details have been added to the database');
+        $('#newRest')[0].reset();
+        console.log('Success, Details have been added to the database');
       }
 };
 
@@ -53,7 +54,8 @@ var allRestaurants = (function(){
 }) ();
 
 var printRestaurantNames = function(restaurantObj){
-  var html = (Object.keys(restaurantObj)).reduce(function(html, elem){
+  var html = "<option>Please Choose A Restaurant</option>";
+    html += (Object.keys(restaurantObj)).reduce(function(html, elem){
     return html + "<option value=" + elem + ">" + restaurantObj[elem].restName + "</option>";
   }, "");
     document.getElementById('options').innerHTML = html;
@@ -92,6 +94,8 @@ var printRestaurantNames = function(restaurantObj){
         }
       } else {
         console.log("User account deleted successfully!");
+        $('#removeRestaurantModalForm')[0].reset();
+        $('#removeModal').modal('hide');
       }
     });
   };
