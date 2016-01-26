@@ -11,3 +11,35 @@
 .noShowButton, .seatedButton {
   display: none;
 }
+
+.skipitLogo {
+  width:10em;
+}
+
+
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  background-color: white;
+  font-family:sans-serif;
+  border-bottom: 2px solid #F49C9A;
+}
+
+
+
+/*ul {
+ padding-right: 4em;
+}
+
+
+nav ul li {
+  display: inline;
+  padding: 5px;
+  text-decoration: none;
+}
+
+nav ul li:hover {
+  color: white;
+}*/
