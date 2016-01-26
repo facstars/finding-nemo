@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon ./lib/start.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "istanbul cover ./node_modules/.bin/tape ./test/*.js"
   },
   "repository": {
     "type": "git",
@@ -18,9 +18,22 @@
   },
   "homepage": "https://github.com/facstars/finding-nemo#readme",
   "dependencies": {
+    "env2": "^2.0.4",
     "hapi": "^12.1.0",
     "hoek": "^3.0.4",
     "inert": "^3.2.0",
-    "nodemon": "^1.8.1"
-  }
+    "istanbul": "^0.4.2",
+    "messagebird": "^2.1.0",
+    "nodemon": "^1.8.1",
+    "path": "^0.12.7",
+    "pre-commit": "^1.1.2",
+    "shot": "^3.0.0",
+    "tape": "^4.4.0"
+  },
+  "devDependencies": {
+    "path": "^0.12.7"
+  },
+  "pre-commit": [
+    "test"
+  ]
 }
