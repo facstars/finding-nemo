@@ -1,70 +1,67 @@
 var ruid=localStorage.getItem("RUID");
-var waitlistUIDs;
 var tableSize;
 
-var getTableSize = function(){
+var getTableSize = (function(){
   var URLSegmentArray = window.location.pathname.split( '/' );
-  tableSize = URLSegmentArray[URLSegmentArray.length - 1]
-  console.log(tableSize);
+  tableSize = URLSegmentArray[URLSegmentArray.length - 1];
+  // console.log(tableSize);
   loadPeopleWaiting(tableSize) ;
-}();
+})();
 
 
 function loadPeopleWaiting(table){
-  document.getElementById("PeopleDetails").innerHTML="";
-  var restaurantWaitlist=new Firebase("https://blistering-torch-1660.firebaseio.com/restaurants/"+ruid+"/waitlist/"+table);
-  var tableReadyButton = "<button class='tableReadyButton'>Table ready</button>";
-  var seatedButton = "<button class='seatedButton'>Seated</button>";
-  var noShowButton = "<button class='noShowButton'>No show</button>";
-
+  var restaurantWaitlist= new Firebase("https://blistering-torch-1660.firebaseio.com/restaurants/"+ruid+"/waitlist/"+table);
   restaurantWaitlist.on('value', function(snapshot) {
     var tableWaitlistObj=snapshot.val();
 
-    waitlistUIDs = Object.keys(tableWaitlistObj);
+    var waitlistHtml = Object.keys(tableWaitlistObj).reduce(function(html, uid){
+      var tableReadyButton, seatedButton, noShowButton;
 
-    var guestCount=-1;
-    for (var key in tableWaitlistObj) {
-      guestCount++;
-      console.log(tableWaitlistObj[key]);
-      document.getElementById("PeopleDetails").innerHTML+= "<li id=guest-" + waitlistUIDs[guestCount] + ">"+tableWaitlistObj[key].name + " --- " +tableWaitlistObj[key].tel + " --- Guests:" + tableWaitlistObj[key].guests + tableReadyButton+seatedButton + noShowButton + "</li>";
-    }
+      if (tableWaitlistObj[uid].alreadySent === true) {
+        tableReadyButton = "";
+        seatedButton = "<button id = SE" + uid +  " value=" + uid + " style='display:inline' class='seatedButton'>Seated</button>";
+        noShowButton = "<button id = NS" + uid +  " value=" + uid + " style='display:inline' class='noShowButton'>No show</button>";
+      } else{
+        tableReadyButton = "<button id = TR" + uid +  " value=" + uid + " style='display:inline' class='tableReadyButton'>Table ready</button>";
+        seatedButton = "<button id = SE" + uid +  " value=" + uid + " style='display:none' class='seatedButton'>Seated</button>";
+        noShowButton = "<button id = NS" + uid +  " value=" + uid + " style='display:none' class='noShowButton'>No show</button>";
+      }
+      return html += "<li id=guest-" + uid + ">"+ tableWaitlistObj[uid].name + " --- " +tableWaitlistObj[uid].tel + " --- Guests:" + tableWaitlistObj[uid].guests + tableReadyButton + seatedButton + noShowButton + "</li>";
+    }, "");
+    document.getElementById("PeopleDetails").innerHTML = waitlistHtml;
     tableReadyClickListener();
     removeTableClickListener();
   }, errorHandler);
-};
+}
 
 
 var errorHandler = function(errorObject) {
   console.log("The read failed: " + errorObject.code);
 };
 
-var getValuesFromObject = function(obj){
-  Object.keys(obj).map(key => obj[key]);
-};
 
 var tableReadyClickListener = function (){
-  var tableReadyButtonArray = document.getElementsByClassName("tableReadyButton"),
-    i;
-  for (i = 0; i < tableReadyButtonArray.length; i++) {
-    tableReadyButtonArray[i].addEventListener("click", tableReadyClickHandler(i));
-  }
-}
+  var tableReadyButtonArray = document.getElementsByClassName("tableReadyButton");
+    [].map.call(tableReadyButtonArray, function(button){
+    button.addEventListener("click", tableReadyClickHandler);
+    });
+};
 
-var tableReadyClickHandler = function(i) {
-  return function() {
-    console.log("table ready button clicked");
-      document.getElementsByClassName("tableReadyButton")[i].style.display = "none";
-      document.getElementsByClassName("seatedButton")[i].style.display="inline";
-      document.getElementsByClassName("noShowButton")[i].style.display="inline";
-    }
+var tableReadyClickHandler = function(event) {
+  var updateWaitlistUser = new Firebase("https://blistering-torch-1660.firebaseio.com/restaurants/"+ruid+"/waitlist/"+tableSize+"/"+event.target.value);
+  var target = event.currentTarget.style.display = "none";
+  updateWaitlistUser.update({
+    alreadySent: true
+  });
+  console.log("table ready button clicked");
+  document.getElementById("SE"+ event.target.value).style.display="inline";
+  document.getElementById("NS"+ event.target.value).style.display="inline";
+
   };
 
   var removeTableClickListener = function (){
-    var seatedButtonArray = document.getElementsByClassName("seatedButton"),
-      i;
-
-    var noShowButtonArray = document.getElementsByClassName("noShowButton"),
-      i;
+    var seatedButtonArray = document.getElementsByClassName("seatedButton");
+    var noShowButtonArray = document.getElementsByClassName("noShowButton");
 
     for (i = 0; i < seatedButtonArray.length; i++) {
       seatedButtonArray[i].addEventListener("click", removeTableClickHandler(i));
@@ -81,8 +78,8 @@ var removeTableClickHandler = function(i) {
       var guestDetails =new Firebase("https://blistering-torch-1660.firebaseio.com/restaurants/"+ruid+"/waitlist/"+"table2/" + waitlistUIDs[i]);
       console.log("https://blistering-torch-1660.firebaseio.com/restaurants/"+ruid+"/waitlist/"+"table2/" + waitlistUIDs[i]);
       guestDetails.remove(onComplete);
-    }
-  }
+    };
+  };
 
 
   var onComplete = function(error) {
@@ -90,6 +87,6 @@ var removeTableClickHandler = function(i) {
     console.log('Synchronization failed');
   } else {
     console.log('Synchronization succeeded');
-    loadPeopleWaiting(tableSize);
+    // loadPeopleWaiting(tableSize);
   }
 };

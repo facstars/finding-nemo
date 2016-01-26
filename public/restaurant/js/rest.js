@@ -28,7 +28,7 @@ var errorHandler = function(errorObject) {
   document.getElementById('modalForm').addEventListener('submit', function(e){
     e.preventDefault();
     var tempUser = new Firebase ("https://blistering-torch-1660.firebaseio.com");
-    var tempUserDetails = ["name", "tel", "party"];
+    var tempUserDetails = ["name", "tel", "guests"];
     var tempUserDetailsObj = tempUserDetails.reduce(function(obj, detail){
       obj[detail] = modalForm[detail].value;
       return obj;
