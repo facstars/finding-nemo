@@ -50,43 +50,39 @@ var tableReadyClickListener = function (){
 var tableReadyClickHandler = function(event) {
   var updateWaitlistUser = new Firebase("https://blistering-torch-1660.firebaseio.com/restaurants/"+ruid+"/waitlist/"+tableSize+"/"+event.target.value);
   var target = event.currentTarget.style.display = "none";
+  console.log("table ready button clicked");
+
+  // http request to messageBird goes here: update DB on succesful callback
+
   updateWaitlistUser.update({
     alreadySent: true
   });
-  console.log("table ready button clicked");
+
   document.getElementById("SE"+ event.target.value).style.display="inline";
   document.getElementById("NS"+ event.target.value).style.display="inline";
+};
 
+var removeTableClickListener = function (){
+  var seatedButtonArray = document.getElementsByClassName("seatedButton");
+  var noShowButtonArray = document.getElementsByClassName("noShowButton");
+  [].map.call(seatedButtonArray, function(button){
+    button.addEventListener("click", removeUserHandler);
+  });
+  [].map.call(noShowButtonArray, function(button){
+    button.addEventListener("click", removeUserHandler);
+  });
+};
+
+  var removeUserHandler = function(event) {
+    var updateWaitlistUser = new Firebase("https://blistering-torch-1660.firebaseio.com/restaurants/"+ruid+"/waitlist/"+tableSize+"/"+event.target.value);
+    updateWaitlistUser.remove(onComplete);
+    console.log(event.target.className + " clicked");
   };
-
-  var removeTableClickListener = function (){
-    var seatedButtonArray = document.getElementsByClassName("seatedButton");
-    var noShowButtonArray = document.getElementsByClassName("noShowButton");
-
-    for (i = 0; i < seatedButtonArray.length; i++) {
-      seatedButtonArray[i].addEventListener("click", removeTableClickHandler(i));
-
-      for (i = 0; i < noShowButtonArray.length; i++) {
-        noShowButtonArray[i].addEventListener("click", removeTableClickHandler(i));
-      }
-    }
-  };
-
-var removeTableClickHandler = function(i) {
-    return function() {
-      console.log("seated or no show clicked");
-      var guestDetails =new Firebase("https://blistering-torch-1660.firebaseio.com/restaurants/"+ruid+"/waitlist/"+"table2/" + waitlistUIDs[i]);
-      console.log("https://blistering-torch-1660.firebaseio.com/restaurants/"+ruid+"/waitlist/"+"table2/" + waitlistUIDs[i]);
-      guestDetails.remove(onComplete);
-    };
-  };
-
 
   var onComplete = function(error) {
   if (error) {
     console.log('Synchronization failed');
   } else {
     console.log('Synchronization succeeded');
-    // loadPeopleWaiting(tableSize);
   }
 };
