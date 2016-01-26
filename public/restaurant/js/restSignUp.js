@@ -2,12 +2,17 @@ var ref = new Firebase("https://blistering-torch-1660.firebaseio.com/restaurants
 
 document.getElementById('newRest').addEventListener('submit', function(e){
   e.preventDefault();
-  var AuthDetailsArray = ["email", "password"];
-  var newRestAuthDetailsObj = AuthDetailsArray.reduce(function(accum, elem){
-    accum[elem] = newRest.elements[elem].value;
-    return accum;
-  }, {});
-  setUserAuth(newRestAuthDetailsObj);
+  if(newRest.password.value == newRest.passwordConfirm.value){
+    var AuthDetailsArray = ["email", "password"];
+    var newRestAuthDetailsObj = AuthDetailsArray.reduce(function(accum, elem){
+      accum[elem] = newRest.elements[elem].value;
+      return accum;
+    }, {});
+    document.getElementById('passwordIncorrect').style.display = "none";
+    setUserAuth(newRestAuthDetailsObj);
+  } else {
+    document.getElementById('passwordIncorrect').style.display = "block";
+  }
 });
 
 
