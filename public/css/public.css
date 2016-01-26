@@ -22,3 +22,8 @@ nav {
 .skipitLogo {
   width:10em;
 }
+
+#passwordIncorrect{
+  display:none;
+  color: red;
+}
