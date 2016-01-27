@@ -3,9 +3,15 @@
   <head>
     <meta charset="utf-8">
     <title>Restaurant Overview</title>
+    <link rel="icon" href="../images/skipitFavicon.png" type="image/png" sizes="16x16">
     <link rel="stylesheet" href="../css/public.css">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
   </head>
+
+  <nav>
+    <img class ="skipitLogo" src="../images/skipitLogo.jpg" alt="Skipit Logo" />
+  </nav>
+
   <body>
     <p id="restaurantName"></p>
 
@@ -37,10 +43,10 @@
           </div><!-- /.modal-header -->
           <div class="modal-body has-success">
             <form id="modalForm">
-              <input class="form-control" name="name" type="text" placeholder="*Name">
-              <input class="form-control" name="tel" type="text" placeholder="*Phone Number">
+              <input class="form-control" name="name" type="text" placeholder="*Name" required>
+              <input class="form-control" name="tel" type="text" placeholder="*Phone Number" required>
               <input class="form-control" name="email" type="email" placeholder="Email">
-              <input class="form-control" name="party" type="number" id="number" max="8" min="1" value="2">
+              <input class="form-control" name="guests" type="number" id="number" max="8" min="1" value="2" required>
             </form>
           </div><!-- /.modal-body -->
           <div class="modal-footer">
@@ -56,4 +62,5 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" crossorigin="anonymous"></script>
   <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
   <script src="./js/rest.js"></script>
+  <script src="../restaurant/js/addNewTable.js"></script>
 </html>

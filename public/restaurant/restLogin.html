@@ -2,21 +2,29 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <link rel="stylesheet" href="../css/public.css">
+    <link rel="icon" href="../images/skipitFavicon.png" type="image/png" sizes="16x16">
     <title>Login</title>
+
   </head>
+
+  <nav>
+    <img class ="skipitLogo" src="../images/skipitLogo.jpg" alt="Skipit Logo" />
+  </nav>
+
   <body>
     Restaurant Login
     <form id="restLogin">
       <fieldset class="form-group">
-        <input type="email" class="form-control" name="email" placeholder="Username (email address)">
+        <input type="email" class="form-control" name="email" placeholder="Username (email address)" required>
       </fieldset>
       <fieldset class="form-group">
-        <input type="password" class="form-control" name="password" placeholder="Password">
+        <input type="password" class="form-control" name="password" placeholder="Password" required>
       </fieldset>
 
-      <button type="submit" class="btn btn-primary">Add New Restaurant</button>
+      <button type="submit" class="btn btn-primary">Login</button>
     </form>
-    
+
   </body>
   <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
   <script src="./js/restLogin.js"></script>

@@ -1,13 +1,29 @@
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  background-color: white;
+  font-family:sans-serif;
+  border-bottom: 2px solid #F49C9A;
+}
+
 .modal-header, h4, .close {
     background-color: #5cb85c;
     color:white;
     text-align: center;
     font-size: 30px;
 }
+
 .modal-footer {
     background-color: #f9f9f9;
 }
 
-.noShowButton, .seatedButton {
-  display: none;
+.skipitLogo {
+  width:10em;
+}
+
+#passwordIncorrect{
+  display:none;
+  color: red;
 }

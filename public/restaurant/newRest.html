@@ -3,37 +3,45 @@
   <head>
     <meta charset="utf-8" viewport="1">
     <title>New Restaurant</title>
+    <link rel="stylesheet" href="../css/public.css">
+    <link rel="icon" href="../images/skipitFavicon.png" type="image/png" sizes="16x16">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" crossorigin="anonymous">
   </head>
+
+  <nav>
+    <img class ="skipitLogo" src="../images/skipitLogo.jpg" alt="Skipit Logo" />
+  </nav>
+
   <body>
     <form id="newRest">
       <fieldset class="form-group">
-        <input type="text" class="form-control" name="restName" placeholder="Restaurant Name">
+        <input type="text" class="form-control" name="restName" placeholder="Restaurant Name" required>
       </fieldset>
       <fieldset class="form-group">
-        <input type="text" class="form-control" name="address" placeholder="Address">
+        <input type="text" class="form-control" name="address" placeholder="Address" required>
       </fieldset>
       <fieldset class="form-group">
-        <input type="text" class="form-control" name="description" placeholder="Description">
+        <input type="text" class="form-control" name="description" placeholder="Description" required>
       </fieldset>
       <fieldset class="form-group">
-        <input type="url" class="form-control" name="image" placeholder="Image">
+        <input type="url" class="form-control" name="image" placeholder="Image" required>
       </fieldset>
       <fieldset class="form-group">
-        <input type="time" class="form-control" name="openTime" placeholder="Opening Time">
+        <input type="time" class="form-control" name="openTime" placeholder="Opening Time" required>
       </fieldset>
       <fieldset class="form-group">
-        <input type="time" class="form-control" name="closeTime" placeholder="Closing Time">
+        <input type="time" class="form-control" name="closeTime" placeholder="Closing Time" required>
       </fieldset>
       <fieldset class="form-group">
-        <input type="email" class="form-control" name="email" placeholder="Username (email address)">
+        <input type="email" class="form-control" name="email" placeholder="Username (email address)" required>
       </fieldset>
       <fieldset class="form-group">
-        <input type="password" class="form-control" name="password" placeholder="Password">
+        <input type="password" class="form-control" name="password" placeholder="Password" required>
       </fieldset>
       <fieldset class="form-group">
-        <input type="password" class="form-control" name="passwordConfirm" placeholder="Confirm Password">
+        <input type="password" class="form-control" name="passwordConfirm" placeholder="Confirm Password" required>
       </fieldset>
+      <p id="passwordIncorrect"><b>Password not correctly confirmed</b></p>
       <button type="submit" class="btn btn-primary">Add New Restaurant</button>
     </form>
 
@@ -50,9 +58,9 @@
           </div><!-- /.modal-header -->
           <div class="modal-body">
             <form id="removeRestaurantModalForm">
-              <select id="options"></select>
-              <input class="form-control" name="email" type="email" placeholder="Email">
-              <input class="form-control" name="password" type="password" placeholder="Password">
+              <select id="options" required></select>
+              <input class="form-control" name="email" type="email" placeholder="Email" required>
+              <input class="form-control" name="password" type="password" placeholder="Password" required>
               <input class="form-control hidden" name="ruid" type="number">
             </form>
           </div><!-- /.modal-body -->
