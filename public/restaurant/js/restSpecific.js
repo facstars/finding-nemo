@@ -22,14 +22,14 @@ function loadPeopleWaiting(table){
         seatedButton = "<button id = SE" + uid +  " value=" + uid + " style='display:inline' class='seatedButton'>Seated</button>";
         noShowButton = "<button id = NS" + uid +  " value=" + uid + " style='display:inline' class='noShowButton'>No show</button>";
       } else{
-        tableReadyButton = "<button id = TR" + uid +  " value=" + uid + " style='display:inline' class='tableReadyButton'>Table ready</button>";
+        tableReadyButton = "<button id = TR" + uid +  " value=" + uid + " data-value =" + tableWaitlistObj[uid].tel + " style='display:inline' class='tableReadyButton'>Table ready</button>";
         seatedButton = "<button id = SE" + uid +  " value=" + uid + " style='display:none' class='seatedButton'>Seated</button>";
         noShowButton = "<button id = NS" + uid +  " value=" + uid + " style='display:none' class='noShowButton'>No show</button>";
       }
       return html += "<li id=guest-" + uid + ">"+ tableWaitlistObj[uid].name + " --- " +tableWaitlistObj[uid].tel + " --- Guests:" + tableWaitlistObj[uid].guests + tableReadyButton + seatedButton + noShowButton + "</li>";
     }, "");
     document.getElementById("PeopleDetails").innerHTML = waitlistHtml;
-    tableReadyClickListener();
+    tableReadyClickListener(tableWaitlistObj);
     removeTableClickListener();
   }, errorHandler);
 }
@@ -48,18 +48,34 @@ var tableReadyClickListener = function (){
 };
 
 var tableReadyClickHandler = function(event) {
-  var updateWaitlistUser = new Firebase("https://blistering-torch-1660.firebaseio.com/restaurants/"+ruid+"/waitlist/"+tableSize+"/"+event.target.value);
   var target = event.currentTarget.style.display = "none";
+  var tel = {
+    tel: event.target.getAttribute("data-value")
+  };
+  console.log(tel);
   console.log("table ready button clicked");
+  var request = new XMLHttpRequest();
+  request.onreadystatechange = function() {
+    if (request.readyState === 4 && request.status === 200) {
+      var reply = request.responseText;
+      reply  === "SMS sent" ? smsSuccess(event) : smsFailure();
+    }
+  };
+  request.open("POST", "/sms");
+  request.send(JSON.stringify(tel));
+};
 
-  // http request to messageBird goes here: update DB on succesful callback
-
+var smsSuccess = function(event){
+  var updateWaitlistUser = new Firebase("https://blistering-torch-1660.firebaseio.com/restaurants/"+ruid+"/waitlist/"+tableSize+"/"+event.target.value);
   updateWaitlistUser.update({
     alreadySent: true
   });
-
   document.getElementById("SE"+ event.target.value).style.display="inline";
   document.getElementById("NS"+ event.target.value).style.display="inline";
+};
+
+var smsFailure = function(){
+  console.log("sms failed notification! :(");
 };
 
 var removeTableClickListener = function (){
