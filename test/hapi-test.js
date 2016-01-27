@@ -23,5 +23,5 @@ var testEndPoint = function(endpoint){
 testEndPoint("/");
 testEndPoint("/restaurantSpecific/table2");
 testEndPoint("/restaurant/restOverview.html");
-testEndPoint("/user/index.html");
+testEndPoint("/user/restList");
 testEndPoint("/css/public.css");
