@@ -69,12 +69,13 @@ var smsSuccess = function(event){
   updateWaitlistUser.update({
     alreadySent: true
   });
+  console.log("sms notification successful! :) ");
   document.getElementById("SE"+ event.target.value).style.display="inline";
   document.getElementById("NS"+ event.target.value).style.display="inline";
 };
 
 var smsFailure = function(){
-  console.log("sms failed notification! :(");
+  console.log("sms notification failed! :(");
 };
 
 var removeTableClickListener = function (){
