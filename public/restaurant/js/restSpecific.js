@@ -13,7 +13,6 @@ function loadPeopleWaiting(table){
   var restaurantWaitlist= new Firebase("https://blistering-torch-1660.firebaseio.com/restaurants/"+ruid+"/waitlist/"+table);
   restaurantWaitlist.on('value', function(snapshot) {
     var tableWaitlistObj=snapshot.val();
-
     var waitlistHtml = Object.keys(tableWaitlistObj).reduce(function(html, uid){
       var tableReadyButton, seatedButton, noShowButton;
 

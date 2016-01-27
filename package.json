@@ -18,7 +18,6 @@
   },
   "homepage": "https://github.com/facstars/finding-nemo#readme",
   "dependencies": {
-    "env2": "^2.0.4",
     "hapi": "^12.1.0",
     "hoek": "^3.0.4",
     "inert": "^3.2.0",
