@@ -1,3 +1,6 @@
+var uid = localStorage.getItem('UID');
+console.log(uid);
+
 loadRestDetails();
 
 function loadRestDetails(){
@@ -5,21 +8,15 @@ function loadRestDetails(){
 
   restDetails.on("value", function(snapshot){
     var restDetailsObj=snapshot.val();
-    console.log(restDetailsObj['0df2ff31-0801-4cc8-9374-5ca3209be1a1']);
 
     var ruidsArray = Object.keys(restDetailsObj);
-    console.log(ruidsArray);
 
     var restDetailsHtml = ruidsArray.reduce(function(html,ruid){
       return html+=
-        "<div class='restDetailWrapper'><img class='restLogo' src=" + restDetailsObj[ruid].image +
-        "><h3 class='restName'>"+restDetailsObj[ruid].restName+"</h3><p class='restDescription'>"+restDetailsObj[ruid].description+"</p><p class='restAddress'>"+restDetailsObj[ruid].address+"</p></div>";
-
-
-      // <li id=rest-" + ruid + ">"+restDetailsObj[ruid].description+"</li>";
+        "<div class='restDetailWrapper'><a href='../checkIn/"+ruid+"'><img class='restLogo' src=" + restDetailsObj[ruid].image +
+        "></a><p class='restTimes'>"+restDetailsObj[ruid].openTime+ " - " +restDetailsObj[ruid].closeTime+ "</p><h3 class='restName'>"+restDetailsObj[ruid].restName+"</h3><p class='restDescription'>"+restDetailsObj[ruid].description+"</p><p class='restAddress'>"+restDetailsObj[ruid].address+"</p></div>";
     }, "");
     document.getElementById("restsWrapper").innerHTML=restDetailsHtml;
-
   }, errorHandler);
 }
 
