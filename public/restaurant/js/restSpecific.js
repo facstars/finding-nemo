@@ -4,34 +4,42 @@ var tableSize;
 var getTableSize = (function(){
   var URLSegmentArray = window.location.pathname.split( '/' );
   tableSize = URLSegmentArray[URLSegmentArray.length - 1];
-  // console.log(tableSize);
   loadPeopleWaiting(tableSize) ;
 })();
 
 
-function loadPeopleWaiting(table){
-  var restaurantWaitlist= new Firebase("https://blistering-torch-1660.firebaseio.com/restaurants/"+ruid+"/waitlist/"+table);
+var loadPeopleWaiting = function(tableSize){
+  var restaurantWaitlist= new Firebase("https://blistering-torch-1660.firebaseio.com/restaurants/"+ruid+"/waitlist/"+tableSize);
   restaurantWaitlist.on('value', function(snapshot) {
     var tableWaitlistObj=snapshot.val();
-    var waitlistHtml = Object.keys(tableWaitlistObj).reduce(function(html, uid){
-      var tableReadyButton, seatedButton, noShowButton;
-
-      if (tableWaitlistObj[uid].alreadySent === true) {
-        tableReadyButton = "";
-        seatedButton = "<button id = SE" + uid +  " value=" + uid + " style='display:inline' class='seatedButton btn btn-danger btn-sm'>Seated</button>";
-        noShowButton = "<button id = NS" + uid +  " value=" + uid + " style='display:inline' class='noShowButton btn btn-danger btn-sm'>No show</button>";
-      } else{
-        tableReadyButton = "<button id = TR" + uid +  " value=" + uid + " data-value =" + tableWaitlistObj[uid].tel + " style='display:inline' class='tableReadyButton btn btn-danger btn-sm'>Table ready</button>";
-        seatedButton = "<button id = SE" + uid +  " value=" + uid + " style='display:none' class='seatedButton btn btn-danger btn-sm'>Seated</button>";
-        noShowButton = "<button id = NS" + uid +  " value=" + uid + " style='display:none' class='noShowButton btn btn-danger btn-sm'>No show</button>";
-      }
-      return html += "<li id=guest-" + uid + ">"+ tableWaitlistObj[uid].name + " --- " +tableWaitlistObj[uid].tel + " --- Guests:" + tableWaitlistObj[uid].guests + tableReadyButton + seatedButton + noShowButton + "</li>";
-    }, "");
-    document.getElementById("PeopleDetails").innerHTML = waitlistHtml;
-    tableReadyClickListener(tableWaitlistObj);
-    removeTableClickListener();
+    tableWaitlistObj === null? emptyWaitlist() : generateWaitlistHtml(tableWaitlistObj);
   }, errorHandler);
-}
+};
+
+var emptyWaitlist = function(){
+  var html = "no one here, put a nice picture";
+  document.getElementById('PeopleDetails').innerHTML = html;
+};
+
+var generateWaitlistHtml = function(tableWaitlistObj){
+  var waitlistHtml = Object.keys(tableWaitlistObj).reduce(function(html, uid){
+    var tableReadyButton, seatedButton, noShowButton;
+
+    if (tableWaitlistObj[uid].alreadySent === true) {
+      tableReadyButton = "";
+      seatedButton = "<button id = SE" + uid +  " value=" + uid + " style='display:inline' class='seatedButton btn btn-danger btn-sm'>Seated</button>";
+      noShowButton = "<button id = NS" + uid +  " value=" + uid + " style='display:inline' class='noShowButton btn btn-danger btn-sm'>No show</button>";
+    } else{
+      tableReadyButton = "<button id = TR" + uid +  " value=" + uid + " data-value =" + tableWaitlistObj[uid].tel + " style='display:inline' class='tableReadyButton btn btn-danger btn-sm'>Table ready</button>";
+      seatedButton = "<button id = SE" + uid +  " value=" + uid + " style='display:none' class='seatedButton btn btn-danger btn-sm'>Seated</button>";
+      noShowButton = "<button id = NS" + uid +  " value=" + uid + " style='display:none' class='noShowButton btn btn-danger btn-sm'>No show</button>";
+    }
+    return html += "<li id=guest-" + uid + ">"+ tableWaitlistObj[uid].name + " --- " +tableWaitlistObj[uid].tel + " --- Guests:" + tableWaitlistObj[uid].guests + tableReadyButton + seatedButton + noShowButton + "</li>";
+  }, "");
+  document.getElementById("PeopleDetails").innerHTML = waitlistHtml;
+  tableReadyClickListener(tableWaitlistObj);
+  removeTableClickListener();
+};
 
 
 var errorHandler = function(errorObject) {
