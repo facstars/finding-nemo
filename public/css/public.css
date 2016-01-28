@@ -6,7 +6,9 @@ nav {
   height: 6em;
   background-color: white;
   font-family:sans-serif;
+  color: #BE0000;
 }
+
 
 .modal-header, h4, .close {
     background-color: #5cb85c;

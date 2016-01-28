@@ -4,33 +4,44 @@
     <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, width=device-width"  charset="utf-8">
     <title>Restaurant Overview</title>
     <link rel="icon" href="../images/skipitFavicon.png" type="image/png" sizes="16x16">
-    <link rel="stylesheet" href="../css/public.css">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/restOverview.css">
   </head>
 
   <nav>
+    <h3 class="heading" id="restaurantName"></h3>
+    <h3 class="title">Waiting List</h3>
     <img class ="skipitLogo" src="../images/skipitLogo.jpg" alt="Skipit Logo" />
   </nav>
 
   <body>
-    <p id="restaurantName"></p>
-
-    REST OVERVIEW GOES HERE
-
-    <div class = "table">
-      <p class ="numPeopleWaiting" id="numPeopleWaitingTable2">"0"</p>
-      <a class = "tableSize" id="table2" href="../restaurantSpecific/table2">tables of 2</a>
+    <div class="tablesSummary">
+      <div class="waitlistTable">
+        <a id="table2" href="../restaurantSpecific/table2">
+          <div class="numberCircle">
+            <h4 class="numPeopleWaiting" id="numPeopleWaitingTable2"></h4>
+          </div>
+        </a>
+        <div class="tablesSize">tables of 2</div>
+      </div>
+      <div class="waitlistTable">
+        <a id="table4" href="../restaurantSpecific/table4">
+          <div class="numberCircle">
+            <h4 class="numPeopleWaiting" id="numPeopleWaitingTable4"></h4>
+          </div>
+        </a>
+        <div class="tablesSize">tables of 4</div>
+      </div>
+      <div class="waitlistTable">
+        <a id="table5" href="../restaurantSpecific/table5">
+          <div class="numberCircle">
+            <h4 class="numPeopleWaiting" id="numPeopleWaitingTable5"></h4>
+          </div>
+        </a>
+        <div class="tablesSize">tables of 5</div>
+      </div>
     </div>
-    <div class = "table">
-      <p class ="numPeopleWaiting" id="numPeopleWaitingTable4">"0"</p>
-      <a class = "tableSize" id="table4" href="../restaurantSpecific/table4">tables of 4</a>
-    </div>
-    <div class = "table">
-      <p class ="numPeopleWaiting" id="numPeopleWaitingTable5">"0"</p>
-      <a class = "tableSize" id="table5" href="../restaurantSpecific/table5" >tables of 5</a>
-    </div>
 
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal">Add New Table</button>
 
     <!-- Modal  -->
 
@@ -57,10 +68,11 @@
       </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
 
+    <button type="button" class="btn btn-primary btn-block btn-lg modalInitButton" data-toggle="modal" data-target="#modal">Add New Table</button>
   </body>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.min.js" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" crossorigin="anonymous"></script>
   <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
   <script src="./js/rest.js"></script>
-  <script src="./restaurant/js/addNewTable.js"></script>
+  <script src="./js/addNewTable.js"></script>
 </html>
