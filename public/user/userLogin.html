@@ -3,17 +3,23 @@
   <head>
     <meta charset="utf-8">
     <title>Login</title>
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, width=device-width"  charset="utf-8">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    <link rel="icon" href="../images/skipitFavicon.png" type="image/png" sizes="16x16">
     <link rel="stylesheet" href="../css/userLogin.css" media="screen" title="no title" charset="utf-8">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" crossorigin="anonymous">
   </head>
+
+  <nav>
+    <img class ="skipitLogo" src="../images/skipitLogo.jpg" alt="Skipit Logo" />
+  </nav>
+
   <body>
     <div class="container">
     	<div class="row">
             <div class="span12">
-        		<div class="" id="loginModal">
+        		<div class="user-login" id="loginModal">
                   <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <h3>Have an Account?</h3>
+                    <h3 class="heading">Have an Account?</h3>
                   </div>
                   <div class="modal-body">
                     <div class="well">
@@ -21,61 +27,34 @@
                         <li class="active"><a href="#login" data-toggle="tab">Login</a></li>
                         <li><a href="#create" data-toggle="tab">Create Account</a></li>
                       </ul>
+
                       <div id="myTabContent" class="tab-content">
+
                         <div class="tab-pane active in" id="login">
                           <form class="form-horizontal" action='/login' method="POST">
-                            <fieldset>
-                              <div class="control-group">
-                                <!-- Username -->
-                                <label class="control-label"  for="username">Mobile number</label>
-                                <div class="controls">
-                                  <input type="text" id="tel" name="tel" placeholder="" class="input-xlarge">
-                                </div>
-                              </div>
-
-                              <div class="control-group">
-                                <!-- Password-->
-                                <label class="control-label" for="password">Password</label>
-                                <div class="controls">
-                                  <input type="password" id="password" name="password" placeholder="" class="input-xlarge">
-                                </div>
-                              </div>
-
-                              <div class="control-group">
-                                <!-- Button -->
-                                <div class="controls" id="user-login-btn-div">
-                                  <button id="user-login" class="btn btn-success">Login</button>
-                                  <p id="incorrect-p"></p>
-                                </div>
-                              </div>
+                            <fieldset class="form-group">
+                                <input class="form-control" type="text" id="tel" name="tel" placeholder="Mobile number" class="input-xlarge">
                             </fieldset>
+                            <fieldset class="form-group">
+                                <input class="form-control" type="password" id="password" name="password" placeholder="Password" class="input-xlarge">
+                            </fieldset>
+
+                            <button id="user-login" class="btn btn-success">Login</button>
+                            <p id="incorrect-p"></p>
                           </form>
                         </div>
 
                         <div class="tab-pane fade" id="create">
-                          <form id="tab" method="POST" action="/signup">
-
-                            <div class="control-group">
-                              <label class="control-label" for="full-name">Full name</label>
-                              <div class="controls">
-                                <input type="text" value="" class="input-xlarge" name="name">
-                              </div>
-                            </div>
-
-                            <div class="control-group">
-                              <label class="control-label" for="mobile-number">Mobile number</label>
-                              <div class="controls">
-                                <input type="text" value="" class="input-xlarge" name="tel">
-                              </div>
-                            </div>
-
-                            <div class="control-group">
-                              <label class="control-label" for="password">Password</label>
-                              <div class="controls">
-                                <input type="password" id="password" name="password" placeholder="" class="input-xlarge">
-                              </div>
-                            </div>
-
+                          <form class="form-horizontal" id="tab" method="POST" action="/signup">
+                            <fieldset class="form-group">
+                              <input type="text" value="" class="form-control" placeholder="Full name" name="name">
+                            </fieldset>
+                            <fieldset class="form-group">
+                              <input type="text" value="" class="form-control" placeholder="Mobile number" name="tel">
+                            </fieldset>
+                            <fieldset class="form-group">
+                              <input type="password" id="password" class="form-control" name="password" placeholder="Password">
+                            </fieldset>
                             <div>
                               <button class="btn btn-primary">Create Account</button>
                             </div>
@@ -94,6 +73,6 @@
   <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
   <script src="./js/userLogin.js" type="text/javascript"></script>
-  <script src="../../user/js/authUser.js" type="text/javascript"></script>
+
 
 </html>
