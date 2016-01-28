@@ -18,8 +18,8 @@
   },
   "homepage": "https://github.com/facstars/finding-nemo#readme",
   "dependencies": {
-    "firebase-token-generator": "^2.0.0",
     "env2": "^2.0.4",
+    "firebase-token-generator": "^2.0.0",
     "hapi": "^12.1.0",
     "hoek": "^3.0.4",
     "inert": "^3.2.0",

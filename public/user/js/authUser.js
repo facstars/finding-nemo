@@ -6,5 +6,6 @@ ref.authWithCustomToken($.cookie("firebase_token"), function(error, authData) {
     window.location = "/user/userLogin.html";
   } else {
     console.log("Login Succeeded!");
+    localStorage.setItem('UID',authData.uid);
   }
 });
