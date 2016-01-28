@@ -1,9 +1,9 @@
 var uid = localStorage.getItem('UID');
 console.log(uid);
 
-loadRestDetails();
+loadAllRestDetails();
 
-function loadRestDetails(){
+function loadAllRestDetails(){
   var restDetails= new Firebase("https://blistering-torch-1660.firebaseio.com/restaurants/");
 
   restDetails.on("value", function(snapshot){
