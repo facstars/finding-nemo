@@ -13,7 +13,6 @@ function loadPeopleWaiting(table){
   var restaurantWaitlist= new Firebase("https://blistering-torch-1660.firebaseio.com/restaurants/"+ruid+"/waitlist/"+table);
   restaurantWaitlist.on('value', function(snapshot) {
     var tableWaitlistObj=snapshot.val();
-
     var waitlistHtml = Object.keys(tableWaitlistObj).reduce(function(html, uid){
       var tableReadyButton, seatedButton, noShowButton;
 
@@ -70,12 +69,13 @@ var smsSuccess = function(event){
   updateWaitlistUser.update({
     alreadySent: true
   });
+  console.log("sms notification successful! :) ");
   document.getElementById("SE"+ event.target.value).style.display="inline";
   document.getElementById("NS"+ event.target.value).style.display="inline";
 };
 
 var smsFailure = function(){
-  console.log("sms failed notification! :(");
+  console.log("sms notification failed! :(");
 };
 
 var removeTableClickListener = function (){
