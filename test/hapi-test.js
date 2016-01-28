@@ -18,10 +18,16 @@ var testEndPoint = function(endpoint){
         server.stop(t.end);
     });
   });
+    test.onFinish(function() {
+        process.exit();
+    });
 };
+
+
 
 testEndPoint("/");
 testEndPoint("/restaurantSpecific/table2");
 testEndPoint("/restaurant/restOverview.html");
 testEndPoint("/user/restList");
 testEndPoint("/css/public.css");
+testEndPoint("/user/userLogin");
