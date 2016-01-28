@@ -2,7 +2,8 @@
 <html>
   <head>
     <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, width=device-width"  charset="utf-8">
-    <link rel="stylesheet" href="../css/public.css">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/restLogin.css">
     <link rel="icon" href="../images/skipitFavicon.png" type="image/png" sizes="16x16">
     <title>Login</title>
 
@@ -13,17 +14,20 @@
   </nav>
 
   <body>
-    Restaurant Login
-    <form id="restLogin">
-      <fieldset class="form-group">
-        <input type="email" class="form-control" name="email" placeholder="Username (email address)" required>
-      </fieldset>
-      <fieldset class="form-group">
-        <input type="password" class="form-control" name="password" placeholder="Password" required>
-      </fieldset>
+    <div class="restLogin">
+      <h3 class="heading">Welcome! Log In to proceed</h3>
+      <form id="restLoginForm">
+        <fieldset class="form-group">
+          <input type="email" class="form-control" name="email" placeholder="Username (email address)" required>
+        </fieldset>
+        <fieldset class="form-group">
+          <input type="password" class="form-control" name="password" placeholder="Password" required>
+        </fieldset>
 
-      <button type="submit" class="btn btn-primary">Login</button>
-    </form>
+        <button type="submit" class="btn btn-primary btn-block login-button">Login</button>
+      </form>
+    </div>
+
 
   </body>
   <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>

@@ -1,9 +1,9 @@
 var ref = new Firebase("https://blistering-torch-1660.firebaseio.com/restaurants");
 
-document.getElementById('restLogin').addEventListener('submit', function(e){
+document.getElementById('restLoginForm').addEventListener('submit', function(e){
   e.preventDefault();
-  var email=restLogin.elements.email.value;
-  var pw=restLogin.elements.password.value;
+  var email=restLoginForm.elements.email.value;
+  var pw=restLoginForm.elements.password.value;
   validateRestLoginDetails(email,pw);
 });
 
