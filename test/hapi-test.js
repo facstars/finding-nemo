@@ -18,27 +18,33 @@ var testEndPoint = function(endpoint){
         server.stop(t.end);
     });
   });
+    test.onFinish(function() {
+        process.exit();
+    });
 };
+
+
 
 testEndPoint("/");
 testEndPoint("/restaurantSpecific/table2");
 testEndPoint("/restaurant/restOverview.html");
-testEndPoint("/user/index.html");
+testEndPoint("/user/restList");
 testEndPoint("/css/public.css");
+testEndPoint("/user/userLogin");
 
-test(file + "POST returns 'SMS sent'", function(t){
-  var payload = JSON.stringify({
-    tel:"07817707982",
-  });
-
-  var options = {
-    method: "POST",
-    url: "/sms",
-    payload: payload
-  };
-
-  server.inject(options, function(res){
-    t.equal(res.payload, "SMS sent", "SMS sent successfully");
-    server.stop(t.end);
-  });
-});
+// test(file + "POST returns 'SMS sent'", function(t){
+//   var payload = JSON.stringify({
+//     tel:"07817707982",
+//   });
+//
+//   var options = {
+//     method: "POST",
+//     url: "/sms",
+//     payload: payload
+//   };
+//
+//   server.inject(options, function(res){
+//     t.equal(res.payload, "SMS sent", "SMS sent successfully");
+//     server.stop(t.end);
+//   });
+// });

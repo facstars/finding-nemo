@@ -18,12 +18,12 @@ function loadPeopleWaiting(table){
 
       if (tableWaitlistObj[uid].alreadySent === true) {
         tableReadyButton = "";
-        seatedButton = "<button id = SE" + uid +  " value=" + uid + " style='display:inline' class='seatedButton'>Seated</button>";
-        noShowButton = "<button id = NS" + uid +  " value=" + uid + " style='display:inline' class='noShowButton'>No show</button>";
+        seatedButton = "<button id = SE" + uid +  " value=" + uid + " style='display:inline' class='seatedButton btn btn-danger btn-sm'>Seated</button>";
+        noShowButton = "<button id = NS" + uid +  " value=" + uid + " style='display:inline' class='noShowButton btn btn-danger btn-sm'>No show</button>";
       } else{
-        tableReadyButton = "<button id = TR" + uid +  " value=" + uid + " data-value =" + tableWaitlistObj[uid].tel + " style='display:inline' class='tableReadyButton'>Table ready</button>";
-        seatedButton = "<button id = SE" + uid +  " value=" + uid + " style='display:none' class='seatedButton'>Seated</button>";
-        noShowButton = "<button id = NS" + uid +  " value=" + uid + " style='display:none' class='noShowButton'>No show</button>";
+        tableReadyButton = "<button id = TR" + uid +  " value=" + uid + " data-value =" + tableWaitlistObj[uid].tel + " style='display:inline' class='tableReadyButton btn btn-danger btn-sm'>Table ready</button>";
+        seatedButton = "<button id = SE" + uid +  " value=" + uid + " style='display:none' class='seatedButton btn btn-danger btn-sm'>Seated</button>";
+        noShowButton = "<button id = NS" + uid +  " value=" + uid + " style='display:none' class='noShowButton btn btn-danger btn-sm'>No show</button>";
       }
       return html += "<li id=guest-" + uid + ">"+ tableWaitlistObj[uid].name + " --- " +tableWaitlistObj[uid].tel + " --- Guests:" + tableWaitlistObj[uid].guests + tableReadyButton + seatedButton + noShowButton + "</li>";
     }, "");

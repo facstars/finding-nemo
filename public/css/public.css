@@ -27,3 +27,47 @@ nav {
   display:none;
   color: red;
 }
+
+.restDetailWrapper{
+  position:relative;
+  width:100%;
+  color:black;
+
+}
+
+.restLogo{
+  height:15em;
+  width:100%;
+  opacity: 0.5;
+  filter: alpha(opacity=40);
+}
+
+.restName{
+  position: absolute;
+  top: -0.5em;
+  left: 0;
+  width: 100%;
+}
+
+.restTimes{
+  position: absolute;
+  top: 0em;
+  text-align: right;
+  width: 100%;
+}
+
+
+.restDescription{
+  position: absolute;
+  top: 6em;
+  left: 0;
+  width: 100%;
+}
+
+.restAddress{
+  position: absolute;
+  top: 1em;
+  font-size:0.8em;
+  left: 6.5;
+  width: 100%;
+}
