@@ -1,0 +1,68 @@
+html, body {
+    margin: 0;
+    height: 100%;
+    font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;}
+
+nav {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 6em;
+  background-color: white;
+  color: #BE0000;
+}
+
+.skipitLogo {
+  width:10em;
+  position: absolute;
+  right: 1em;
+}
+
+.title {
+  margin-top: 0.5em;
+  margin-left: 1em;
+  font-size: 3em;
+}
+
+.tablesSummary{
+  width: 50%;
+  height: auto;
+  margin-left: 20%;
+  margin-top: 5em;
+}
+
+.waitlistTable{
+  height: 100%;
+  display: table;
+  margin-bottom: 2em;
+}
+.numberCircle {
+  height: 8em;
+  width: 8em;
+  border-radius: 100%;
+  background-color: #BE0000;
+  display: table;
+  float: left;
+}
+
+.numPeopleWaiting {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  font-size: 3em;
+  color: white;
+}
+
+
+.tablesSize {
+  display: table-cell;
+  vertical-align: middle;
+  font-size: 4em;
+  padding-left: 1em;
+}
+
+.modalInitButton {
+  position: fixed;
+  bottom:0;
+  height: 5em;
+}

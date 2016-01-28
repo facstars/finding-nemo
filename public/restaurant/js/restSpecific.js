@@ -4,17 +4,17 @@ var tableSize;
 var getTableSize = (function(){
   var URLSegmentArray = window.location.pathname.split( '/' );
   tableSize = URLSegmentArray[URLSegmentArray.length - 1];
-  loadPeopleWaiting(tableSize) ;
+  loadPeopleWaiting(tableSize);
 })();
 
 
-var loadPeopleWaiting = function(tableSize){
+function loadPeopleWaiting(tableSize){
   var restaurantWaitlist= new Firebase("https://blistering-torch-1660.firebaseio.com/restaurants/"+ruid+"/waitlist/"+tableSize);
   restaurantWaitlist.on('value', function(snapshot) {
     var tableWaitlistObj=snapshot.val();
     tableWaitlistObj === null? emptyWaitlist() : generateWaitlistHtml(tableWaitlistObj);
   }, errorHandler);
-};
+}
 
 var emptyWaitlist = function(){
   var html = "no one here, put a nice picture";
