@@ -78,7 +78,7 @@ ul {
   margin-top: 20px;
 }
 
-#incorrect-p {
+#incorrect-p, #incorrect-confirm {
   color: #BE0000;
   display: inline-block;
 }
