@@ -74,13 +74,9 @@ nav {
   background-color: #BE0000;
   border-color: #f4e6e6;
   border: 1em;
+  outline: 0;
 }
 
-.modalInitButton:hover, .red:hover{
+.red:hover, .red:active{
   background-color: #e04a4a;
 }
-
-/*.modalInitButton:focus{
-  background-color: #BE0000;
-  border-color: #f4e6e6;
-}*/
