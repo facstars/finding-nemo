@@ -22,7 +22,7 @@ nav {
 
 .user-login {
   text-align: center;
-  width: 80%;
+  max-width: 350px;
   margin: auto;
 
 }
@@ -56,6 +56,10 @@ a {
     margin-bottom: 10px;
 }
 
+.form-control {
+  margin: 32px auto 0 auto;
+}
+
 .form-horizontal .form-group {
     margin-right: 0;
     margin-left: 0;
@@ -74,7 +78,7 @@ ul {
   margin-top: 20px;
 }
 
-#incorrect-p {
+#incorrect-p, #incorrect-confirm {
   color: #BE0000;
   display: inline-block;
 }

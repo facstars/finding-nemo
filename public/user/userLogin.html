@@ -33,10 +33,10 @@
                         <div class="tab-pane active in" id="login">
                           <form class="form-horizontal" action='/login' method="POST">
                             <fieldset class="form-group">
-                                <input class="form-control" type="text" id="tel" name="tel" placeholder="Mobile number" class="input-xlarge">
+                                <input class="form-control" type="number" id="tel" name="tel" placeholder="Mobile number" class="input-xlarge" required>
                             </fieldset>
                             <fieldset class="form-group">
-                                <input class="form-control" type="password" id="password" name="password" placeholder="Password" class="input-xlarge">
+                                <input class="form-control" type="password" id="password" name="password" placeholder="Password" class="input-xlarge" required>
                             </fieldset>
 
                             <button id="user-login" class="btn btn-success">Login</button>
@@ -47,14 +47,18 @@
                         <div class="tab-pane fade" id="create">
                           <form class="form-horizontal" id="tab" method="POST" action="/signup">
                             <fieldset class="form-group">
-                              <input type="text" value="" class="form-control" placeholder="Full name" name="name">
+                              <input type="text" class="form-control" placeholder="Full name" name="name" required>
                             </fieldset>
                             <fieldset class="form-group">
-                              <input type="text" value="" class="form-control" placeholder="Mobile number" name="tel">
+                              <input type="number" class="form-control" placeholder="Mobile number" name="tel" required>
                             </fieldset>
                             <fieldset class="form-group">
-                              <input type="password" id="password" class="form-control" name="password" placeholder="Password">
+                              <input type="password" id="password" class="form-control" placeholder="Password" name="password" required>
                             </fieldset>
+                            <fieldset class="form-group">
+                              <input type="password" id="confirm-password" class="form-control" placeholder="Confirm password" name="confirmPassword" required>
+                            </fieldset>
+                            <p id="incorrect-confirm"></p>
                             <div>
                               <button class="btn btn-primary">Create Account</button>
                             </div>
