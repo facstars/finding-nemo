@@ -18,7 +18,7 @@
     <div class="tablesSummary">
       <div class="waitlistTable">
         <a id="table2" href="../restaurantSpecific/table2">
-          <div class="numberCircle">
+          <div class="numberCircle red">
             <h4 class="numPeopleWaiting" id="numPeopleWaitingTable2"></h4>
           </div>
         </a>
@@ -26,7 +26,7 @@
       </div>
       <div class="waitlistTable">
         <a id="table4" href="../restaurantSpecific/table4">
-          <div class="numberCircle">
+          <div class="numberCircle red">
             <h4 class="numPeopleWaiting" id="numPeopleWaitingTable4"></h4>
           </div>
         </a>
@@ -34,7 +34,7 @@
       </div>
       <div class="waitlistTable">
         <a id="table5" href="../restaurantSpecific/table5">
-          <div class="numberCircle">
+          <div class="numberCircle red">
             <h4 class="numPeopleWaiting" id="numPeopleWaitingTable5"></h4>
           </div>
         </a>
@@ -45,8 +45,8 @@
 
     <!-- Modal  -->
 
-    <div class="modal fade bs-example-modal-sm" id="modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
-      <div class="modal-dialog modal-sm">
+    <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+      <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -61,14 +61,14 @@
             </form>
           </div><!-- /.modal-body -->
           <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary" form="modalForm" id="addNewTable">Save changes</button>
+            <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+            <button type="submit" class="btn btn-primary btn-block red" form="modalForm" id="addNewTable">Confirm New Table</button>
           </div><!-- /.modal-footer -->
         </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
 
-    <button type="button" class="btn btn-primary btn-block btn-lg modalInitButton" data-toggle="modal" data-target="#modal">Add New Table</button>
+    <button type="button" class="btn btn-primary btn-block btn-lg red modalInitButton" data-toggle="modal" data-target="#modal">Add New Table</button>
   </body>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.min.js" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" crossorigin="anonymous"></script>

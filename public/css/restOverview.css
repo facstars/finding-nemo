@@ -40,7 +40,6 @@ nav {
   height: 8em;
   width: 8em;
   border-radius: 100%;
-  background-color: #BE0000;
   display: table;
   float: left;
 }
@@ -66,3 +65,22 @@ nav {
   bottom:0;
   height: 5em;
 }
+
+.form-control{
+  margin-bottom: 1.5em;
+}
+
+.red, .modalInitButton:focus{
+  background-color: #BE0000;
+  border-color: #f4e6e6;
+  border: 1em;
+}
+
+.modalInitButton:hover, .red:hover{
+  background-color: #e04a4a;
+}
+
+/*.modalInitButton:focus{
+  background-color: #BE0000;
+  border-color: #f4e6e6;
+}*/
