@@ -22,7 +22,7 @@ nav {
 
 .user-login {
   text-align: center;
-  width: 80%;
+  max-width: 350px;
   margin: auto;
 
 }
@@ -54,6 +54,10 @@ a {
 .nav-tabs {
     border-bottom: 0;
     margin-bottom: 10px;
+}
+
+.form-control {
+  margin: 32px auto 0 auto;
 }
 
 .form-horizontal .form-group {
