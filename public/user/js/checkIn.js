@@ -50,6 +50,25 @@ var addUserToWaitlist = function(bookingObj){
       // $('#checkInForm')[0].reset();
       document.getElementById('page').style.display = "none";
       document.getElementById('queue').style.display="block";
+      console.log(tableNo);
+      loadWaitlist(tableNo);
     }
   });
+};
+
+function loadWaitlist(tableNo){
+  var restaurantWaitlist = new Firebase("https://blistering-torch-1660.firebaseio.com/restaurants/"+ruid+"/waitlist/table"+tableNo);
+    restaurantWaitlist.on('value', function(snapshot) {
+      var waitlistObj = snapshot.val();
+      var usersArray = Object.keys(waitlistObj);
+      console.log(usersArray.indexOf(uid));
+
+      // THIS IS CURRENTLY 0 BECAUSE WE NEED TO STORE THE UID IN THE USER 
+      // FIND WHERE THE USER IS IN THE OBJECT
+      // document.getElementById("numPeopleWaitingTable"+tableNo).innerHTML= numOnWaitlist;
+  }, errorHandler);
+}
+
+var errorHandler = function(errorObject) {
+  console.log("The read failed: " + errorObject.code);
 };
