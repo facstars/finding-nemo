@@ -1,8 +1,84 @@
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 6em;
+  background-color: white;
+  font-family:sans-serif;
+}
+
+.heading {
+  color: #BE0000;
+  margin-bottom: 2em;
+}
+
+.skipitLogo {
+  width:10%;
+  position: absolute;
+  right: 1em;
+  top: 1em;
+}
+
+.user-login {
+  text-align: center;
+  max-width: 350px;
+  margin: auto;
+
+}
+
+.well {
+  padding: 0;
+  background-color: white;
+  border: none;
+  box-shadow: none;
+}
+
+.modal-header {
+  border: none;
+}
+
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
+
+  /*background-color: #;*/
+}
+
+.nav-tabs>li {
+  margin-bottom: 0;
+}
+
+a {
+    color: #555;
+}
+
+.nav-tabs {
+    border-bottom: 0;
+    margin-bottom: 10px;
+}
+
+.form-control {
+  margin: 32px auto 0 auto;
+}
+
+.form-horizontal .form-group {
+    margin-right: 0;
+    margin-left: 0;
+}
+
+ul {
+  margin: none;
+}
+
+.btn, .btn:hover {
+  background-color: #BE0000;
+  border-color: #BE0000;
+}
+
 #user-login-btn-div {
   margin-top: 20px;
 }
 
-#incorrect-p {
-  color: red;
+#incorrect-p, #incorrect-confirm {
+  color: #BE0000;
   display: inline-block;
 }
