@@ -24,40 +24,45 @@ nav {
   font-size: 3em;
 }
 
-.tablesSummary{
-  width: 50%;
-  height: auto;
-  margin-left: 20%;
+::-webkit-scrollbar {
+    display: none;
+}
+
+.listOfPeople{
+  width: 80%;
+  height: 50%;
+  border: 3px solid;
+  overflow-y: scroll;
+  margin-left: 10%;
   margin-top: 5em;
+  /*background-color: #bc1414;*/
+  border-radius: 2%;
+  opacity: 0.8;
 }
 
-.waitlistTable{
-  height: 100%;
-  display: table;
-  margin-bottom: 2em;
-}
-.numberCircle {
-  height: 8em;
-  width: 8em;
-  border-radius: 100%;
-  display: table;
-  float: left;
+.peopleDetails{
+  width: 100%;
+  padding-left: 8%;
+  list-style: none;
 }
 
-.numPeopleWaiting {
-  display: table-cell;
-  vertical-align: middle;
-  text-align: center;
-  font-size: 3em;
-  color: white;
+.personDetails > div{
+  display: inline-block;
+  padding-right: 1em;
+  margin: 1em 0 1em 0;
+  font-size: 1.5em;
 }
 
+.personName{
+  min-width: 10em;
+}
 
-.tablesSize {
-  display: table-cell;
-  vertical-align: middle;
-  font-size: 4em;
-  padding-left: 1em;
+.personTel{
+  min-width: 7em;
+}
+
+.seatedButton{
+  margin-right: 1em;
 }
 
 .modalInitButton {
