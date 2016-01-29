@@ -18,7 +18,7 @@ function loadPeopleWaiting(tableSize){
 
 var emptyWaitlist = function(){
   var html = "no one here, put a nice picture";
-  document.getElementById('PeopleDetails').innerHTML = html;
+  document.getElementById('peopleDetails').innerHTML = html;
 };
 
 var generateWaitlistHtml = function(tableWaitlistObj){
@@ -27,16 +27,16 @@ var generateWaitlistHtml = function(tableWaitlistObj){
 
     if (tableWaitlistObj[uid].alreadySent === true) {
       tableReadyButton = "";
-      seatedButton = "<button id = SE" + uid +  " value=" + uid + " style='display:inline' class='seatedButton btn btn-danger btn-sm'>Seated</button>";
-      noShowButton = "<button id = NS" + uid +  " value=" + uid + " style='display:inline' class='noShowButton btn btn-danger btn-sm'>No show</button>";
+      seatedButton = "<button id = SE" + uid +  " value=" + uid + " style='display:inline' class='seatedButton btn btn-danger btn-lg'>Seated</button>";
+      noShowButton = "<button id = NS" + uid +  " value=" + uid + " style='display:inline' class='noShowButton btn btn-danger btn-lg'>No show</button>";
     } else{
-      tableReadyButton = "<button id = TR" + uid +  " value=" + uid + " data-value =" + tableWaitlistObj[uid].tel + " style='display:inline' class='tableReadyButton btn btn-danger btn-sm'>Table ready</button>";
-      seatedButton = "<button id = SE" + uid +  " value=" + uid + " style='display:none' class='seatedButton btn btn-danger btn-sm'>Seated</button>";
-      noShowButton = "<button id = NS" + uid +  " value=" + uid + " style='display:none' class='noShowButton btn btn-danger btn-sm'>No show</button>";
+      tableReadyButton = "<button id = TR" + uid +  " value=" + uid + " data-value =" + tableWaitlistObj[uid].tel + " style='display:inline' class='tableReadyButton btn btn-danger btn-lg'>Table ready</button>";
+      seatedButton = "<button id = SE" + uid +  " value=" + uid + " style='display:none' class='seatedButton btn btn-danger btn-lg'>Seated</button>";
+      noShowButton = "<button id = NS" + uid +  " value=" + uid + " style='display:none' class='noShowButton btn btn-danger btn-lg'>No show</button>";
     }
-    return html += "<li id=guest-" + uid + ">"+ tableWaitlistObj[uid].name + " --- " +tableWaitlistObj[uid].tel + " --- Guests:" + tableWaitlistObj[uid].guests + tableReadyButton + seatedButton + noShowButton + "</li>";
+    return html += "<li class='personDetails' id=guest-" + uid + "> <div class='personName'>" + tableWaitlistObj[uid].name + "</div><div class='personTel'>" + tableWaitlistObj[uid].tel + "</div><div class='personGuests'>Guests:" + tableWaitlistObj[uid].guests + "</div>" + tableReadyButton + seatedButton + noShowButton + "</li>";
   }, "");
-  document.getElementById("PeopleDetails").innerHTML = waitlistHtml;
+  document.getElementById("peopleDetails").innerHTML = waitlistHtml;
   tableReadyClickListener(tableWaitlistObj);
   removeTableClickListener();
 };
