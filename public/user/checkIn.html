@@ -17,16 +17,18 @@
     <div id="restDetails">
     </div>
 
-    <div id="checkIn">
+    <div id="page">
       HELLO I'M THE CHECK IN PAGE
-
+      <form id="checkInForm">
+        <input class="form-control" name="guests" type="number" id="number" max="8" min="1" value="2" required>
+      </form>
+    <div class="checkIn-footer">
+      <button type="submit" class="btn btn-primary" form="checkInForm" id="addNewTable">Check in</button>
     </div>
+  </div>
 
-    <form id="checkInForm">
-      <input class="form-control" name="guests" type="number" id="number" max="8" min="1" value="2" required>
-    </form>
-  <div class="checkIn-footer">
-    <button type="submit" class="btn btn-primary" form="checkInForm" id="addNewTable">Check in</button>
+  <div id="queue">
+    YOU'RE IN THE QUEUE!
   </div>
 
 

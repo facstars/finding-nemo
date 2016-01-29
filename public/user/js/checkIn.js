@@ -47,7 +47,9 @@ var addUserToWaitlist = function(bookingObj){
       console.log('Synchronization failed');
     } else {
       console.log('Synchronization succeeded');
-      $('#checkInForm')[0].reset();
+      // $('#checkInForm')[0].reset();
+      document.getElementById('page').style.display = "none";
+      document.getElementById('queue').style.display="block";
     }
   });
 };

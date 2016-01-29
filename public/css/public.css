@@ -76,3 +76,7 @@ nav {
   left: 6.5;
   width: 100%;
 }
+
+#queue{
+  display:none;
+}
