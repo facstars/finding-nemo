@@ -27,17 +27,35 @@ function displayRestDetails(restDetailsObj){
 
 document.getElementById('checkInForm').addEventListener('submit', function(e){
   e.preventDefault();
-  var User = new Firebase ("https://blistering-torch-1660.firebaseio.com/users/"+uid);
-  console.log("https://blistering-torch-1660.firebaseio.com/users/"+uid);
+  var users = new Firebase ("https://blistering-torch-1660.firebaseio.com/users/");
+  users.authWithCustomToken($.cookie("firebase_token"), function(error, authData) {
+    if (error) {
+      console.log("Login Failed!", error);
+      window.location = "/user/userLogin.html";
+    } else {
+      createWaitlistObj(authData);
+      console.log("Authentication Succeeded!");
+    }
+  });
+});
 
+var createWaitlistObj = function(authData){
+  var User = new Firebase ("https://blistering-torch-1660.firebaseio.com/users/"+authData.uid);
+  console.log("https://blistering-torch-1660.firebaseio.com/users/"+authData.uid);
+//if alreadyOnWaitlist = true; return "cannot join more than one restaurant waiting list",
+// else---->
   User.on("value", function(snapshot){
     var userDetailsObj=snapshot.val();
     console.log(userDetailsObj);
-    var userBookingDetailsObj = {name:userDetailsObj.name, tel: userDetailsObj.tel, guests:checkInForm.guests.value};
+    var userBookingDetailsObj = {
+      name:userDetailsObj.name,
+      tel: userDetailsObj.tel,
+      guests:checkInForm.guests.value
+    };
     console.log(userBookingDetailsObj);
     addUserToWaitlist(userBookingDetailsObj);
   });
-});
+};
 
 var addUserToWaitlist = function(bookingObj){
   var tableNo = bookingObj.guests > 4 ? "5" : bookingObj.guests > 2 ? "4" : "2";
@@ -63,7 +81,7 @@ function loadWaitlist(tableNo){
       var usersArray = Object.keys(waitlistObj);
       console.log(usersArray.indexOf(uid));
 
-      // THIS IS CURRENTLY 0 BECAUSE WE NEED TO STORE THE UID IN THE USER 
+      // THIS IS CURRENTLY 0 BECAUSE WE NEED TO STORE THE UID IN THE USER
       // FIND WHERE THE USER IS IN THE OBJECT
       // document.getElementById("numPeopleWaitingTable"+tableNo).innerHTML= numOnWaitlist;
   }, errorHandler);
