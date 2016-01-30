@@ -22,19 +22,18 @@ var emptyWaitlist = function(){
 };
 
 var generateWaitlistHtml = function(tableWaitlistObj){
-  var waitlistHtml = Object.keys(tableWaitlistObj).reduce(function(html, uid){
+  var waitlistHtml = Object.keys(tableWaitlistObj).reduce(function(html, tID){
     var tableReadyButton, seatedButton, noShowButton;
-
-    if (tableWaitlistObj[uid].alreadySent === true) {
+    if (tableWaitlistObj[tID].alreadySent === true) {
       tableReadyButton = "";
-      seatedButton = "<button id = SE" + uid +  " value=" + uid + " style='display:inline' class='seatedButton btn btn-danger btn-lg'>Seated</button>";
-      noShowButton = "<button id = NS" + uid +  " value=" + uid + " style='display:inline' class='noShowButton btn btn-danger btn-lg'>No show</button>";
+      seatedButton = "<button id = SE" + tID +  " value=" + tID + " data-uid =" + tableWaitlistObj[tID].uid + " style='display:inline' class='seatedButton btn btn-danger btn-lg'>Seated</button>";
+      noShowButton = "<button id = NS" + tID +  " value=" + tID + " data-uid =" + tableWaitlistObj[tID].uid + " style='display:inline' class='noShowButton btn btn-danger btn-lg'>No show</button>";
     } else{
-      tableReadyButton = "<button id = TR" + uid +  " value=" + uid + " data-value =" + tableWaitlistObj[uid].tel + " style='display:inline' class='tableReadyButton btn btn-danger btn-lg'>Table ready</button>";
-      seatedButton = "<button id = SE" + uid +  " value=" + uid + " style='display:none' class='seatedButton btn btn-danger btn-lg'>Seated</button>";
-      noShowButton = "<button id = NS" + uid +  " value=" + uid + " style='display:none' class='noShowButton btn btn-danger btn-lg'>No show</button>";
+      tableReadyButton = "<button id = TR" + tID +  " value=" + tID + " data-value =" + tableWaitlistObj[tID].tel + " style='display:inline' class='tableReadyButton btn btn-danger btn-lg'>Table ready</button>";
+      seatedButton = "<button id = SE" + tID +  " value=" + tID + " data-uid =" + tableWaitlistObj[tID].uid + " style='display:none' class='seatedButton btn btn-danger btn-lg'>Seated</button>";
+      noShowButton = "<button id = NS" + tID +  " value=" + tID + " data-uid =" + tableWaitlistObj[tID].uid + " style='display:none' class='noShowButton btn btn-danger btn-lg'>No show</button>";
     }
-    return html += "<li class='personDetails' id=guest-" + uid + "> <div class='personName'>" + tableWaitlistObj[uid].name + "</div><div class='personTel'>" + tableWaitlistObj[uid].tel + "</div><div class='personGuests'>Guests:" + tableWaitlistObj[uid].guests + "</div>" + tableReadyButton + seatedButton + noShowButton + "</li>";
+    return html += "<li class='personDetails' id=guest-" + tID + "> <div class='personName'>" + tableWaitlistObj[tID].name + "</div><div class='personTel'>" + tableWaitlistObj[tID].tel + "</div><div class='personGuests'>Guests:" + tableWaitlistObj[tID].guests + "</div>" + tableReadyButton + seatedButton + noShowButton + "</li>";
   }, "");
   document.getElementById("peopleDetails").innerHTML = waitlistHtml;
   tableReadyClickListener(tableWaitlistObj);
@@ -100,7 +99,19 @@ var removeTableClickListener = function (){
   var removeUserHandler = function(event) {
     var updateWaitlistUser = new Firebase("https://blistering-torch-1660.firebaseio.com/restaurants/"+ruid+"/waitlist/"+tableSize+"/"+event.target.value);
     updateWaitlistUser.remove(onComplete);
+    var uid = event.target.getAttribute("data-uid");
+    console.log(uid);
+    var Users = new Firebase ("https://blistering-torch-1660.firebaseio.com/users/");
+    Users.once('value', function(snapshot){
+      (snapshot.child(uid).exists() === true) ? updateUserWaitlistStatusinDb(uid) : console.log("user was temporary");
+    });
     console.log(event.target.className + " clicked");
+  };
+  var updateUserWaitlistStatusinDb = function(uid){
+    var User = new Firebase ("https://blistering-torch-1660.firebaseio.com/users/"+uid);
+    User.update({
+      alreadyOnWaitlist: false
+    });
   };
 
   var onComplete = function(error) {

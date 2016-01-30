@@ -1,6 +1,4 @@
-var uid = localStorage.getItem('UID');
 var ruid;
-
 
 var getRUID = (function(){
   var URLSegmentArray = window.location.pathname.split( '/' );
@@ -33,31 +31,39 @@ document.getElementById('checkInForm').addEventListener('submit', function(e){
       console.log("Login Failed!", error);
       window.location = "/user/userLogin.html";
     } else {
-      createWaitlistObj(authData);
+      checkUserIsNotAlreadyOnWaitlist(authData);
       console.log("Authentication Succeeded!");
     }
   });
 });
 
-var createWaitlistObj = function(authData){
+var checkUserIsNotAlreadyOnWaitlist = function(authData){
   var User = new Firebase ("https://blistering-torch-1660.firebaseio.com/users/"+authData.uid);
   console.log("https://blistering-torch-1660.firebaseio.com/users/"+authData.uid);
-//if alreadyOnWaitlist = true; return "cannot join more than one restaurant waiting list",
-// else---->
-  User.on("value", function(snapshot){
+  User.once("value", function(snapshot){
     var userDetailsObj=snapshot.val();
+    userDetailsObj.alreadyOnWaitlist === true ? userIsAlreadyOnWaitlist() : createWaitlistObj(userDetailsObj, authData.uid);
+  });
+};
+
+var userIsAlreadyOnWaitlist = function(){
+  console.log("user already on a waitlist");
+};
+
+var createWaitlistObj = function(userDetailsObj, uid){
     console.log(userDetailsObj);
     var userBookingDetailsObj = {
       name:userDetailsObj.name,
       tel: userDetailsObj.tel,
-      guests:checkInForm.guests.value
+      guests:checkInForm.guests.value,
+      "uid":uid
     };
     console.log(userBookingDetailsObj);
-    addUserToWaitlist(userBookingDetailsObj);
-  });
+    addUserToWaitlist(userBookingDetailsObj, uid);
 };
 
-var addUserToWaitlist = function(bookingObj){
+
+var addUserToWaitlist = function(bookingObj, uid){
   var tableNo = bookingObj.guests > 4 ? "5" : bookingObj.guests > 2 ? "4" : "2";
   var restaurantWaitlist = new Firebase("https://blistering-torch-1660.firebaseio.com/restaurants/"+ruid+"/waitlist/table"+tableNo);
   restaurantWaitlist.push(bookingObj, function(error) {
@@ -65,19 +71,30 @@ var addUserToWaitlist = function(bookingObj){
       console.log('Synchronization failed');
     } else {
       console.log('Synchronization succeeded');
+      console.log(uid);
+      updateUserWaitlistStatusinDb(uid);
       // $('#checkInForm')[0].reset();
       document.getElementById('page').style.display = "none";
       document.getElementById('queue').style.display="block";
       console.log(tableNo);
-      loadWaitlist(tableNo);
+      loadWaitlist(tableNo, uid);
     }
   });
 };
 
-function loadWaitlist(tableNo){
+var updateUserWaitlistStatusinDb = function(uid){
+  var User = new Firebase ("https://blistering-torch-1660.firebaseio.com/users/"+uid);
+  User.update({
+    alreadyOnWaitlist: true
+  });
+};
+
+function loadWaitlist(tableNo, uid){
   var restaurantWaitlist = new Firebase("https://blistering-torch-1660.firebaseio.com/restaurants/"+ruid+"/waitlist/table"+tableNo);
     restaurantWaitlist.on('value', function(snapshot) {
       var waitlistObj = snapshot.val();
+      console.log("this is underfined because it doesnt exist since we need to referencing the tID", waitlistObj[uid]);
+      //the uid that you're using below is the unique id of the user in the DB BUT there's the uid's that we make when we 'push' them to the waiting list.
       var usersArray = Object.keys(waitlistObj);
       console.log(usersArray.indexOf(uid));
 
