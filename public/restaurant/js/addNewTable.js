@@ -1,5 +1,6 @@
 document.getElementById('modalForm').addEventListener('submit', function(e){
   e.preventDefault();
+  $('#modal').modal('hide');
   var tempUser = new Firebase ("https://blistering-torch-1660.firebaseio.com");
   var tempUserDetails = ["name", "tel", "guests"];
   var tempUserDetailsObj = tempUserDetails.reduce(function(obj, detail){
@@ -28,7 +29,6 @@ var addTempUserToWaitlist = function(authData, tempUserDetailsObj){
     } else {
       console.log('Synchronization succeeded');
       $('#modalForm')[0].reset();
-      $('#modal').modal('hide');
     }
   });
 };
