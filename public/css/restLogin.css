@@ -10,13 +10,19 @@ nav {
 
 .heading {
   color: #BE0000;
-  margin-bottom: 2em;
+  margin-bottom: 0.5em;
 }
 
 .skipitLogo {
   width:10%;
   position: absolute;
   right: 1em;
+  top: 1em;
+}
+
+p {
+  color: #555;
+  margin-bottom: 2em;
 }
 
 .restLogin{

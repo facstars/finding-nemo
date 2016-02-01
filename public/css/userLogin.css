@@ -9,7 +9,7 @@ nav {
 
 .heading {
   color: #BE0000;
-  margin-bottom: 2em;
+  margin-bottom: 1em;
 }
 
 .skipitLogo {
@@ -44,6 +44,10 @@ nav {
 
 .modal-header {
   border: none;
+}
+
+.modal-header p {
+  color: #555;
 }
 
 .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
