@@ -1,5 +1,4 @@
 nav {
-  display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
@@ -26,6 +25,15 @@ nav {
   margin: auto;
 
 }
+
+#rest-redirect {
+  display: inline-block;
+  background-color: white;
+  color: #BE0000;
+  border: solid 1px #BE0000;
+  margin: 5px;
+}
+
 
 .well {
   padding: 0;
