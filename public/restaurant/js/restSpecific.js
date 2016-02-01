@@ -107,6 +107,7 @@ var removeTableClickListener = function (){
     });
     console.log(event.target.className + " clicked");
   };
+
   var updateUserWaitlistStatusinDb = function(uid){
     var User = new Firebase ("https://blistering-torch-1660.firebaseio.com/users/"+uid);
     User.update({
@@ -115,9 +116,9 @@ var removeTableClickListener = function (){
   };
 
   var onComplete = function(error) {
-  if (error) {
-    console.log('Synchronization failed');
-  } else {
-    console.log('Synchronization succeeded');
-  }
+    if (error) {
+      console.log('Synchronization failed');
+    } else {
+      console.log('Synchronization succeeded');
+    }
 };
