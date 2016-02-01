@@ -77,6 +77,6 @@ nav {
   width: 100%;
 }
 
-#queue{
+#queue, #anotherQueue, #page{
   display:none;
 }

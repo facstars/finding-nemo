@@ -23,14 +23,20 @@
         <input class="form-control" name="guests" type="number" id="number" max="8" min="1" value="2" required>
       </form>
     <div class="checkIn-footer">
-      <button type="submit" class="btn btn-primary" form="checkInForm" id="addNewTable">Check in</button>
+      <button type="submit" class="btn btn-primary" form="checkInForm" id="checkInBtn">Check in</button>
     </div>
+  </div>
+
+  <div id=anotherQueue>
+    Sorry, you cannot join this queue because you are queueing for another restaurant
   </div>
 
   <div id="queue">
     YOU'RE IN THE QUEUE!
+    <div id=numPeopleWaitingTable>
+    </div>
+    <button type="submit" class="btn btn-primary" id="leaveQueueBtn">Leave queue</button>
   </div>
-
 
   </body>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.min.js" crossorigin="anonymous"></script>
