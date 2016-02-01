@@ -28,7 +28,7 @@ function restChecker (){
   if(ruidQueue===ruid){
     document.getElementById('page').style.display = "none";
     document.getElementById('queue').style.display="block";
-    loadWaitlist(tableNoQueue, getPositionOnWaitlist);
+    loadWaitlist(tableNoQueue,displayPositionOnWaitlistStatus);
   } else if(ruidQueue) {
     document.getElementById('page').style.display = "none";
     document.getElementById('anotherQueue').style.display="block";
@@ -36,7 +36,6 @@ function restChecker (){
   } else {
     document.getElementById('queue').style.display="show";
     document.getElementById('page').style.display = "block";
-
   }
 }
 
@@ -74,7 +73,8 @@ var createWaitlistObj = function(userDetailsObj, uid){
       name:userDetailsObj.name,
       tel: userDetailsObj.tel,
       guests:checkInForm.guests.value,
-      "uid":uid
+      "uid":uid,
+      "tableReadyNotificationSent":false
     };
     console.log(userBookingDetailsObj);
     addUserToWaitlist(userBookingDetailsObj, uid);
@@ -97,7 +97,7 @@ var addUserToWaitlist = function(bookingObj, uid){
       document.getElementById('page').style.display = "none";
       document.getElementById('queue').style.display="block";
       console.log("table", tableNo);
-      loadWaitlist(tableNo,getPositionOnWaitlist);
+      loadWaitlist(tableNo,displayPositionOnWaitlistStatus);
     }
   });
 };
@@ -123,20 +123,33 @@ function loadWaitlist(tableNo,callback){
   }, errorHandler);
 }
 
-function getPositionOnWaitlist(tidsArray,tid,tableNo){
+function displayPositionOnWaitlistStatus(tidsArray,tid,tableNo){
   var positionOnWaitlist = tidsArray.indexOf(tid);
-  console.log(positionOnWaitlist, tid, tableNo);
+
   if(positionOnWaitlist>0){
     document.getElementById("numPeopleWaitingTable").innerHTML= positionOnWaitlist;
-  } else{
-    document.getElementById("numPeopleWaitingTable").innerHTML= "<b>Table ready! Please head to the restaurant and enjoy your meal </b>";
+
+  } else if(positionOnWaitlist==-1){
+    document.getElementById('queue').style.display="none";
     localStorage.removeItem('ruidQueue_'+uid);
     localStorage.removeItem('tableNoQueue_'+uid);
+    localStorage.removeItem('TID_'+uid);
   }
+  var userWaitlistDetails = new Firebase("https://blistering-torch-1660.firebaseio.com/restaurants/"+ruid+"/waitlist/table"+tableNo+"/"+tid);
+    userWaitlistDetails.on("value", function(snapshot){
+      var waitlistObj=snapshot.val();
+      console.log(waitlistObj.tableReadyNotificationSent);
+      if(waitlistObj.tableReadyNotificationSent){
+          document.getElementById("numPeopleWaitingTable").innerHTML= "<b>Table ready! Please head to the restaurant and enjoy your meal </b>";
+      }
+    });
+
   leaveQueue(uid, tid, tableNo);
 }
 
 function leaveQueue(uid, tid, tableNo){
+
+
   document.getElementById('leaveQueueBtn').addEventListener('click', function(){
       var User = new Firebase ("https://blistering-torch-1660.firebaseio.com/users/"+uid);
       User.update({
