@@ -1,5 +1,13 @@
+body {
+  background-color: #f68842;
+}
+
+a, a:hover {
+  text-decoration: none;
+}
+
 nav {
-  display: flex;
+  position: fixed;
   align-items: center;
   justify-content: space-between;
   width: 100%;
@@ -9,9 +17,12 @@ nav {
   color: #BE0000;
 }
 
+.navbar {
+  margin-bottom: 4em;
+  z-index: 3;
+}
 
 .modal-header, h4, .close {
-    background-color: #5cb85c;
     color:white;
     text-align: center;
     font-size: 30px;
@@ -26,6 +37,8 @@ nav {
   position: absolute;
   right: 1em;
   top: 1em;
+  border-radius: 11px;
+  border-bottom: solid #d72809;
 }
 
 #passwordIncorrect{
@@ -35,46 +48,54 @@ nav {
 
 .restDetailWrapper{
   position:relative;
-  width:100%;
+  height: auto;
   color:black;
-
+  max-width: 98%;
+  margin: 0 auto;
 }
 
 .restLogo{
   height:15em;
   width:100%;
-  opacity: 0.5;
   filter: alpha(opacity=40);
 }
 
 .restName{
-  position: absolute;
-  top: -0.5em;
+  background-color: white;
+  position: relative;
+  top: 0;
   left: 0;
-  width: 100%;
+  bottom: 3em;
 }
 
 .restTimes{
-  position: absolute;
-  top: 0;
-  text-align: right;
-  width: 100%;
+  float: right;
+  background-color: white;
+  position: relative;
+  bottom: 15em;
 }
 
+.restAddress{
+  float: right;
+  background-color: white;
+  position: relative;
+  bottom: 18em;
+  text-align: right;
+  font-size:0.8em;
+}
+
+.avWaitingTime {
+  float: right;
+  background-color: white;
+  position: relative;
+  bottom: 0;
+  padding: 0;
+}
 
 .restDescription{
   position: absolute;
   top: 6em;
   left: 0;
-  width: 100%;
-}
-
-.restAddress{
-  position: absolute;
-  top: 1em;
-  font-size:0.8em;
-  left: 6.5;
-  width: 100%;
 }
 
 #queue, #anotherQueue, #page{
