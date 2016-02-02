@@ -20,6 +20,11 @@ nav {
   top: 1em;
 }
 
+#incorrect-p, #incorrect-confirm {
+  color: #BE0000;
+  display: inline-block;
+}
+
 p {
   color: #555;
   margin-bottom: 2em;
