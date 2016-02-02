@@ -63,6 +63,11 @@ var tableReadyClickHandler = function(event) {
   var request = new XMLHttpRequest();
   request.onreadystatechange = function() {
     if (request.readyState === 4 && request.status === 200) {
+      var updateWaitlistUser = new Firebase("https://blistering-torch-1660.firebaseio.com/restaurants/"+ruid+"/waitlist/"+tableSize+"/"+event.target.value);
+      console.log("https://blistering-torch-1660.firebaseio.com/restaurants/"+ruid+"/waitlist/"+tableSize+"/"+event.target.value);
+      updateWaitlistUser.update({
+        tableReadyNotificationSent: true
+      });
       var reply = request.responseText;
       reply  === "SMS sent" ? smsSuccess(event) : smsFailure();
     }
@@ -75,6 +80,7 @@ var smsSuccess = function(event){
   var updateWaitlistUser = new Firebase("https://blistering-torch-1660.firebaseio.com/restaurants/"+ruid+"/waitlist/"+tableSize+"/"+event.target.value);
   updateWaitlistUser.update({
     alreadySent: true
+
   });
   console.log("sms notification successful! :) ");
   document.getElementById("SE"+ event.target.value).style.display="inline";
