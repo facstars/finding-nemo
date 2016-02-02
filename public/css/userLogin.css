@@ -23,7 +23,11 @@ nav {
   text-align: center;
   max-width: 350px;
   margin: auto;
+}
 
+#user-login {
+  background-color: #BE0000;
+  border-color: #BE0000;
 }
 
 #rest-redirect {
