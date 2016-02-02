@@ -35,18 +35,20 @@ function displayRestDetails(restDetailsObj){
 
 function userIsOnThisWaitlist(tableNo,tid){
   document.getElementById('page').style.display = "none";
+  document.getElementById('anotherQueue').style.display = "none";
   document.getElementById('queue').style.display="block";
   loadWaitlist(tableNo,tid,displayPositionOnWaitlistStatus);
 }
 
 function userIsInAnotherQueue(){
     document.getElementById('page').style.display = "none";
+    document.getElementById('queue').style.display = "none";
     document.getElementById('anotherQueue').style.display="block";
     console.log("user is in another queue");
   }
 
 function userIsNotInAQueue(){
-    document.getElementById('queue').style.display="show";
+    document.getElementById('queue').style.display="none";
     document.getElementById('page').style.display = "block";
   }
 
@@ -113,16 +115,20 @@ function loadWaitlist(tableNo,tid,callback){
   console.log("https://blistering-torch-1660.firebaseio.com/restaurants/"+ruid+"/waitlist/table"+tableNo);
     restaurantWaitlist.on('value', function(snapshot) {
       var waitlistObj = snapshot.val();
-      var tidsArray = Object.keys(waitlistObj);
-      callback(tidsArray,tid,tableNo);
-  }, errorHandler);
+      if (waitlistObj){
+        var tidsArray = Object.keys(waitlistObj);
+        callback(tidsArray,tid,tableNo);
+      } else{
+        getRestDetailsObj(displayRestDetails);
+      }
+    }, errorHandler);
 }
 
 function displayPositionOnWaitlistStatus(tidsArray,tid,tableNo){
   var positionOnWaitlist = tidsArray.indexOf(tid);
-
-  if(positionOnWaitlist>0){
-    document.getElementById("numPeopleWaitingTable").innerHTML= positionOnWaitlist;
+console.log(positionOnWaitlist);
+  if(positionOnWaitlist>=0){
+    document.getElementById("numPeopleWaitingTable").innerHTML= positionOnWaitlist+1;
   } else if(positionOnWaitlist==-1){
     document.getElementById('queue').style.display="none";
     document.getElementById('page').style.display="block";
