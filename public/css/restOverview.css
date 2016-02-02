@@ -12,6 +12,16 @@ nav {
   color: #BE0000;
 }
 
+#restaurantName {
+  display: inline-block;
+  background-color: white;
+  color: #BE0000;
+  border: solid 1px #BE0000;
+  margin: 0.5em;
+  padding: 0.5em;
+  font-size: 2em;
+}
+
 .skipitLogo {
   width:10em;
   position: absolute;
@@ -49,7 +59,7 @@ nav {
   display: table-cell;
   vertical-align: middle;
   text-align: center;
-  font-size: 3em;
+  font-size: 4em;
   color: white;
 }
 
@@ -65,6 +75,7 @@ nav {
   position: fixed;
   bottom:0;
   height: 10%;
+  font-size: 2em;
 }
 
 .form-control{
@@ -80,4 +91,41 @@ nav {
 
 .red:hover, .red:active{
   background-color: #e04a4a;
+}
+
+
+/*for desktop */
+@media(min-width: ) {
+  .modalInitButton {
+    position: relative;
+    bottom:0;
+    height: 10%;
+    font-size: 2em;
+  }
+}
+
+/*for iphone 6 */
+@media(max-width: 450px) {
+  .tablesSize {
+    display: table-cell;
+    vertical-align: middle;
+    font-size: 2em;
+    padding-left: 1em;
+  }
+  .skipitLogo {
+    width:8em;
+  }
+  .numberCircle {
+    height: 4em;
+    width: 4em;
+    border-radius: 100%;
+    display: table;
+    float: left;
+  }
+  .title {
+    display: none;
+  }
+  .numPeopleWaiting {
+    font-size: 3em;
+  }
 }
