@@ -19,53 +19,53 @@ function getRestDetailsObj(callback){
 function displayRestDetails(restDetailsObj){
   var html = "<div class='restDetailWrapper'><img class='restLogo' src=" + restDetailsObj.image +"><p class='restTimes'>"+restDetailsObj.openTime+ " - " +restDetailsObj.closeTime+ "</p><h3 class='restName'>"+restDetailsObj.restName+"</h3><p class='restDescription'>"+restDetailsObj.description+"</p><p class='restAddress'>"+restDetailsObj.address+"</p></div>";
   document.getElementById("restDetails").innerHTML=html;
-  restChecker();
+  checkUserIsNotAlreadyOnWaitlist();
 }
 
-function restChecker (){
-  var ruidQueue=localStorage.getItem('ruidQueue_'+uid);
-  var tableNoQueue=localStorage.getItem('tableNoQueue_'+uid);
-  if(ruidQueue===ruid){
-    document.getElementById('page').style.display = "none";
-    document.getElementById('queue').style.display="block";
-    loadWaitlist(tableNoQueue,displayPositionOnWaitlistStatus);
-  } else if(ruidQueue) {
+  var checkUserIsNotAlreadyOnWaitlist = function(){
+    var User = new Firebase ("https://blistering-torch-1660.firebaseio.com/users/"+uid);
+    console.log("https://blistering-torch-1660.firebaseio.com/users/"+uid);
+    User.once("value", function(snapshot){
+      var userDetailsObj=snapshot.val();
+      var queueTableNo = userDetailsObj.queueTableNo;
+      var queueTid=userDetailsObj.queueTid;
+      userDetailsObj.queueRuid === ruid ? userIsOnThisWaitlist(queueTableNo, queueTid) : userDetailsObj.alreadyOnWaitlist ===true? userIsInAnotherQueue() : userIsNotInAQueue();
+    }, errorHandler);
+  };
+
+function userIsOnThisWaitlist(tableNo,tid){
+  document.getElementById('page').style.display = "none";
+  document.getElementById('queue').style.display="block";
+  loadWaitlist(tableNo,tid,displayPositionOnWaitlistStatus);
+}
+
+function userIsInAnotherQueue(){
     document.getElementById('page').style.display = "none";
     document.getElementById('anotherQueue').style.display="block";
     console.log("user is in another queue");
-  } else {
+  }
+
+function userIsNotInAQueue(){
     document.getElementById('queue').style.display="show";
     document.getElementById('page').style.display = "block";
   }
-}
+
 
 document.getElementById('checkInForm').addEventListener('submit', function(e){
   e.preventDefault();
-  var users = new Firebase ("https://blistering-torch-1660.firebaseio.com/users/");
-  users.authWithCustomToken($.cookie("firebase_token"), function(error, authData) {
-    if (error) {
-      console.log("Login Failed!", error);
-      window.location = "/user/userLogin.html";
-    } else {
-      console.log("Authentication Succeeded!");
-      checkUserIsNotAlreadyOnWaitlist(authData.uid);
-    }
-  });
+      var User = new Firebase ("https://blistering-torch-1660.firebaseio.com/users/"+uid);
+      console.log("https://blistering-torch-1660.firebaseio.com/users/"+uid);
+      User.once("value", function(snapshot){
+        var userDetailsObj=snapshot.val();
+        createWaitlistObj(userDetailsObj, uid);
+        }, errorHandler);
 });
 
-
-var checkUserIsNotAlreadyOnWaitlist = function(uid){
-  var User = new Firebase ("https://blistering-torch-1660.firebaseio.com/users/"+uid);
-  console.log("https://blistering-torch-1660.firebaseio.com/users/"+uid);
-  User.once("value", function(snapshot){
-    var userDetailsObj=snapshot.val();
-    userDetailsObj.alreadyOnWaitlist === true ? userIsAlreadyOnWaitlist() : createWaitlistObj(userDetailsObj, uid);
-  }, errorHandler);
-};
 
 var userIsAlreadyOnWaitlist = function(){
   console.log("user already on a waitlist");
 };
+
 
 var createWaitlistObj = function(userDetailsObj, uid){
     console.log(userDetailsObj);
@@ -90,36 +90,31 @@ var addUserToWaitlist = function(bookingObj, uid){
     } else {
       console.log('Synchronization succeeded');
       var tid = UpdatedWaitlist.key();
-      localStorage.setItem('TID_'+uid, tid);
-      localStorage.setItem('ruidQueue_'+uid, ruid);
-      localStorage.setItem('tableNoQueue_'+uid, tableNo);
-      updateUserWaitlistStatusinDb(uid);
+      updateUserWaitlistStatusinDb(uid, tableNo, tid);
       document.getElementById('page').style.display = "none";
       document.getElementById('queue').style.display="block";
-      console.log("table", tableNo);
-      loadWaitlist(tableNo,displayPositionOnWaitlistStatus);
+      loadWaitlist(tableNo,tid,displayPositionOnWaitlistStatus);
     }
   });
 };
 
-var updateUserWaitlistStatusinDb = function(uid){
+var updateUserWaitlistStatusinDb = function(uid, tableNo, tid){
   var User = new Firebase ("https://blistering-torch-1660.firebaseio.com/users/"+uid);
   User.update({
-    alreadyOnWaitlist: true
+    alreadyOnWaitlist: true,
+    queueRuid: ruid ,
+    queueTableNo: tableNo,
+    queueTid: tid
   });
 };
 
-function loadWaitlist(tableNo,callback){
+function loadWaitlist(tableNo,tid,callback){
   var restaurantWaitlist = new Firebase("https://blistering-torch-1660.firebaseio.com/restaurants/"+ruid+"/waitlist/table"+tableNo);
   console.log("https://blistering-torch-1660.firebaseio.com/restaurants/"+ruid+"/waitlist/table"+tableNo);
     restaurantWaitlist.on('value', function(snapshot) {
       var waitlistObj = snapshot.val();
-      var tid = localStorage.getItem('TID_'+uid);
-      console.log("UID",uid);
-      console.log("TID", tid);
-      console.log(waitlistObj[tid]);
       var tidsArray = Object.keys(waitlistObj);
-      callback(tidsArray,tid, tableNo);
+      callback(tidsArray,tid,tableNo);
   }, errorHandler);
 }
 
@@ -128,32 +123,39 @@ function displayPositionOnWaitlistStatus(tidsArray,tid,tableNo){
 
   if(positionOnWaitlist>0){
     document.getElementById("numPeopleWaitingTable").innerHTML= positionOnWaitlist;
-
   } else if(positionOnWaitlist==-1){
     document.getElementById('queue').style.display="none";
-    localStorage.removeItem('ruidQueue_'+uid);
-    localStorage.removeItem('tableNoQueue_'+uid);
-    localStorage.removeItem('TID_'+uid);
+    document.getElementById('page').style.display="block";
   }
-  var userWaitlistDetails = new Firebase("https://blistering-torch-1660.firebaseio.com/restaurants/"+ruid+"/waitlist/table"+tableNo+"/"+tid);
-    userWaitlistDetails.on("value", function(snapshot){
-      var waitlistObj=snapshot.val();
-      console.log(waitlistObj.tableReadyNotificationSent);
-      if(waitlistObj.tableReadyNotificationSent){
-          document.getElementById("numPeopleWaitingTable").innerHTML= "<b>Table ready! Please head to the restaurant and enjoy your meal </b>";
-      }
-    });
-
-  leaveQueue(uid, tid, tableNo);
+  checkIfWaitlistObjExists(tid,tableNo);
+  activateLeaveQueueBtnListener(uid, tid, tableNo);
 }
 
-function leaveQueue(uid, tid, tableNo){
+function checkIfWaitlistObjExists(tid,tableNo){
+  var userWaitlistDetails = new Firebase("https://blistering-torch-1660.firebaseio.com/restaurants/"+ruid+"/waitlist/table"+tableNo+"/"+tid);
+  userWaitlistDetails.on("value", function(snapshot){
+    var waitlistObj=snapshot.val();
+    if(waitlistObj){
+      notifyUser(waitlistObj);
+    }
+  });
+}
+
+function notifyUser(obj){
+  if(obj.tableReadyNotificationSent){
+      document.getElementById("numPeopleWaitingTable").innerHTML= "<b>Table ready! Please head to the restaurant and enjoy your meal </b>";
+  }
+}
 
 
+function activateLeaveQueueBtnListener(uid, tid, tableNo){
   document.getElementById('leaveQueueBtn').addEventListener('click', function(){
       var User = new Firebase ("https://blistering-torch-1660.firebaseio.com/users/"+uid);
       User.update({
-        alreadyOnWaitlist: false
+        alreadyOnWaitlist: false,
+        queueRuid:"",
+        queueTableNo:"",
+        queueTid:""
       });
       var userWaitlistDetails = new Firebase("https://blistering-torch-1660.firebaseio.com/restaurants/"+ruid+"/waitlist/table"+tableNo+"/"+tid);
       console.log("https://blistering-torch-1660.firebaseio.com/restaurants/"+ruid+"/waitlist/table"+tableNo+"/"+tid);
@@ -168,9 +170,6 @@ var onComplete = function(error) {
     console.log('Successful - User removed from waitlist');
     document.getElementById('queue').style.display='none';
     document.getElementById('page').style.display='block';
-    localStorage.removeItem('TID_'+uid);
-    localStorage.removeItem('tableNoQueue_'+uid);
-    localStorage.removeItem('ruidQueue_'+uid);
   }
 };
 

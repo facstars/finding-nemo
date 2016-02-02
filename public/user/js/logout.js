@@ -4,8 +4,7 @@ document.getElementById('logOutBtn').addEventListener('click', function(){
       if (request.readyState === 4 && request.status === 200) {
         var reply = request.responseText;
         console.log("I'm the request");
-        // localStorage.removeItem('ruidQueue');
-        // localStorage.removeItem('tableNoQueue');
+        localStorage.removeItem('UID');
         window.location.replace('../user/userLogin');
       }
     };
