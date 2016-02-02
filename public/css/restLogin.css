@@ -37,7 +37,7 @@ p {
   margin-top: 10em;
 }
 
-.login-button{
+.login-button {
   background-color: #BE0000;
   border-color: #f4e6e6;
   border: 0.3em;
@@ -45,4 +45,11 @@ p {
 
 .login-button:hover{
      background: #e04a4a;
+}
+
+
+#restLoginButton:focus {
+  background-color: #BE0000;
+  border-color: #f4e6e6;
+  border: 0.3em
 }
