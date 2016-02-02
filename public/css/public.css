@@ -77,6 +77,14 @@ nav {
   width: 100%;
 }
 
+.avWaitingTime{
+  position: absolute;
+  top: 2em;
+  font-size:0.8em;
+  left: 6.5;
+  width: 100%;
+}
+
 #queue, #anotherQueue, #page{
   display:none;
 }
