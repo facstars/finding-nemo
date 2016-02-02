@@ -117,7 +117,10 @@ var removeTableClickListener = function (){
   var updateUserWaitlistStatusinDb = function(uid){
     var User = new Firebase ("https://blistering-torch-1660.firebaseio.com/users/"+uid);
     User.update({
-      alreadyOnWaitlist: false
+      alreadyOnWaitlist: false,
+      queueRuid:"",
+      queueTableNo:"",
+      queueTid:""
     });
   };
 
