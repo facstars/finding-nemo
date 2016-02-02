@@ -14,6 +14,7 @@ var validateRestLoginDetails = function(email,pw){
   }, function(error, authData) {
     if (error) {
       console.log("Login Failed!", error);
+      $("#incorrect-p")[0].innerHTML = "Incorrect email address or password!";
     } else {
       console.log("Authenticated successfully with payload:", authData);
       localStorage.setItem('RUID',authData.auth.uid);
