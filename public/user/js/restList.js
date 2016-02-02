@@ -4,6 +4,7 @@ console.log(uid);
 loadAllRestDetails();
 
 function loadAllRestDetails(){
+  var restTemplate = _.template($("#rest-template").html());
   var restDetails= new Firebase("https://blistering-torch-1660.firebaseio.com/restaurants/");
   // "https://blistering-torch-1660.firebaseio.com/restaurants/"+ruid+"/waitlist/table"+tableNo
 
@@ -30,10 +31,14 @@ function loadAllRestDetails(){
     }
 
       // console.log(restDetailsObj[ruid]['waitlist']['table2']);
-      return html+=
-        "<div class='restDetailWrapper'><a href='../checkIn/"+ruid+"'><img class='restLogo' src=" + restDetailsObj[ruid].image +
-        "></a><p class='restTimes'>"+restDetailsObj[ruid].openTime+ " - " +restDetailsObj[ruid].closeTime+ "</p>"+
-        "<p class></p><h3 class='restName'>"+restDetailsObj[ruid].restName+"</h3><p class='restDescription'>"+restDetailsObj[ruid].description+"</p><p class='restAddress'>"+restDetailsObj[ruid].address+"</p><p class=avWaitingTime>"+avWaitingTime+" minutes average waiting time"+"</p></div>";
+      var rendered = restTemplate({
+        ruid: ruid,
+        restDetailsObj: restDetailsObj,
+        avWaitingTime: avWaitingTime
+      });
+
+      return html += rendered;
+
     }, "");
     document.getElementById("restsWrapper").innerHTML=restDetailsHtml;
   }, errorHandler);
