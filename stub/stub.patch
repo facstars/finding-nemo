@@ -1,0 +1,172 @@
+diff --git a/lib/userFirebase.js b/lib/userFirebase.js
+new file mode 100644
+index 0000000..8ce6ba5
+--- /dev/null
++++ b/lib/userFirebase.js
+@@ -0,0 +1,21 @@
++var Firebase = require('firebase');
++var FirebaseTokenGenerator = require("firebase-token-generator");
++
++
++module.exports = {
++
++    getUserRef: function() {
++      return new Firebase(
++          "https://blistering-torch-1660.firebaseio.com/users/"
++      );
++    },
++    getToken: function(uid, tel){
++      var tokenGenerator = new FirebaseTokenGenerator(
++        process.env.FIREBASE_SECRET
++      );
++      return tokenGenerator.createToken(
++        {uid: uid, tel: userData.tel}
++      );
++    }
++
++}
+diff --git a/lib/userLogin.js b/lib/userLogin.js
+index a73db51..358e63b 100644
+--- a/lib/userLogin.js
++++ b/lib/userLogin.js
+@@ -1,20 +1,15 @@
+ var Path = require('path');
+ var env = require('env2')('./config.env');
+-var Firebase = require('firebase');
+-var userRef = new Firebase("https://blistering-torch-1660.firebaseio.com/users/");
+-var FirebaseTokenGenerator = require("firebase-token-generator");
+-var tokenGenerator = new FirebaseTokenGenerator(process.env.FIREBASE_SECRET);
+ var bcrypt = require('bcrypt');
++var fb = require('./userFirebase.js');
+ 
+ exports.register = function(server,options,next) {
+ 
+-
+-
+   server.route({
+     method: 'POST',
+     path: '/login',
+     handler: function (request, reply) {
+-      userRef.once("value", function(snapshot){
++      fb.getUserRef.once("value", function(snapshot){
+         var users = snapshot.val();
+         var user_found = false;
+ 
+@@ -27,9 +22,7 @@ exports.register = function(server,options,next) {
+               request.payload.password, userData.password
+             );
+             if (password_correct) {
+-              var token = tokenGenerator.createToken(
+-                {uid: uid, tel: userData.tel}
+-              );
++              var token = fb.getToken(uid, userData.tel);
+               //http://hapijs.com/tutorials/cookies`
+               return reply.redirect("/user/restList").state(
+                 'firebase_token', token, {encoding: 'none'}
+diff --git a/lib/userSignup.js b/lib/userSignup.js
+index 7ebe401..16f71be 100644
+--- a/lib/userSignup.js
++++ b/lib/userSignup.js
+@@ -1,13 +1,8 @@
+ var Path = require('path');
+ var env = require('env2')('./config.env');
+-
+-
+-var Firebase = require('firebase');
+-var userRef = new Firebase("https://blistering-torch-1660.firebaseio.com/users/");
++var fb = require('./userFirebase.js');
+ var bcrypt = require('bcrypt');
+ 
+-var FirebaseTokenGenerator = require("firebase-token-generator");
+-var tokenGenerator = new FirebaseTokenGenerator(process.env.FIREBASE_SECRET);
+ 
+ exports.register = function(server,options,next) {
+ 
+@@ -16,6 +11,7 @@ exports.register = function(server,options,next) {
+     path: '/signup',
+     handler: function (request, reply) {
+       var userExists = false;
++      var userRef = fb.getUserRef()
+       userRef.once("value", function(snapshot){
+         //the forEach of firebase is synchronous
+         if (request.payload.password !== request.payload.confirmPassword) {
+diff --git a/package.json b/package.json
+index ec4add2..dc790a5 100644
+--- a/package.json
++++ b/package.json
+@@ -20,6 +20,7 @@
+   "dependencies": {
+     "bcrypt": "^0.8.5",
+     "env2": "^2.0.4",
++    "firebase": "^2.4.0",
+     "firebase-token-generator": "^2.0.0",
+     "hapi": "^12.1.0",
+     "hoek": "^3.0.4",
+@@ -30,7 +31,7 @@
+     "path": "^0.12.7",
+     "pre-commit": "^1.1.2",
+     "shot": "^3.0.0",
+-    "firebase": "^2.4.0",
++    "sinon": "^1.17.3",
+     "tape": "^4.4.0"
+   },
+   "devDependencies": {
+diff --git a/test/hapi-test.js b/test/hapi-test.js
+index bb64bd6..adf931e 100644
+--- a/test/hapi-test.js
++++ b/test/hapi-test.js
+@@ -7,6 +7,7 @@ var file    = dir + __filename.replace(__dirname, '') + ' ->';
+ var start = require('../lib/start.js');
+ var server   = require('../lib/index.js');
+ 
++
+ var testEndPoint = function(endpoint){
+   test(file + " GET "+ endpoint +" returns status 200", function(t) {
+     var options = {
+@@ -19,6 +20,7 @@ var testEndPoint = function(endpoint){
+     });
+   });
+     test.onFinish(function() {
++        //No longer needed we will stub out firebase
+         process.exit();
+     });
+ };
+diff --git a/test/stub-test.js b/test/stub-test.js
+new file mode 100644
+index 0000000..3e3120c
+--- /dev/null
++++ b/test/stub-test.js
+@@ -0,0 +1,33 @@
++var test    = require('tape');
++
++var sinon = require('sinon');
++var fb = require('../lib/userFirebase.js');
++
++sinon.stub(fb, 'getUserRef').returns({
++    once: function(param1 , callback) {
++        var fakeVal = {
++            val: function() {
++                return {"123": {name: "test"}}
++            }
++        }
++        callback(fakeVal);
++    }
++
++})
++
++var testStub = function(){
++    test('Firebase is fake', function(t){
++        var userRef = fb.getUserRef();
++        userRef.once("value", function(snapshot){
++            var data = snapshot.val()
++            t.equal(data["123"].name, "test")
++            t.end();
++        })
++
++    })
++
++}
++
++
++testStub()
++
