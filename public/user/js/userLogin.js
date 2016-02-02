@@ -11,19 +11,25 @@ function getUrlVars()
     return vars;
 }
 
-var pwerror = getUrlVars().error;
+var loginError = getUrlVars().error;
 
-if (pwerror === "password") {
+if (loginError === "password") {
   $("#incorrect-p")[0].innerHTML = "Incorrect phone number or password!";
 }
 
-if (pwerror === "confirmPassword") {
+if (loginError === "confirmPassword") {
   $("#create #password")[0].style.borderColor = "#E34234";
   $("#confirm-password")[0].style.borderColor = "#E34234";
   $("#incorrect-confirm")[0].innerHTML = "Passwords do not match!";
   $("#create, #login").toggleClass("fade");
   $("#create, #login").toggleClass("active");
   $(".nav-tabs>li").toggleClass("active");
+}
 
-
+if (loginError === "userExists") {
+  $("#incorrect-confirm")[0].innerHTML = "This phone number is already registered!";
+  $("#signup-tel")[0].style.borderColor = "#E34234";
+  $("#create, #login").toggleClass("fade");
+  $("#create, #login").toggleClass("active");
+  $(".nav-tabs>li").toggleClass("active");
 }
