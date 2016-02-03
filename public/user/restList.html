@@ -18,14 +18,14 @@
     </div>
 
     <div class="whitebar">
-      
+
     </div>
 
 
     <div class="container">
       <div class="row">
         <div id="restsWrapper">
-
+          <!-- restList.js renders into here -->
         </div>
 
       </div>
@@ -46,16 +46,24 @@
 
   </body>
 
+  <!-- this is rendered into restsWrapper -->
   <script type="text/html" id='rest-template'>
 
     <div class="col-md-4 portfolio-item">
       <a href='../checkIn/<%= ruid %>'>
         <figure class='restDetailWrapper'>
           <img class='restLogo' src=" <%= restDetailsObj[ruid].image %>" />
-            <span class='restTimes'> <%= restDetailsObj[ruid].openTime %> - <%= restDetailsObj[ruid].closeTime %> </span>
-            <span class='restAddress'> <%= restDetailsObj[ruid].address %> </span>
-            <span class='restName'> <%= restDetailsObj[ruid].restName %></span>
-            <span class=avWaitingTime> <%= avWaitingTime %> minutes average waiting time </span>
+
+
+              <div class="col-md-4 rest-details">
+                <span class='restName'> <%= restDetailsObj[ruid].restName %></span>
+                <span class='restTimes'> <%= restDetailsObj[ruid].openTime %> - <%= restDetailsObj[ruid].closeTime %> </span>
+                <span class='restAddress'> <%= restDetailsObj[ruid].address %> </span>
+                <span class='avWaitingTime'> est. <%= avWaitingTime %> min</span>
+              </div>
+
+
+
         </figure>
       </a>
     </div>

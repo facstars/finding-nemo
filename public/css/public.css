@@ -6,11 +6,14 @@ html {
 body {
   margin: 0;
   padding: 0;
-  background-color: #f68842;
 }
 
 a, a:hover {
   text-decoration: none;
+}
+
+span {
+  display: block;
 }
 
 nav {
@@ -27,6 +30,8 @@ nav {
 .navbar {
   border: none;
   z-index: 3;
+  border-bottom: solid 2px #d72809;
+  box-shadow: 0 4px 2px -2px #640000;
 }
 
 .whitebar {
@@ -36,6 +41,8 @@ nav {
   height: 1.5em;
   width: 100%;
   z-index: 2;
+  border-bottom: solid 2px #d72809;
+  box-shadow: 0 4px 2px -2px #640000;
 }
 
 .modal-header, h4, .close {
@@ -55,6 +62,7 @@ nav {
   top: 1em;
   border-radius: 11px;
   border-bottom: solid #d72809;
+  box-shadow: 0 4px 2px -2px #640000;
 }
 
 #passwordIncorrect{
@@ -62,12 +70,17 @@ nav {
   color: red;
 }
 
+.portfolio-item {
+  margin: 0;
+  padding: 0;
+}
+
 .restDetailWrapper{
   position:relative;
   height: auto;
   color:black;
   max-width: 98%;
-  margin: 0 auto;
+  margin: 0 auto 4px;
 }
 
 .restLogo{
@@ -76,42 +89,30 @@ nav {
   filter: alpha(opacity=40);
 }
 
-.restName{
-  background-color: white;
-  position: relative;
-  top: 0;
-  left: 0;
-  bottom: 3em;
-}
-
-.restTimes{
-  float: right;
-  background-color: white;
-  position: relative;
-  bottom: 15em;
-}
-
-.restAddress{
-  float: right;
-  background-color: white;
-  position: relative;
-  bottom: 18em;
-  text-align: right;
-  font-size:0.8em;
-}
-
-.avWaitingTime {
-  float: right;
-  background-color: white;
-  position: relative;
-  bottom: 0;
+.rest-details {
   padding: 0;
+  width: 100%;
+  color: #dbddda;
+  float: left;
+  position: absolute;
+  top: 0em;
+  background-color: rgba(0, 0, 0, 0.6);
 }
 
 .restDescription{
   position: absolute;
   top: 6em;
   left: 0;
+}
+
+.restAddress {
+  display: inline-block;
+  float:left;
+}
+
+.avWaitingTime {
+  display: inline-block;
+  float: right;
 }
 
 .footer {
