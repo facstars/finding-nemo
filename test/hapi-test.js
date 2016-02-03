@@ -24,17 +24,32 @@ var testEndPoint = function(endpoint){
 };
 
 
-
-testEndPoint("/");
+//rest side tests
 testEndPoint("/restaurantSpecific/table2");
-testEndPoint("/restaurant/restOverview.html");
-testEndPoint("/user/restList");
-testEndPoint("/css/public.css");
-testEndPoint("/user/userLogin");
+testEndPoint("/restaurant/restOverview");
+testEndPoint("/restaurant/newRest");
+testEndPoint("/logout");
 
+
+//user side tests
+testEndPoint("/");
+testEndPoint("/user/userLogin");
+testEndPoint("/user/restList");
+testEndPoint("/user/checkIn");
+testEndPoint("/user/js/logout.js");
+testEndPoint("/logout");
+
+
+//other file
+testEndPoint("/css/public.css");
+testEndPoint("/back.js");
+
+
+
+// 
 // test(file + "POST returns 'SMS sent'", function(t){
 //   var payload = JSON.stringify({
-//     tel:"07817707982",
+//     tel:"07817707982"
 //   });
 //
 //   var options = {
@@ -44,6 +59,7 @@ testEndPoint("/user/userLogin");
 //   };
 //
 //   server.inject(options, function(res){
+//     // console.log("!!!", res);
 //     t.equal(res.payload, "SMS sent", "SMS sent successfully");
 //     server.stop(t.end);
 //   });
