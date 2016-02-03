@@ -132,3 +132,9 @@ var removeTableClickListener = function (){
       console.log('Synchronization succeeded');
     }
 };
+
+
+function restSpecificLogout(){
+  localStorage.removeItem('RUID');
+  window.location.replace('../restaurant/restLogin');
+}
