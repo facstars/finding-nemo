@@ -59,6 +59,7 @@ var tableReadyClickHandler = function(event) {
     tel: event.target.getAttribute("data-value")
   };
   console.log(tel);
+  console.log(typeof tel);
   console.log("table ready button clicked");
   var request = new XMLHttpRequest();
   request.onreadystatechange = function() {
