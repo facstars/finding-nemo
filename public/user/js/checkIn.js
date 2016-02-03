@@ -17,7 +17,17 @@ function getRestDetailsObj(callback){
 }
 
 function displayRestDetails(restDetailsObj){
-  var html = "<div class='restDetailWrapper'><img class='restLogo' src=" + restDetailsObj.image +"><p class='restTimes'>"+restDetailsObj.openTime+ " - " +restDetailsObj.closeTime+ "</p><h3 class='restName'>"+restDetailsObj.restName+"</h3><p class='restDescription'>"+restDetailsObj.description+"</p><p class='restAddress'>"+restDetailsObj.address+"</p></div>";
+  var restTemplate = _.template($("#rest-template").html());
+  var rendered = restTemplate({
+    image: restDetailsObj.image,
+    openTime: restDetailsObj.openTime,
+    closeTime: restDetailsObj.closeTime,
+    restName: restDetailsObj.restName,
+    description: restDetailsObj.description,
+    address: restDetailsObj.address,
+
+  });
+  var html = rendered;
   document.getElementById("restDetails").innerHTML=html;
   checkUserIsNotAlreadyOnWaitlist();
 }
