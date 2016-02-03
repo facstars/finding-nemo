@@ -31,7 +31,7 @@
           <div class="modal-body has-success">
             <form id="modalForm">
               <input class="form-control" name="name" type="text" placeholder="*Name" required>
-              <input class="form-control" name="tel" type="tel" pattern=".{11,}" placeholder="*Phone Number" required>
+              <input class="form-control" name="tel" type="text" pattern="\d*" minlength="11" placeholder="*Mobile Number" required>
               <input class="form-control" name="email" type="email" placeholder="Email">
               <input class="form-control" name="guests" type="number" id="number" max="8" min="1" value="2" required>
             </form>
