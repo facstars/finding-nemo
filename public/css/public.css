@@ -1,4 +1,11 @@
+html {
+  margin: 0;
+  padding: 0;
+}
+
 body {
+  margin: 0;
+  padding: 0;
   background-color: #f68842;
 }
 
@@ -15,10 +22,10 @@ nav {
   background-color: white;
   font-family:sans-serif;
   color: #BE0000;
+  z-index: 3;
 }
 
 .navbar {
-  margin-bottom: 4em;
   z-index: 3;
 }
 
@@ -44,6 +51,10 @@ nav {
 #passwordIncorrect{
   display:none;
   color: red;
+}
+
+#restsWrapper {
+  padding-top: 7em;
 }
 
 .restDetailWrapper{
