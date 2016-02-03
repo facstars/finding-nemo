@@ -13,6 +13,7 @@ var loadRestDetails =(function(){
 
 }) ();
 
+
 function loadNumPeopleWaiting(tableNo){
   var restaurantWaitlist = new Firebase("https://blistering-torch-1660.firebaseio.com/restaurants/"+ruid+"/waitlist/table"+tableNo);
     restaurantWaitlist.on('value', function(snapshot) {
@@ -24,3 +25,8 @@ function loadNumPeopleWaiting(tableNo){
 var errorHandler = function(errorObject) {
   console.log("The read failed: " + errorObject.code);
 };
+
+function restOverviewLogout(){
+  localStorage.removeItem('RUID');
+  window.location.replace('./restLogin');
+}
