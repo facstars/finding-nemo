@@ -14,11 +14,10 @@ a, a:hover {
 }
 
 nav {
-  position: fixed;
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  height: 6em;
+  height: 3em;
   background-color: white;
   font-family:sans-serif;
   color: #BE0000;
@@ -26,7 +25,17 @@ nav {
 }
 
 .navbar {
+  border: none;
   z-index: 3;
+}
+
+.whitebar {
+  background-color: white;
+  position: fixed;
+  top: 0;
+  height: 1.5em;
+  width: 100%;
+  z-index: 2;
 }
 
 .modal-header, h4, .close {
@@ -40,7 +49,7 @@ nav {
 }
 
 .skipitLogo {
-  width:10em;
+  width:5em;
   position: absolute;
   right: 1em;
   top: 1em;
@@ -51,10 +60,6 @@ nav {
 #passwordIncorrect{
   display:none;
   color: red;
-}
-
-#restsWrapper {
-  padding-top: 7em;
 }
 
 .restDetailWrapper{
@@ -109,12 +114,18 @@ nav {
   left: 0;
 }
 
-.avWaitingTime{
-  position: absolute;
-  top: 2em;
-  font-size:0.8em;
-  left: 6.5;
+.footer {
   width: 100%;
+  height: 1.5em;
+  position: fixed;
+  bottom: 0;
+  background-color: #d72809;
+}
+
+#logOutBtn {
+  border: none;
+  background-color: #d72809;
+  float: right;
 }
 
 #queue, #anotherQueue, #page{
