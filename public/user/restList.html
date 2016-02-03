@@ -9,36 +9,64 @@
     <title>Rest list</title>
   </head>
 
-  <div class="navbar">
-    <nav>
-      <img class ="skipitLogo" src="../../images/skipitLogo.jpg" alt="Skipit Logo" />
-    </nav>
-  </div>
-
   <body>
 
-    <div id="restsWrapper">
+    <div class="navbar">
+      <nav>
+        <img class ="skipitLogo" src="../../images/skipitLogo.jpg" alt="Skipit Logo" />
+      </nav>
+    </div>
+
+    <div class="whitebar">
 
     </div>
 
-    <div class="logout">
-      <!-- <a href ="/logout">LOGOUT</a> -->
-      <button type="submit" class="btn btn-primary" id="logOutBtn">Logout</button>
+
+    <div class="container">
+      <div class="row">
+        <div id="restsWrapper">
+          <!-- restList.js renders into here -->
+        </div>
+
+      </div>
+
     </div>
+
+    <footer class="footer">
+      <div class="row">
+        <div class="col-lg-12">
+          <!-- <a href ="/logout">LOGOUT</a> -->
+          <button type="submit" class="btn btn-primary btn-sm" id="logOutBtn">
+            Logout
+            <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+          </button>
+        </div>
+      </div>
+    </footer>
+
   </body>
 
+  <!-- this is rendered into restsWrapper -->
   <script type="text/html" id='rest-template'>
 
-    <a href='../checkIn/<%= ruid %>'>
-      <figure class='restDetailWrapper'>
-        <img class='restLogo' src=" <%= restDetailsObj[ruid].image %>" />
-          <span class='restTimes'> <%= restDetailsObj[ruid].openTime %> - <%= restDetailsObj[ruid].closeTime %> </span>
-          <span class='restAddress'> <%= restDetailsObj[ruid].address %> </span>
-          <span class='restName'> <%= restDetailsObj[ruid].restName %></span>
-          <span class=avWaitingTime> <%= avWaitingTime %> minutes average waiting time </span>
-      </figure>
-    </a>
+    <div class="col-md-4 portfolio-item">
+      <a href='../checkIn/<%= ruid %>'>
+        <figure class='restDetailWrapper'>
+          <img class='restLogo' src=" <%= restDetailsObj[ruid].image %>" />
 
+
+              <div class="col-md-4 rest-details">
+                <span class='restName'> <%= restDetailsObj[ruid].restName %></span>
+                <span class='restTimes'> <%= restDetailsObj[ruid].openTime %> - <%= restDetailsObj[ruid].closeTime %> </span>
+                <span class='restAddress'> <%= restDetailsObj[ruid].address %> </span>
+                <span class='avWaitingTime'> est. <%= avWaitingTime %> min</span>
+              </div>
+
+
+
+        </figure>
+      </a>
+    </div>
   </script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.min.js" crossorigin="anonymous"></script>

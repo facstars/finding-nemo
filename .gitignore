@@ -35,6 +35,8 @@ node_modules
 
 *.env
 
+evening.patch
+
 config.env
 stub/stub.patch
 .DS_Store

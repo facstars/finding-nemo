@@ -1,17 +1,51 @@
+html {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+a, a:hover {
+  text-decoration: none;
+}
+
+span {
+  display: block;
+}
+
 nav {
-  display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  height: 6em;
+  height: 3em;
   background-color: white;
   font-family:sans-serif;
   color: #BE0000;
+  z-index: 3;
 }
 
+.navbar {
+  border: none;
+  z-index: 3;
+  border-bottom: solid 2px #d72809;
+  box-shadow: 0 4px 2px -2px #640000;
+}
+
+.whitebar {
+  background-color: white;
+  position: fixed;
+  top: 0;
+  height: 1.5em;
+  width: 100%;
+  z-index: 2;
+  border-bottom: solid 2px #d72809;
+  box-shadow: 0 4px 2px -2px #640000;
+}
 
 .modal-header, h4, .close {
-    background-color: #5cb85c;
     color:white;
     text-align: center;
     font-size: 30px;
@@ -22,10 +56,13 @@ nav {
 }
 
 .skipitLogo {
-  width:10em;
+  width:5em;
   position: absolute;
   right: 1em;
   top: 1em;
+  border-radius: 11px;
+  border-bottom: solid #d72809;
+  box-shadow: 0 4px 2px -2px #640000;
 }
 
 #passwordIncorrect{
@@ -33,56 +70,63 @@ nav {
   color: red;
 }
 
+.portfolio-item {
+  margin: 0;
+  padding: 0;
+}
+
 .restDetailWrapper{
   position:relative;
-  width:100%;
+  height: auto;
   color:black;
-
+  max-width: 98%;
+  margin: 0 auto 4px;
 }
 
 .restLogo{
   height:15em;
   width:100%;
-  opacity: 0.5;
   filter: alpha(opacity=40);
 }
 
-.restName{
-  position: absolute;
-  top: -0.5em;
-  left: 0;
+.rest-details {
+  padding: 0;
   width: 100%;
-}
-
-.restTimes{
+  color: #dbddda;
+  float: left;
   position: absolute;
-  top: 0;
-  text-align: right;
-  width: 100%;
+  top: 0em;
+  background-color: rgba(0, 0, 0, 0.6);
 }
-
 
 .restDescription{
   position: absolute;
   top: 6em;
   left: 0;
-  width: 100%;
 }
 
-.restAddress{
-  position: absolute;
-  top: 1em;
-  font-size:0.8em;
-  left: 6.5;
-  width: 100%;
+.restAddress {
+  display: inline-block;
+  float:left;
 }
 
-.avWaitingTime{
-  position: absolute;
-  top: 2em;
-  font-size:0.8em;
-  left: 6.5;
+.avWaitingTime {
+  display: inline-block;
+  float: right;
+}
+
+.footer {
   width: 100%;
+  height: 1.5em;
+  position: fixed;
+  bottom: 0;
+  background-color: #d72809;
+}
+
+#logOutBtn {
+  border: none;
+  background-color: #d72809;
+  float: right;
 }
 
 #queue, #anotherQueue, #page{

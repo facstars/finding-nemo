@@ -2,32 +2,32 @@ nav {
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  height: 6em;
   background-color: white;
   font-family:sans-serif;
+  height: 10vh;
 }
 
 .heading {
   color: #BE0000;
-  margin-bottom: 1em;
+  font-size: 2em;
 }
 
 .skipitLogo {
-  width:10%;
-  position: absolute;
-  right: 1em;
-  top: 1em;
+  width:40%;
 }
 
 .user-login {
   text-align: center;
   max-width: 350px;
   margin: auto;
+  height: 90vh;
 }
 
 #user-login {
   background-color: #BE0000;
   border-color: #BE0000;
+  width: 50%;
+  margin-top: 1.5em;
 }
 
 #rest-redirect {
@@ -38,6 +38,9 @@ nav {
   margin: 5px;
 }
 
+#user-login-btn-div {
+  margin-top: 20px;
+}
 
 .well {
   padding: 0;
@@ -48,15 +51,11 @@ nav {
 
 .modal-header {
   border: none;
+  margin-bottom: 2em;
 }
 
 .modal-header p {
-  color: #555;
-}
-
-.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
-
-  /*background-color: #;*/
+  color: #aaaaaa;
 }
 
 .nav-tabs>li {
@@ -73,7 +72,7 @@ a {
 }
 
 .form-control {
-  margin: 32px auto 0 auto;
+  margin: 1.5em auto 0 auto;
 }
 
 .form-horizontal .form-group {
@@ -88,10 +87,6 @@ ul {
 .btn, .btn:hover {
   background-color: #BE0000;
   border-color: #BE0000;
-}
-
-#user-login-btn-div {
-  margin-top: 20px;
 }
 
 #incorrect-p, #incorrect-confirm {
