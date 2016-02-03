@@ -17,7 +17,7 @@ function loadPeopleWaiting(tableSize){
 }
 
 var emptyWaitlist = function(){
-  var html = "no one here, put a nice picture";
+  var html = "<h3>Waitlist is empty </h3>";
   document.getElementById('peopleDetails').innerHTML = html;
 };
 
@@ -59,6 +59,7 @@ var tableReadyClickHandler = function(event) {
     tel: event.target.getAttribute("data-value")
   };
   console.log(tel);
+  console.log(typeof tel);
   console.log("table ready button clicked");
   var request = new XMLHttpRequest();
   request.onreadystatechange = function() {
@@ -131,3 +132,9 @@ var removeTableClickListener = function (){
       console.log('Synchronization succeeded');
     }
 };
+
+
+function restSpecificLogout(){
+  localStorage.removeItem('RUID');
+  window.location.replace('../restaurant/restLogin');
+}

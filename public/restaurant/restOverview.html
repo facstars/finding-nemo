@@ -21,7 +21,7 @@
             <h4 class="numPeopleWaiting" id="numPeopleWaitingTable2"></h4>
           </div>
         </a>
-        <div class="tablesSize">tables of 2</div>
+        <div class="tablesSize"><a class="tablesSizeLink" href="../restaurantSpecific/table2">tables of 2</a></div>
       </div>
       <div class="waitlistTable">
         <a id="table4" href="../restaurantSpecific/table4">
@@ -29,7 +29,7 @@
             <h4 class="numPeopleWaiting" id="numPeopleWaitingTable4"></h4>
           </div>
         </a>
-        <div class="tablesSize">tables of 4</div>
+        <div class="tablesSize"><a class="tablesSizeLink" href="../restaurantSpecific/table4">tables of 4</a></div>
       </div>
       <div class="waitlistTable">
         <a id="table5" href="../restaurantSpecific/table5">
@@ -37,7 +37,7 @@
             <h4 class="numPeopleWaiting" id="numPeopleWaitingTable5"></h4>
           </div>
         </a>
-        <div class="tablesSize">tables of 5+</div>
+        <div class="tablesSize"><a class="tablesSizeLink" href="../restaurantSpecific/table5">tables of 5+</a></div>
       </div>
     </div>
 
@@ -54,7 +54,7 @@
           <div class="modal-body has-success">
             <form id="modalForm">
               <input class="form-control" name="name" type="text" placeholder="*Name" required>
-              <input class="form-control" name="tel" type="tel" pattern=".{11,}" placeholder="*Phone Number" required>
+              <input class="form-control" name="tel" type="text" pattern="\d*" minlength="11" placeholder="*Mobile Number" required>
               <input class="form-control" name="email" type="email" placeholder="Email">
               <input class="form-control" name="guests" type="number" id="number" max="8" min="1" value="2" required>
             </form>
@@ -66,8 +66,12 @@
         </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
+    <div class="logout">
+      <button type="submit" class="btn btn-primary" onclick="restOverviewLogout()" id="restLogOutBtn">Logout</button>
+    </div>
 
     <button type="button" class="btn btn-primary btn-block btn-lg red modalInitButton" data-toggle="modal" data-target="#modal">Add New Table</button>
+
   </body>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.min.js" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" crossorigin="anonymous"></script>

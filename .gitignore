@@ -38,5 +38,5 @@ node_modules
 evening.patch
 
 config.env
-
+stub/stub.patch
 .DS_Store

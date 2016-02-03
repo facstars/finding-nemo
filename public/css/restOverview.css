@@ -71,6 +71,15 @@ nav {
   padding-left: 1em;
 }
 
+.tablesSizeLink{
+  color:black;
+}
+
+.tablesSizeLink:hover{
+  color:black;
+  text-decoration:none;
+}
+
 .modalInitButton {
   position: fixed;
   bottom:0;
