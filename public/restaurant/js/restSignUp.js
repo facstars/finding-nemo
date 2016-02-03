@@ -50,35 +50,35 @@ var onComplete = function(error) {
       }
 };
 
-var allRestaurants = (function(){
-  ref.on("value", function(snapshot) {
-    printRestaurantNames(snapshot.val());
-  }, function (errorObject) {
-    console.log("The read failed: " + errorObject.code);
-  });
-}) ();
-
-var printRestaurantNames = function(restaurantObj){
-  var html = "<option>Please Choose A Restaurant</option>";
-    html += (Object.keys(restaurantObj)).reduce(function(html, elem){
-    return html + "<option value=" + elem + ">" + restaurantObj[elem].restName + "</option>";
-  }, "");
-    document.getElementById('options').innerHTML = html;
-  };
-
   document.getElementById('removeRestaurantModalForm').addEventListener('submit', function(e){
     console.log('remove clicked');
     e.preventDefault();
-    var credentials = {
-      remove : {
-        email: removeRestaurantModalForm.email.value,
-        password: removeRestaurantModalForm.password.value
-      },
-      ruid: removeRestaurantModalForm.options.value
-    };
-    var specificRestaurant = new Firebase("https://blistering-torch-1660.firebaseio.com/restaurants/" + credentials.ruid);
-      specificRestaurant.remove(removeUser(credentials));
+    validateRestLoginDetails();
   });
+
+var validateRestLoginDetails = function(email,pw){
+  var inputEmail=removeRestaurantModalForm.email.value;
+  var inputPw=removeRestaurantModalForm.password.value;
+  ref.authWithPassword({
+    email: inputEmail,
+    password: inputPw
+  }, function(error, authData) {
+    if (error) {
+      $("#incorrect-p")[0].innerHTML = "Incorrect restaurant login details";
+    } else {
+      console.log("Correct restaurant login details");
+          var credentials = {
+            remove : {
+              email: inputEmail,
+              password: inputPw
+            },
+            ruid: authData.uid
+          };
+          var specificRestaurant = new Firebase("https://blistering-torch-1660.firebaseio.com/restaurants/" + credentials.ruid);
+          specificRestaurant.remove(removeUser(credentials));
+    }
+  });
+};
 
   var removeUser = function (credentials){
     console.log("i am the credentials", credentials);
