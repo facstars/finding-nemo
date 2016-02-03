@@ -17,7 +17,7 @@ function loadPeopleWaiting(tableSize){
 }
 
 var emptyWaitlist = function(){
-  var html = "<h3>Waitlist is empty :)</h3>";
+  var html = "<h3>Waitlist is empty </h3>";
   document.getElementById('peopleDetails').innerHTML = html;
 };
 
