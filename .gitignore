@@ -36,5 +36,5 @@ node_modules
 *.env
 
 config.env
-
+stub/stub.patch
 .DS_Store
