@@ -165,12 +165,13 @@ and (orientation : portrait) {
   background-color: white;
 }
 
-#leaveQueueBtn, {
+#leaveQueueBtn {
   position: relative;
   top: 0.5em;
+  margin-top: 1.5em;
 }
 
-#numPeopleWaitingTable {
+#queue-pos-num {
     position: relative;
     top:0.5em;
     color: white;

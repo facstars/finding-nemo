@@ -138,7 +138,7 @@ function displayPositionOnWaitlistStatus(tidsArray,tid,tableNo){
   var positionOnWaitlist = tidsArray.indexOf(tid);
 console.log(positionOnWaitlist);
   if(positionOnWaitlist>=0){
-    document.getElementById("numPeopleWaitingTable").innerHTML= positionOnWaitlist+1;
+    document.getElementById("numPeopleWaitingTable").innerHTML= "<span class='queue-pos' id='queue-pos-num'>" + (positionOnWaitlist+1)  + "</span>";
   } else if(positionOnWaitlist==-1){
     document.getElementById('queue').style.display="none";
     document.getElementById('page').style.display="block";
@@ -159,7 +159,7 @@ function checkIfWaitlistObjExists(tid,tableNo){
 
 function notifyUser(obj){
   if(obj.tableReadyNotificationSent){
-      document.getElementById("numPeopleWaitingTable").innerHTML= "<b>Table ready! Please head to the restaurant and enjoy your meal </b>";
+      document.getElementById("numPeopleWaitingTable").innerHTML= "<span class='queue-pos' id='table-ready'><b>Table ready! <br>Please head to the restaurant!</b></span>";
   }
 }
 
