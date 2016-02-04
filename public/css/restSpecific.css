@@ -50,9 +50,6 @@ html, body {
   min-width: 7em;
 }
 
-.seatedButton{
-  margin-right: 1em;
-}
 
 .modalInitButton {
   position: fixed;
@@ -83,9 +80,46 @@ html, body {
   margin: 5px;
 }
 
+.seatedButton, .tableReadyButton{
+  margin-right: 1em;
+  font-size:14px;
+}
+
+.cannotSeatButton, .noShowButton{
+  font-size:14px;
+}
+
+.gap {
+  display:none;
+}
+
+/*iphone5*/
 @media(max-width: 320px) {
   .personDetails > div{
     display: block;
     font-size: 1.4em;
+  }
+
+  .tableReadyButton, .seatedButton{
+    font-size:13px;
+  }
+
+  .cannotSeatButton, .noShowButton{
+    font-size:13px;
+  }
+
+}
+
+
+@media(max-width: 450px) {
+  .tableReadyButton, .seatedButton{
+    font-size:13px;
+  }
+
+  .cannotSeatButton, .noShowButton{
+    font-size:13px;
+  }
+  .gap {
+    display:block;
   }
 }
