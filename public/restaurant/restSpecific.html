@@ -11,7 +11,7 @@
 
   <div class="navbar">
     <nav>
-      <button class="glyphicon glyphicon-chevron-left back" onclick="goBack()">Back</button>
+      <button id="restBack" class="glyphicon glyphicon-chevron-left back btn btn-success btn-sm" onclick="goBack()">Back</button>
       <img class ="skipitLogo" src="../images/skipitLogo.jpg" alt="Skipit Logo" />
     </nav>
   </div>
@@ -46,9 +46,6 @@
         </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
-    <div class="logout">
-      <button type="submit" class="btn btn-primary" onclick="restSpecificLogout()" id="restLogOutBtn">Logout</button>
-    </div>
 
     <button type="button" class="btn btn-primary btn-block btn-lg red modalInitButton" data-toggle="modal" data-target="#modal">Add New Table</button>
   </body>

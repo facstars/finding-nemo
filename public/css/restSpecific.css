@@ -12,12 +12,6 @@ html, body {
   color: #BE0000;
 }*/
 
-.skipitLogo {
-  width:10em;
-  position: absolute;
-  right: 1em;
-  top: 1em;
-}
 
 ::-webkit-scrollbar {
     display: none;
@@ -79,4 +73,12 @@ html, body {
 
 .red:hover, .red:active{
   background-color: #e04a4a;
+}
+
+#restBack {
+  display: inline-block;
+  background-color: white;
+  color: #BE0000;
+  border: solid 1px #BE0000;
+  margin: 5px;
 }
