@@ -12,8 +12,17 @@ function loadPeopleWaiting(tableSize){
   var restaurantWaitlist= new Firebase("https://blistering-torch-1660.firebaseio.com/restaurants/"+ruid+"/waitlist/"+tableSize);
   restaurantWaitlist.on('value', function(snapshot) {
     var tableWaitlistObj=snapshot.val();
+    printTitle(tableWaitlistObj);
     tableWaitlistObj === null? emptyWaitlist() : generateWaitlistHtml(tableWaitlistObj);
   }, errorHandler);
+}
+
+function printTitle(tableWaitlistObj){
+  if(tableWaitlistObj){
+    var queueLength =Object.keys(tableWaitlistObj).length;
+    var tableSizeNum = tableSize[5];
+    document.getElementById('specificTableTitle').innerHTML=  queueLength +" tables of " + tableSizeNum;
+  }
 }
 
 var emptyWaitlist = function(){

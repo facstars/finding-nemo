@@ -50,9 +50,6 @@ html, body {
   min-width: 7em;
 }
 
-.seatedButton{
-  margin-right: 1em;
-}
 
 .modalInitButton {
   position: fixed;
@@ -83,8 +80,13 @@ html, body {
   margin: 5px;
 }
 
-.tableReadyButton{
+.seatedButton, .tableReadyButton{
   margin-right: 1em;
+  font-size:14px;
+}
+
+.cannotSeatButton, .noShowButton{
+  font-size:14px;
 }
 
 .gap {
@@ -98,11 +100,11 @@ html, body {
     font-size: 1.4em;
   }
 
-  .tableReadyButton{
+  .tableReadyButton, .seatedButton{
     font-size:13px;
   }
 
-  .cannotSeatButton{
+  .cannotSeatButton, .noShowButton{
     font-size:13px;
   }
 
@@ -110,11 +112,11 @@ html, body {
 
 
 @media(max-width: 450px) {
-  .tableReadyButton{
+  .tableReadyButton, .seatedButton{
     font-size:13px;
   }
 
-  .cannotSeatButton{
+  .cannotSeatButton, .noShowButton{
     font-size:13px;
   }
   .gap {
