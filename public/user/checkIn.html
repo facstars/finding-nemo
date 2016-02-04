@@ -11,7 +11,7 @@
   </head>
 
   <nav>
-    <button class="glyphicon glyphicon-chevron-left back" onclick="goBack()">Back</button>
+    <button id="userBack" class="glyphicon glyphicon-chevron-left back btn btn-success btn-sm" onclick="goBack()">Back</button>
     <img class ="skipitLogo" src="../images/skipitLogo.jpg" alt="Skipit Logo" />
   </nav>
 
@@ -39,9 +39,21 @@
       <button type="submit" class="btn btn-primary" id="leaveQueueBtn">Leave queue</button>
     </div>
 
-    <div class="logout">
+    <!-- <div class="logout">
       <button type="submit" class="btn btn-primary" id="logOutBtn">Logout</button>
-    </div>
+    </div> -->
+
+    <footer class="footer">
+      <div class="row">
+        <div class="col-lg-12">
+          <!-- <a href ="/logout">LOGOUT</a> -->
+          <button type="submit" class="btn btn-primary btn-sm" id="logOutBtn">
+            Logout
+            <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+          </button>
+        </div>
+      </div>
+    </footer>
 
   </body>
   <script type="text/html" id='rest-template'>

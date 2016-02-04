@@ -12,7 +12,12 @@ html, body {
   color: #BE0000;
 }*/
 
-
+.skipitLogo {
+  width:10em;
+  position: absolute;
+  right: 1em;
+  top: 1em;
+}
 
 ::-webkit-scrollbar {
     display: none;
