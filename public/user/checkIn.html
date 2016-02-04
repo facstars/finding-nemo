@@ -29,16 +29,15 @@
 
       <div class="well row">
         <div id="page">
-            <div class="col-lg-4 col-md-4 col-sm-2">
+            <div class="col-lg-5 col-md-5 col-sm-5">
               <form id="checkInForm">
                 <input class="form-control guest-number" name="guests" type="number" id="number" max="8" min="1" value="2" required>
-                <button type="submit" class="btn btn-primary guest-number-btn pull-right" form="checkInForm" id="checkInBtn">Check in</button>
-
               </form>
+              <div class="col-lg-2 col-md-2 col-sm-2 pull-right">
+                  <button type="submit" class="btn btn-primary guest-number-btn pull-right" form="checkInForm" id="checkInBtn">Check in</button>
+              </div>
             </div>
-            <div class="col-lg-4 col-md-4 col-sm-2 pull-right">
-                <!-- <button type="submit" class="btn btn-primary guest-number-btn pull-right" form="checkInForm" id="checkInBtn">Check in</button> -->
-            </div>
+
           </div>
         <div id="queue">
           <div class="col-lg-4 col-md-4 col-sm-4">
@@ -85,11 +84,6 @@
           <p class='rDescription'> <%= description %> </p>
         </div>
       </div>
-
-      <!-- <div class="row">
-
-      </div> -->
-
 
     </div>
 

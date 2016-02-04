@@ -1,11 +1,8 @@
-#checkInBtn{
-  margin-top:1em;
-}
-
-#number{
-  width:30px;
-}
-
 #checkInForm{
   display:inline;
 }
+
+.guest-number {
+  display: inline;
+  width: auto;
+  }
