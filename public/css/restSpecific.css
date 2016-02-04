@@ -83,9 +83,41 @@ html, body {
   margin: 5px;
 }
 
+.tableReadyButton{
+  margin-right: 1em;
+}
+
+.gap {
+  display:none;
+}
+
+/*iphone5*/
 @media(max-width: 320px) {
   .personDetails > div{
     display: block;
     font-size: 1.4em;
+  }
+
+  .tableReadyButton{
+    font-size:13px;
+  }
+
+  .cannotSeatButton{
+    font-size:13px;
+  }
+
+}
+
+
+@media(max-width: 450px) {
+  .tableReadyButton{
+    font-size:13px;
+  }
+
+  .cannotSeatButton{
+    font-size:13px;
+  }
+  .gap {
+    display:block;
   }
 }
