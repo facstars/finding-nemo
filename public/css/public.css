@@ -55,6 +55,33 @@ nav {
   box-shadow: 0 4px 2px -2px #640000;
 }
 
+.title {
+  margin-top: 0.5em;
+  margin-left: 1em;
+  color: #BE0000;
+  text-align:center;
+}
+
+
+@media only screen
+and (min-device-width : 375px)
+and (max-device-width : 667px)
+and (orientation : portrait) {
+  /*.title{
+    /*font-size: 20px;
+
+  }*/
+  /*.skipitLogo{
+    width:8em;
+
+  }*/
+}
+
+#passwordIncorrect{
+  display:none;
+  color: red;
+}
+
 .portfolio-item {
   margin: 0;
   padding: 0;
@@ -111,11 +138,21 @@ nav {
   background-color: #d72809;
 }
 
+
 .well {
   margin-top: 0.5em;
   margin-left: 0;
   margin-right: 0;
 }
+
+#userBack {
+  display: inline-block;
+  background-color: white;
+  color: #BE0000;
+  border: solid 1px #BE0000;
+  margin: 5px;
+}
+
 
 #logOutBtn {
   border: none;
