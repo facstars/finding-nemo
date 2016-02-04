@@ -55,6 +55,16 @@ nav {
     background-color: #f9f9f9;
 }
 
+/*.skipitLogo {
+  width:5em;
+  position: absolute;
+  right: 1em;
+  top: 1em;
+  border-radius: 11px;
+  border-bottom: solid #d72809;
+  box-shadow: 0 4px 2px -2px #640000;
+}*/
+
 .skipitLogo {
   width:5em;
   position: absolute;
@@ -63,6 +73,28 @@ nav {
   border-radius: 11px;
   border-bottom: solid #d72809;
   box-shadow: 0 4px 2px -2px #640000;
+}
+
+.title {
+  margin-top: 0.5em;
+  margin-left: 1em;
+  color: #BE0000;
+  text-align:center;
+}
+
+
+@media only screen
+and (min-device-width : 375px)
+and (max-device-width : 667px)
+and (orientation : portrait) {
+  /*.title{
+    /*font-size: 20px;
+
+  }*/
+  /*.skipitLogo{
+    width:8em;
+
+  }*/
 }
 
 #passwordIncorrect{
