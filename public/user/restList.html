@@ -17,9 +17,7 @@
       </nav>
     </div>
 
-    <div class="whitebar">
-
-    </div>
+    <div class="whitebar"></div>
 
 
     <div class="container">
@@ -27,9 +25,7 @@
         <div id="restsWrapper">
           <!-- restList.js renders into here -->
         </div>
-
       </div>
-
     </div>
 
     <footer class="footer">
@@ -49,13 +45,13 @@
   <!-- this is rendered into restsWrapper -->
   <script type="text/html" id='rest-template'>
 
-    <div class="col-md-4 portfolio-item">
+    <div class="col-lg-4 col-md-6 col-xs-12 portfolio-item">
       <a href='../checkIn/<%= ruid %>'>
         <figure class='restDetailWrapper'>
           <img class='restLogo' src=" <%= restDetailsObj[ruid].image %>" />
 
 
-              <div class="col-md-4 rest-details">
+              <div class="rest-details">
                 <span class='restName'> <%= restDetailsObj[ruid].restName %></span>
                 <span class='restTimes'> <%= restDetailsObj[ruid].openTime %> - <%= restDetailsObj[ruid].closeTime %> </span>
                 <span class='restAddress'> <%= restDetailsObj[ruid].address %> </span>

@@ -45,26 +45,6 @@ nav {
   box-shadow: 0 4px 2px -2px #640000;
 }
 
-.modal-header, h4, .close {
-    color:white;
-    text-align: center;
-    font-size: 30px;
-}
-
-.modal-footer {
-    background-color: #f9f9f9;
-}
-
-/*.skipitLogo {
-  width:5em;
-  position: absolute;
-  right: 1em;
-  top: 1em;
-  border-radius: 11px;
-  border-bottom: solid #d72809;
-  box-shadow: 0 4px 2px -2px #640000;
-}*/
-
 .skipitLogo {
   width:5em;
   position: absolute;
@@ -116,9 +96,8 @@ and (orientation : portrait) {
 }
 
 .restLogo{
-  height:15em;
+  height: 18em;
   width:100%;
-  filter: alpha(opacity=40);
 }
 
 .rest-details {
@@ -147,6 +126,10 @@ and (orientation : portrait) {
   float: right;
 }
 
+.queue-pos {
+  display: inline;
+}
+
 .footer {
   width: 100%;
   height: 2.5em;
@@ -155,13 +138,21 @@ and (orientation : portrait) {
   background-color: #d72809;
 }
 
+
+.well {
+  margin-top: 0.5em;
+  margin-left: 0;
+  margin-right: 0;
+}
+
 #userBack {
   display: inline-block;
   background-color: white;
   color: #BE0000;
   border: solid 1px #BE0000;
   margin: 5px;
-}  
+}
+
 
 #logOutBtn {
   border: none;
@@ -169,6 +160,36 @@ and (orientation : portrait) {
   float: right;
 }
 
+#leaveQueueBtn, .guest-number-btn, .guest-number-btn:hover {
+  color: #d72809;
+  border: 2px solid #d72809;
+  background-color: white;
+}
+
+#leaveQueueBtn, {
+  position: relative;
+  top: 0.5em;
+}
+
+#numPeopleWaitingTable {
+    position: relative;
+    top:0.5em;
+    color: white;
+    font-size: 2em;
+    background-color: #d72809;
+    border-radius: 50%;
+    padding: 5px 14px;
+}
+
+.pos-text {
+  padding-bottom: 1em;
+}
+
 #queue, #anotherQueue, #page{
   display:none;
+}
+
+#passwordIncorrect{
+  display:none;
+  color: red;
 }
