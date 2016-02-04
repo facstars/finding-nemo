@@ -1,4 +1,11 @@
+#checkInBtn{
+  margin-top:1em;
+}
 
-.restDetailWrapper {
+#number{
+  width:30px;
+}
 
+#checkInForm{
+  display:inline;
 }

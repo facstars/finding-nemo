@@ -147,10 +147,15 @@ body{
     display: table;
     float: left;
   }
-  /*.title {
-    display: none;
-  }*/
+
   .numPeopleWaiting {
     font-size: 3em;
+  }
+}
+
+/*iphone5*/
+@media(max-width: 320px) {
+  #restaurantName {
+    display: none;
   }
 }
