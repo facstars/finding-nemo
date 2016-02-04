@@ -20,7 +20,6 @@
     </div>
 
     <div id="page">
-      HELLO I'M THE CHECK IN PAGE
       <form id="checkInForm">
         <input class="form-control" name="guests" type="number" id="number" max="8" min="1" value="2" required>
       </form>
@@ -45,6 +44,17 @@
     </div>
 
   </body>
+  <script type="text/html" id='rest-template'>
+
+    <div class='restDetailWrapper'>
+      <img class='restLogo' src=" <%= image  %> " >
+      <p class='restTimes'> <%= openTime %> - <%= closeTime %> </p>
+      <h3 class='restName'> <%= restName %> </h3>
+      <p class='restDescription'> <%= description %> </p>
+      <p class='restAddress'> <%= address %> </p>
+    </div>
+
+  </script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.min.js" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" crossorigin="anonymous"></script>
@@ -53,5 +63,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
   <script src="../user/js/logout.js"></script>
   <script src="../user/js/checkIn.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
 
 </html>
