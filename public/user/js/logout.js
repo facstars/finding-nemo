@@ -5,7 +5,7 @@ document.getElementById('logOutBtn').addEventListener('click', function(){
         var reply = request.responseText;
         console.log("I'm the request");
         localStorage.removeItem('UID');
-        window.location.replace('../user/userLogin');
+        window.location.replace('../');
       }
     };
     request.open("GET", "/logout");

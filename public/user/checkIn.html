@@ -29,18 +29,17 @@
 
       <div class="well row">
         <div id="page">
-          <div class="col-lg-4 col-md-4 col-sm-2">
-            <form id="checkInForm">
-              <input class="form-control guest-number" name="guests" type="number" id="number" max="8" min="1" value="2" required>
-            </form>
+            <div class="col-lg-4 col-md-4 col-sm-2">
+              <form id="checkInForm">
+                <input class="form-control guest-number" name="guests" type="number" id="number" max="8" min="1" value="2" required>
+                <button type="submit" class="btn btn-primary guest-number-btn pull-right" form="checkInForm" id="checkInBtn">Check in</button>
+
+              </form>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-2 pull-right">
+                <!-- <button type="submit" class="btn btn-primary guest-number-btn pull-right" form="checkInForm" id="checkInBtn">Check in</button> -->
+            </div>
           </div>
-          <div class="col-lg-4 col-md-4 col-sm-2 pull-right">
-
-              <button type="submit" class="btn btn-primary guest-number-btn pull-right" form="checkInForm" id="checkInBtn">Check in</button>
-
-          </div>
-        </div>
-
         <div id="queue">
           <div class="col-lg-4 col-md-4 col-sm-4">
               <span class="queue-pos"><h3 class="pos-text">Your position in the queue: </h3>
