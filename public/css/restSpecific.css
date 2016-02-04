@@ -12,11 +12,22 @@ nav {
   color: #BE0000;
 }
 
+#restBack {
+  display: inline-block;
+  background-color: white;
+  color: #BE0000;
+  border: solid 1px #BE0000;
+  margin: 5px;
+}
+
 .skipitLogo {
-  width:10em;
+  width:5em;
   position: absolute;
   right: 1em;
   top: 1em;
+  border-radius: 11px;
+  border-bottom: solid #d72809;
+  box-shadow: 0 4px 2px -2px #640000;
 }
 
 .title {

@@ -123,6 +123,14 @@ nav {
   background-color: #d72809;
 }
 
+#userBack {
+  display: inline-block;
+  background-color: white;
+  color: #BE0000;
+  border: solid 1px #BE0000;
+  margin: 5px;
+}  
+
 #logOutBtn {
   border: none;
   background-color: #d72809;
