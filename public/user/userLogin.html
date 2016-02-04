@@ -36,14 +36,13 @@
                         <div class="tab-pane active in" id="login">
                           <form class="form-horizontal" action='/' method="POST">
                             <fieldset class="form-group">
-                                <input class="form-control" type="tel" id="tel" name="tel" placeholder="Mobile number" class="input-xlarge" required>
+                                <input class="form-control" type="tel" id="tel" name="tel" placeholder="Mobile number" class="input-xlarge" pattern="\d*" minlength="11" required>
                             </fieldset>
                             <fieldset class="form-group">
                                 <input class="form-control" type="password" id="password" name="password" placeholder="Password" class="input-xlarge" required>
                             </fieldset>
-
-                            <button id="user-login" class="btn btn-success">Login</button>
                             <p id="incorrect-p"></p>
+                            <button id="user-login" class="btn btn-success">Login</button>
                           </form>
                         </div>
 
@@ -53,7 +52,7 @@
                               <input type="text" class="form-control" placeholder="Full name" name="name" required>
                             </fieldset>
                             <fieldset class="form-group">
-                              <input type="number" id="signup-tel" class="form-control" placeholder="Mobile number" name="tel" required>
+                              <input type="tel" id="signup-tel" class="form-control" placeholder="Mobile number" name="tel" pattern="\d*" required>
                             </fieldset>
                             <fieldset class="form-group">
                               <input type="password" id="password" class="form-control" placeholder="Password" name="password" required>
@@ -79,7 +78,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" crossorigin="anonymous"></script>
   <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
-  <script src="./user/js/userLogin.js" type="text/javascript"></script>
+  <script src="./js/userLogin.js" type="text/javascript"></script>
 
 
 </html>
