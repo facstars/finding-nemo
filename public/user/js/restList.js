@@ -25,7 +25,7 @@ function loadAllRestDetails(){
           waitlist.table4? Object.keys(waitlist.table4).length:0 +
           waitlist.table5? Object.keys(waitlist.table5).length:0;
         console.log(tableQueueLength);
-      avWaitingTime= tableQueueLength*minsPerTable;
+        avWaitingTime= tableQueueLength*minsPerTable;
     } else{
       avWaitingTime= 0;
     }
