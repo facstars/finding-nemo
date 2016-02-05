@@ -5,7 +5,7 @@ document.getElementById('modalForm').addEventListener('submit', function(e){
 });
 
 function validation(modalForm,callback){
-  var pattern = /^\d{11}$/;
+  var pattern = /^\d{11,16}$/;
   if(modalForm.name.value===""||modalForm.tel.value===""||modalForm.guests.value===""){
     document.getElementById('validation').innerHTML="You must fill in all * fields to proceed";
   } else if(!modalForm.tel.value.match(pattern)){
