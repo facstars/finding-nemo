@@ -1,5 +1,21 @@
+
 document.getElementById('modalForm').addEventListener('submit', function(e){
   e.preventDefault();
+  validation(modalForm, modalFormHandler);
+});
+
+function validation(modalForm,callback){
+  var pattern = /^\d{11}$/;
+  if(modalForm.name.value===""||modalForm.tel.value===""||modalForm.guests.value===""){
+    document.getElementById('validation').innerHTML="You must fill in all * fields to proceed";
+  } else if(!modalForm.tel.value.match(pattern)){
+    document.getElementById('validation').innerHTML="Please enter a valid mobile number";
+  } else {
+    callback(modalForm);
+  }
+}
+
+function modalFormHandler(modalForm){
   $('#modal').modal('hide');
   var tempUser = new Firebase ("https://blistering-torch-1660.firebaseio.com");
   var tempUserDetails = ["name", "tel", "guests"];
@@ -16,7 +32,9 @@ document.getElementById('modalForm').addEventListener('submit', function(e){
       addTempUserToWaitlist(authData, tempUserDetailsObj);
     }
   });
-});
+}
+
+
 
 var addTempUserToWaitlist = function(authData, tempUserDetailsObj){
   var tempUid = authData.uid;

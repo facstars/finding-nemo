@@ -58,6 +58,7 @@
           </div><!-- /.modal-header -->
           <div class="modal-body has-success">
             <form id="modalForm">
+              <!-- pattern="\d*" minlength="11" -->
               <input class="form-control" name="name" type="text" placeholder="*Name" required>
               <input class="form-control" name="tel" type="text" pattern="\d*" minlength="11" placeholder="*Mobile Number" required>
               <input class="form-control" name="email" type="email" placeholder="Email">
@@ -68,6 +69,7 @@
             <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
             <button type="submit" class="btn btn-primary btn-block red" form="modalForm" id="addNewTable">Confirm New Table</button>
           </div><!-- /.modal-footer -->
+        <div id="validation"></div>
         </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
