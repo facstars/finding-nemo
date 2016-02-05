@@ -48,3 +48,40 @@ if (loginError === "userExists") {
   $("#create, #login").toggleClass("active");
   $(".nav-tabs>li").toggleClass("active");
 }
+
+document.getElementById('tabSignup').addEventListener('submit', function(e){
+  e.preventDefault();
+  validation(tabSignup, formHandler);
+});
+
+function validation(form, callback){
+  var pattern = /^\d{11}$/;
+  if(form.name.value===""||form.tel.value===""||form.password.value===""||form.confirmPassword.value===""){
+    document.getElementById('validation').innerHTML="You must fill in all * fields to proceed";
+  } else if(!form.tel.value.match(pattern)){
+    document.getElementById('validation').innerHTML="Please enter a valid mobile number";
+  } else {
+    callback(form);
+  }
+}
+
+function formHandler(form){
+  var request = new XMLHttpRequest();
+  request.onreadystatechange = function() {
+    if (request.readyState === 4 && request.status === 200) {
+      console.log("hiii i'm form handler");
+      window.location = request.responseText;
+    }
+  };
+  var formObj = {
+    name: form.name.value,
+    tel: form.tel.value,
+    password: form.password.value,
+    confirmPassword: form.confirmPassword.value
+  };
+  console.log(form.name.value, form.password.value, form.tel.value);
+  console.log(JSON.stringify(formObj));
+  request.open("POST", "/signup");
+  request.send(JSON.stringify(formObj));
+
+}
