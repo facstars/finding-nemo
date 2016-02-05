@@ -1,3 +1,9 @@
+(function checkUid(){
+  if(localStorage.getItem('UID')){
+    window.location.replace('/user/restList');
+  }
+})();
+
 function checkRuid(){
   if(localStorage.getItem('RUID')){
     window.location.replace('../restaurant/restOverview');
