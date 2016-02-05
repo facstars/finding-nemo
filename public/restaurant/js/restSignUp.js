@@ -45,6 +45,7 @@ var onComplete = function(error) {
   if (error) {
     console.log(error);
       } else {
+        alert("The restaurant has been successfully added");
         $('#newRest')[0].reset();
         console.log('Success, Details have been added to the database');
       }
