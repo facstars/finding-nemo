@@ -47,8 +47,8 @@ var generateWaitlistHtml = function(tableWaitlistObj){
     return html += "<li class='personDetails' id=guest-" + tID + "> <div class='personName'>" + tableWaitlistObj[tID].name + "</div><div class='personTel'>" + tableWaitlistObj[tID].tel + "</div><div class='personGuests'>Guests:" + tableWaitlistObj[tID].guests + "</div>" +"<br class='gap'>"+ tableReadyButton + cannotSeatButton+ seatedButton + noShowButton + "</li>";
   }, "");
   document.getElementById("peopleDetails").innerHTML = waitlistHtml;
-  tableReadyClickListener(tableWaitlistObj);
-  cannotSeatClickListener(tableWaitlistObj);
+  tableReadyClickListener();
+  cannotSeatClickListener();
   removeTableClickListener();
 };
 
@@ -71,7 +71,6 @@ var tableReadyClickHandler = function(event) {
     tel: event.target.getAttribute("data-value")
   };
   console.log(tel);
-  console.log(typeof tel);
   console.log("table ready button clicked");
   var request = new XMLHttpRequest();
   request.onreadystatechange = function() {
