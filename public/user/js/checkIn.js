@@ -4,7 +4,6 @@ var uid = localStorage.getItem('UID');
 var getRUID = (function(){
   var URLSegmentArray = window.location.pathname.split( '/' );
   ruid = URLSegmentArray[URLSegmentArray.length - 1];
-  console.log("RUID" , ruid);
   getRestDetailsObj(displayRestDetails);
 })();
 
@@ -34,7 +33,6 @@ function displayRestDetails(restDetailsObj){
 
   var checkUserIsNotAlreadyOnWaitlist = function(){
     var User = new Firebase ("https://blistering-torch-1660.firebaseio.com/users/"+uid);
-    console.log("https://blistering-torch-1660.firebaseio.com/users/"+uid);
     User.once("value", function(snapshot){
       var userDetailsObj=snapshot.val();
       var queueTableNo = userDetailsObj.queueTableNo;
@@ -66,7 +64,6 @@ function userIsNotInAQueue(){
 document.getElementById('checkInForm').addEventListener('submit', function(e){
   e.preventDefault();
       var User = new Firebase ("https://blistering-torch-1660.firebaseio.com/users/"+uid);
-      console.log("https://blistering-torch-1660.firebaseio.com/users/"+uid);
       User.once("value", function(snapshot){
         var userDetailsObj=snapshot.val();
         createWaitlistObj(userDetailsObj, uid);
@@ -80,7 +77,6 @@ var userIsAlreadyOnWaitlist = function(){
 
 
 var createWaitlistObj = function(userDetailsObj, uid){
-    console.log(userDetailsObj);
     var userBookingDetailsObj = {
       name:userDetailsObj.name,
       tel: userDetailsObj.tel,
@@ -88,7 +84,6 @@ var createWaitlistObj = function(userDetailsObj, uid){
       "uid":uid,
       "tableReadyNotificationSent":false
     };
-    console.log(userBookingDetailsObj);
     addUserToWaitlist(userBookingDetailsObj, uid);
 };
 
@@ -122,7 +117,6 @@ var updateUserWaitlistStatusinDb = function(uid, tableNo, tid){
 
 function loadWaitlist(tableNo,tid,callback){
   var restaurantWaitlist = new Firebase("https://blistering-torch-1660.firebaseio.com/restaurants/"+ruid+"/waitlist/table"+tableNo);
-  console.log("https://blistering-torch-1660.firebaseio.com/restaurants/"+ruid+"/waitlist/table"+tableNo);
     restaurantWaitlist.on('value', function(snapshot) {
       var waitlistObj = snapshot.val();
       if (waitlistObj){
@@ -136,7 +130,6 @@ function loadWaitlist(tableNo,tid,callback){
 
 function displayPositionOnWaitlistStatus(tidsArray,tid,tableNo){
   var positionOnWaitlist = tidsArray.indexOf(tid);
-console.log(positionOnWaitlist);
   if(positionOnWaitlist>=0){
     document.getElementById("numPeopleWaitingTable").innerHTML= "<span class='queue-pos' id='queue-pos-num'>" + (positionOnWaitlist+1)  + "</span>";
   } else if(positionOnWaitlist==-1){
@@ -174,7 +167,6 @@ function activateLeaveQueueBtnListener(uid, tid, tableNo){
         queueTid:""
       });
       var userWaitlistDetails = new Firebase("https://blistering-torch-1660.firebaseio.com/restaurants/"+ruid+"/waitlist/table"+tableNo+"/"+tid);
-      console.log("https://blistering-torch-1660.firebaseio.com/restaurants/"+ruid+"/waitlist/table"+tableNo+"/"+tid);
       userWaitlistDetails.remove(onComplete);
   });
 }

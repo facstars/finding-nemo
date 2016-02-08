@@ -3,7 +3,6 @@ document.getElementById('logOutBtn').addEventListener('click', function(){
     request.onreadystatechange = function() {
       if (request.readyState === 4 && request.status === 200) {
         var reply = request.responseText;
-        console.log("I'm the request");
         localStorage.removeItem('UID');
         window.location.replace('../');
       }
