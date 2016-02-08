@@ -20,6 +20,16 @@ nav {
   top: 1em;
 }
 
+#user-redirect {
+  position: absolute;
+  top: 0;
+  display: inline-block;
+  background-color: white;
+  color: #BE0000;
+  border: solid 1px #BE0000;
+  margin: 5px;
+}
+
 #incorrect-p, #incorrect-confirm {
   color: #BE0000;
   display: inline-block;
