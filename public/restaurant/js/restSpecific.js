@@ -47,8 +47,8 @@ var generateWaitlistHtml = function(tableWaitlistObj){
     return html += "<li class='personDetails' id=guest-" + tID + "> <div class='personName'>" + tableWaitlistObj[tID].name + "</div><div class='personTel'>" + tableWaitlistObj[tID].tel + "</div><div class='personGuests'>Guests:" + tableWaitlistObj[tID].guests + "</div>" +"<br class='gap'>"+ tableReadyButton + cannotSeatButton+ seatedButton + noShowButton + "</li>";
   }, "");
   document.getElementById("peopleDetails").innerHTML = waitlistHtml;
-  tableReadyClickListener(tableWaitlistObj);
-  cannotSeatClickListener(tableWaitlistObj);
+  tableReadyClickListener();
+  cannotSeatClickListener();
   removeTableClickListener();
 };
 
@@ -71,7 +71,6 @@ var tableReadyClickHandler = function(event) {
     tel: event.target.getAttribute("data-value")
   };
   console.log(tel);
-  console.log(typeof tel);
   console.log("table ready button clicked");
   var request = new XMLHttpRequest();
   request.onreadystatechange = function() {
@@ -131,19 +130,6 @@ var smsSuccess = function(event){
 
 var smsFailure = function(){
   console.log("sms notification failed! :(");
-};
-
-
-///here naaaz
-var smsCancelAll = function() {
-  var request = new XMLHttpRequest();
-  request.onreadystatechange = function() {
-    if (request.readyState === 4 && request.status === 200) {
-      console.log("inside sms cancel request");
-    }
-  };
-  request.open("POST", "/smsCancel");
-  request.send("hello");
 };
 
 var removeTableClickListener = function (){
