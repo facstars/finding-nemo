@@ -11,3 +11,50 @@
   color: black;
   font-size: 1.5em;
 }
+
+.restLogo {
+  width: 90vw;
+  height: auto;
+}
+
+.image {
+  padding:0;
+}
+
+.rest-description {
+  width: 90vw;
+  height: auto;
+  padding: 0;
+}
+
+span {
+  display: inline-block;
+}
+
+.rAddress {
+  font-family: Georgia, Serif;
+}
+
+.rDescription {
+  font-family: Georgia, Serif;
+  text-align: justify;
+}
+
+.rTimes {
+  font-family: Georgia, Serif;
+  font-weight: bold;
+}
+
+.rName {
+  font-family: Tahoma, sans-serif;
+  font-size: 2em;
+  font-weight: 600;
+}
+
+.row {
+  margin:auto;
+}
+
+.img-with-description {
+  padding: 0;
+}

@@ -1,3 +1,8 @@
+@font-face {
+    font-family: 'Cheesepizza'; /*a name to be used later*/
+    src: url("/fonts/CHEESEPIZZA.ttf"); /*URL to font*/
+}
+
 html {
   margin: 0;
   padding: 0;
