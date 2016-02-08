@@ -69,7 +69,6 @@ function formHandler(form){
   var request = new XMLHttpRequest();
   request.onreadystatechange = function() {
     if (request.readyState === 4 && request.status === 200) {
-      console.log("hiii i'm form handler");
       window.location = request.responseText;
     }
   };
@@ -79,8 +78,6 @@ function formHandler(form){
     password: form.password.value,
     confirmPassword: form.confirmPassword.value
   };
-  console.log(form.name.value, form.password.value, form.tel.value);
-  console.log(JSON.stringify(formObj));
   request.open("POST", "/signup");
   request.send(JSON.stringify(formObj));
 

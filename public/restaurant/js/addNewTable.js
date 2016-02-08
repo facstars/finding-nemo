@@ -27,6 +27,7 @@ function modalFormHandler(modalForm){
     if (error) {
       console.log("Login Failed!", error);
     } else {
+      tempUserDetailsObj["tableReadyNotificationSent"] = false;
       tempUserDetailsObj["uid"] = authData.uid;
       console.log("Authenticated successfully with payload:", authData.uid);
       addTempUserToWaitlist(authData, tempUserDetailsObj);
@@ -40,7 +41,6 @@ var addTempUserToWaitlist = function(authData, tempUserDetailsObj){
   var tempUid = authData.uid;
   var tableNo = tempUserDetailsObj.guests > 4 ? "5" : tempUserDetailsObj.guests > 2 ? "4" : "2";
   var restaurantWaitlist = new Firebase("https://blistering-torch-1660.firebaseio.com/restaurants/"+ruid+"/waitlist/table"+tableNo);
-  console.log(tempUserDetailsObj);
   restaurantWaitlist.push(tempUserDetailsObj, function(error) {
     if (error) {
       console.log('Synchronization failed');

@@ -33,7 +33,7 @@ var emptyWaitlist = function(){
 var generateWaitlistHtml = function(tableWaitlistObj){
   var waitlistHtml = Object.keys(tableWaitlistObj).reduce(function(html, tID){
     var tableReadyButton, seatedButton, noShowButton;
-    if (tableWaitlistObj[tID].alreadySent === true) {
+    if (tableWaitlistObj[tID].tableReadyNotificationSent === true) {
       tableReadyButton = "";
       cannotSeatButton="";
       seatedButton = "<button id = SE" + tID +  " value=" + tID + " data-uid =" + tableWaitlistObj[tID].uid + " style='display:inline' class='seatedButton btn btn-danger btn-lg'>Seated</button>";
@@ -61,27 +61,27 @@ var errorHandler = function(errorObject) {
 var tableReadyClickListener = function (){
   var tableReadyButtonArray = document.getElementsByClassName("tableReadyButton");
     [].map.call(tableReadyButtonArray, function(button){
-    button.addEventListener("click", tableReadyClickHandler);
+    button.addEventListener("click", smsClickHander);
     });
 };
 
-var tableReadyClickHandler = function(event) {
-  var target = event.currentTarget.style.display = "none";
+var smsClickHander = function(event) {
+  document.getElementById("TR"+ event.target.value).style.display="none";
+  document.getElementById("CS"+ event.target.value).style.display="none";
   var tel = {
-    tel: event.target.getAttribute("data-value")
+    tel: event.target.getAttribute("data-value"),
+    type: event.target.innerHTML
   };
-  console.log(tel);
-  console.log("table ready button clicked");
+  console.log(event.target.innerHTML + " button clicked");
   var request = new XMLHttpRequest();
   request.onreadystatechange = function() {
     if (request.readyState === 4 && request.status === 200) {
       var updateWaitlistUser = new Firebase("https://blistering-torch-1660.firebaseio.com/restaurants/"+ruid+"/waitlist/"+tableSize+"/"+event.target.value);
-      console.log("https://blistering-torch-1660.firebaseio.com/restaurants/"+ruid+"/waitlist/"+tableSize+"/"+event.target.value);
       updateWaitlistUser.update({
         tableReadyNotificationSent: true
       });
       var reply = request.responseText;
-      reply  === "SMS sent" ? smsSuccess(event) : smsFailure();
+      reply.indexOf("SMS sent") > -1 ? smsSuccess(event, reply) : smsFailure();
     }
   };
   request.open("POST", "/sms");
@@ -93,40 +93,24 @@ var tableReadyClickHandler = function(event) {
 var cannotSeatClickListener = function (){
   var cannotSeatButtonArray = document.getElementsByClassName("cannotSeatButton");
     [].map.call(cannotSeatButtonArray, function(button){
-    button.addEventListener("click", cannotSeatClickHandler);
+    button.addEventListener("click", smsClickHander);
     });
 };
 
-var cannotSeatClickHandler = function(event) {
-  var target = event.currentTarget.style.display = "none";
-  var tel = {
-    tel: event.target.getAttribute("data-value")
-  };
-  console.log(tel);
-  console.log("cannotSeat button clicked");
-  var request = new XMLHttpRequest();
-  request.onreadystatechange = function() {
-    if (request.readyState === 4 && request.status === 200) {
-      var reply = request.responseText;
-      reply  === "Cannot seat SMS sent" ? removeUserHandler(event) : smsFailure();
-    }
-  };
-  request.open("POST", "/smsCancel");
-  request.send(JSON.stringify(tel));
+var smsSuccess = function(event, reply){
+  reply.indexOf("Cannot seat") > -1 ? removeUserHandler(event, reply) : updateUser(event, reply);
 };
 
+ function updateUser(event, reply){
+   document.getElementById("SE"+ event.target.value).style.display="inline";
+   document.getElementById("NS"+ event.target.value).style.display="inline";
+   var updateWaitlistUser = new Firebase("https://blistering-torch-1660.firebaseio.com/restaurants/"+ruid+"/waitlist/"+tableSize+"/"+event.target.value);
+   updateWaitlistUser.update({
+     tableReadyNotificationSent: true
+   });
+   console.log(reply + "! :) ");
 
-
-var smsSuccess = function(event){
-  var updateWaitlistUser = new Firebase("https://blistering-torch-1660.firebaseio.com/restaurants/"+ruid+"/waitlist/"+tableSize+"/"+event.target.value);
-  updateWaitlistUser.update({
-    alreadySent: true
-
-  });
-  console.log("sms notification successful! :) ");
-  document.getElementById("SE"+ event.target.value).style.display="inline";
-  document.getElementById("NS"+ event.target.value).style.display="inline";
-};
+ }
 
 var smsFailure = function(){
   console.log("sms notification failed! :(");
@@ -145,15 +129,12 @@ var removeTableClickListener = function (){
 
   var removeUserHandler = function(event) {
     var updateWaitlistUser = new Firebase("https://blistering-torch-1660.firebaseio.com/restaurants/"+ruid+"/waitlist/"+tableSize+"/"+event.target.value);
-    console.log(event);
     updateWaitlistUser.remove(onComplete);
     var uid = event.target.getAttribute("data-uid");
-    console.log(uid);
     var Users = new Firebase ("https://blistering-torch-1660.firebaseio.com/users/");
     Users.once('value', function(snapshot){
       (snapshot.child(uid).exists() === true) ? updateUserWaitlistStatusinDb(uid) : console.log("user was temporary");
     });
-    console.log(event.target.className + " clicked");
   };
 
   var updateUserWaitlistStatusinDb = function(uid){

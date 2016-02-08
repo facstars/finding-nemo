@@ -1,5 +1,4 @@
 var uid = localStorage.getItem('UID');
-console.log(uid);
 
 loadAllRestDetails();
 
@@ -24,13 +23,11 @@ function loadAllRestDetails(){
           waitlist.table2? Object.keys(waitlist.table2).length:0 +
           waitlist.table4? Object.keys(waitlist.table4).length:0 +
           waitlist.table5? Object.keys(waitlist.table5).length:0;
-        console.log(tableQueueLength);
         avWaitingTime= tableQueueLength*minsPerTable;
     } else{
       avWaitingTime= 0;
     }
 
-      // console.log(restDetailsObj[ruid]['waitlist']['table2']);
       var rendered = restTemplate({
         ruid: ruid,
         restDetailsObj: restDetailsObj,

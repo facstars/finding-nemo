@@ -59,7 +59,8 @@ test(file + "POST returns 'SMS sent'", function(t){
   };
 
   server.inject(options, function(res){
-    t.equal(res.payload, "SMS sent", "SMS sent successfully");
+    var index = res.payload.indexOf("SMS sent");
+    t.ok(index >-1, "SMS sent successfully");
     server.stop(t.end);
   });
 });

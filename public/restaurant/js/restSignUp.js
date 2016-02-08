@@ -52,7 +52,6 @@ var onComplete = function(error) {
 };
 
   document.getElementById('removeRestaurantModalForm').addEventListener('submit', function(e){
-    console.log('remove clicked');
     e.preventDefault();
     validateRestLoginDetails();
   });
@@ -82,10 +81,8 @@ var validateRestLoginDetails = function(email,pw){
 };
 
   var removeUser = function (credentials){
-    console.log("i am the credentials", credentials);
     var ref = new Firebase("https://blistering-torch-1660.firebaseio.com");
     ref.removeUser(credentials.remove, function(error) {
-      console.log("im deleting");
       if (error) {
         switch (error.code) {
           case "INVALID_USER":
