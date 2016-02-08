@@ -86,6 +86,7 @@ var tableReadyClickHandler = function(event) {
     }
   };
   request.open("POST", "/sms");
+  request.setRequestHeader('Content-Type', 'application/json');
   request.send(JSON.stringify(tel));
 };
 
