@@ -1,3 +1,8 @@
+html {
+  margin: 0;
+  padding: 0;
+}
+
 #checkInForm{
   display:inline;
 }
@@ -13,7 +18,7 @@
 }
 
 .restLogo {
-  width: 90vw;
+  width: 100%;
   height: auto;
 }
 
@@ -22,6 +27,7 @@
 }
 
 .rest-description {
+  margin-top: 1em;
   width: 90vw;
   height: auto;
   padding: 0;
@@ -53,6 +59,11 @@ span {
 
 .row {
   margin:auto;
+}
+
+.well {
+  min-height: 6em;
+  margin-bottom: 4em;
 }
 
 .img-with-description {
