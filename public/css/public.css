@@ -138,12 +138,6 @@ and (orientation : portrait) {
   background-color: #d72809;
 }
 
-.well {
-  margin-top: 0.5em;
-  margin-left: 0;
-  margin-right: 0;
-}
-
 #userBack {
   display: inline-block;
   background-color: white;
@@ -151,7 +145,6 @@ and (orientation : portrait) {
   border: solid 1px #BE0000;
   margin: 5px;
 }
-
 
 #logOutBtn {
   border: none;
