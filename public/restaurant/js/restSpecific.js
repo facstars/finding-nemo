@@ -81,7 +81,7 @@ var smsClickHander = function(event) {
         tableReadyNotificationSent: true
       });
       var reply = request.responseText;
-      reply.indexOf("SMS sent") > -1 ? smsSuccess(event, reply) : smsFailure();
+      reply.indexOf("SMS sent") > -1 ? smsSuccess(event) : smsFailure();
     }
   };
   request.open("POST", "/sms");
@@ -97,19 +97,17 @@ var cannotSeatClickListener = function (){
     });
 };
 
-var smsSuccess = function(event, reply){
-  reply.indexOf("Cannot seat") > -1 ? removeUserHandler(event, reply) : updateUser(event, reply);
+var smsSuccess = function(event){
+  reply.indexOf("Cannot seat") > -1 ? removeUserHandler(event) : updateUser(event);
 };
 
- function updateUser(event, reply){
+ function updateUser(event){
    document.getElementById("SE"+ event.target.value).style.display="inline";
    document.getElementById("NS"+ event.target.value).style.display="inline";
    var updateWaitlistUser = new Firebase("https://blistering-torch-1660.firebaseio.com/restaurants/"+ruid+"/waitlist/"+tableSize+"/"+event.target.value);
    updateWaitlistUser.update({
      tableReadyNotificationSent: true
    });
-   console.log(reply + "! :) ");
-
  }
 
 var smsFailure = function(){
