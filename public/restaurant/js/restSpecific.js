@@ -133,19 +133,6 @@ var smsFailure = function(){
   console.log("sms notification failed! :(");
 };
 
-
-///here naaaz
-var smsCancelAll = function() {
-  var request = new XMLHttpRequest();
-  request.onreadystatechange = function() {
-    if (request.readyState === 4 && request.status === 200) {
-      console.log("inside sms cancel request");
-    }
-  };
-  request.open("POST", "/smsCancel");
-  request.send("hello");
-};
-
 var removeTableClickListener = function (){
   var seatedButtonArray = document.getElementsByClassName("seatedButton");
   var noShowButtonArray = document.getElementsByClassName("noShowButton");
