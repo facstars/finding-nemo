@@ -81,7 +81,7 @@ var smsClickHander = function(event) {
         tableReadyNotificationSent: true
       });
       var reply = request.responseText;
-      reply.indexOf("SMS sent") > -1 ? smsSuccess(event) : smsFailure();
+      reply.indexOf("SMS sent") > -1 ? smsSuccess(event,reply) : smsFailure();
     }
   };
   request.open("POST", "/sms");
@@ -97,7 +97,7 @@ var cannotSeatClickListener = function (){
     });
 };
 
-var smsSuccess = function(event){
+var smsSuccess = function(event, reply){
   reply.indexOf("Can't seat") > -1 ? removeUserHandler(event) : updateUser(event);
 };
 
