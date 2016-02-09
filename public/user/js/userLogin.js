@@ -55,7 +55,7 @@ document.getElementById('tabSignup').addEventListener('submit', function(e){
 });
 
 function validation(form, callback){
-  var pattern = /^\d{11}$/;
+  var pattern = /^\d{11,16}$/;
   if(form.name.value===""||form.tel.value===""||form.password.value===""||form.confirmPassword.value===""){
     document.getElementById('validation').innerHTML="You must fill in all * fields to proceed";
   } else if(!form.tel.value.match(pattern)){
