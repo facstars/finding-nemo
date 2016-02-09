@@ -7,14 +7,15 @@ var file    = dir + __filename.replace(__dirname, '') + ' ->';
 var start = require('../lib/start.js');
 var server   = require('../lib/index.js');
 
-var testEndPoint = function(endpoint){
-  test(file + " GET "+ endpoint +" returns status 200", function(t) {
+var testEndPoint = function(endpoint, method, statusCode, payload){
+  test(file + method + endpoint +" returns status 200", function(t) {
     var options = {
-      method  : "GET",
-      url     : endpoint
+      method  : method,
+      url     : endpoint,
+      payload : payload
     };
     server.inject(options, function (res) {
-      t.equal(res.statusCode, 200, 'server loads ok');
+      t.equal(res.statusCode, statusCode, 'server loads ok');
         server.stop(t.end);
     });
   });
@@ -25,24 +26,26 @@ var testEndPoint = function(endpoint){
 
 
 //rest side tests
-testEndPoint("/restaurantSpecific/table2");
-testEndPoint("/restaurant/restOverview");
-testEndPoint("/restaurant/newRest");
-testEndPoint("/logout");
+testEndPoint("/restaurantSpecific/table2", "GET", 200);
+testEndPoint("/restaurant/restOverview", "GET", 200);
+testEndPoint("/restaurant/newRest", "GET", 200);
+testEndPoint("/logout", "GET", 200);
 
 
 //user side tests
-testEndPoint("/");
-testEndPoint("/user/userLogin");
-testEndPoint("/user/restList");
-testEndPoint("/user/checkIn");
-testEndPoint("/user/js/logout.js");
-testEndPoint("/logout");
+testEndPoint("/", "GET", 200);
+testEndPoint("/user/userLogin", "GET", 200);
+testEndPoint("/user/restList", "GET", 200);
+testEndPoint("/user/checkIn", "GET", 200);
+testEndPoint("/user/js/logout.js", "GET", 200);
+testEndPoint("/logout", "GET", 200);
+testEndPoint("/", "POST", 302, {tel: 07817707981});
 
 
 //other file
-testEndPoint("/css/public.css");
-testEndPoint("/back.js");
+testEndPoint("/css/public.css", "GET", 200);
+testEndPoint("/back.js", "GET", 200);
+testEndPoint("/favicon.png", "GET", 200);
 
 
 
