@@ -40,7 +40,7 @@ var generateWaitlistHtml = function(tableWaitlistObj){
       noShowButton = "<button id = NS" + tID +  " value=" + tID + " data-uid =" + tableWaitlistObj[tID].uid + " style='display:inline' class='noShowButton btn btn-danger btn-lg'>No show</button>";
     } else{
       tableReadyButton = "<button id = TR" + tID +  " value=" + tID + " data-value =" + tableWaitlistObj[tID].tel + " style='display:inline' class='tableReadyButton btn btn-danger btn-lg'>Table ready</button>";
-      cannotSeatButton = "<button id = CS" + tID +  " value=" + tID + " data-uid =" + tableWaitlistObj[tID].uid + " data-value =" + tableWaitlistObj[tID].tel + " style='display:inline' class='cannotSeatButton btn btn-danger btn-lg'>Cannot seat</button>";
+      cannotSeatButton = "<button id = CS" + tID +  " value=" + tID + " data-uid =" + tableWaitlistObj[tID].uid + " data-value =" + tableWaitlistObj[tID].tel + " style='display:inline' class='cannotSeatButton btn btn-danger btn-lg'>Can't seat</button>";
       seatedButton = "<button id = SE" + tID +  " value=" + tID + " data-uid =" + tableWaitlistObj[tID].uid + " style='display:none' class='seatedButton btn btn-danger btn-lg'>Seated</button>";
       noShowButton = "<button id = NS" + tID +  " value=" + tID + " data-uid =" + tableWaitlistObj[tID].uid + " style='display:none' class='noShowButton btn btn-danger btn-lg'>No show</button>";
     }
