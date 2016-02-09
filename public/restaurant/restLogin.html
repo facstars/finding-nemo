@@ -21,10 +21,10 @@
       <p>Login using your Skipit details below</p>
       <form id="restLoginForm">
         <fieldset class="form-group">
-          <input type="email" class="form-control" name="email" placeholder="Username (email address)" required>
+          <input type="email" class="form-control" name="email" placeholder="Username (email address)" onclick="clearInvalidLoginMsg()" required>
         </fieldset>
         <fieldset class="form-group">
-          <input type="password" class="form-control" name="password" placeholder="Password" required>
+          <input type="password" class="form-control" name="password" placeholder="Password" onclick="clearInvalidLoginMsg()" required>
         </fieldset>
         <p id="incorrect-p"></p>
         <button id="restLoginButton" type="submit" class="btn btn-primary btn-block login-button">Login</button>
