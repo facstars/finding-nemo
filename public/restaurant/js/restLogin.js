@@ -7,6 +7,10 @@ document.getElementById('restLoginForm').addEventListener('submit', function(e){
   validateRestLoginDetails(email,pw);
 });
 
+function clearInvalidLoginMsg(){
+  $("#incorrect-p")[0].innerHTML = "";
+}
+
 var validateRestLoginDetails = function(email,pw){
   ref.authWithPassword({
     email    : email,
