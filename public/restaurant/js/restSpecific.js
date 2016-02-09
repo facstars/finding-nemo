@@ -98,7 +98,7 @@ var cannotSeatClickListener = function (){
 };
 
 var smsSuccess = function(event){
-  reply.indexOf("Cannot seat") > -1 ? removeUserHandler(event) : updateUser(event);
+  reply.indexOf("Can't seat") > -1 ? removeUserHandler(event) : updateUser(event);
 };
 
  function updateUser(event){
