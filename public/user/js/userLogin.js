@@ -4,6 +4,10 @@
   }
 })();
 
+function clearInvalidLoginMsg(){
+  $("#incorrect-p")[0].innerHTML = "";
+}
+
 function checkRuid(){
   if(localStorage.getItem('RUID')){
     window.location.replace('../restaurant/restOverview');

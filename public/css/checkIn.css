@@ -12,6 +12,28 @@ html {
   width: auto;
 }
 
+#leaveQueueBtn, .guest-number-btn, .guest-number-btn:hover {
+  color: #d72809;
+  border: 2px solid #d72809;
+  background-color: white;
+}
+
+#queue-pos-num {
+    color: white;
+    font-size: 2em;
+    background-color: #d72809;
+    border-radius: 50%;
+    padding: 5px 14px;
+}
+
+#numPeopleWaitingTable {
+  display: inline-block;
+}
+
+#queue {
+  min-height: 16em;
+}
+
 #table-ready {
   color: black;
   font-size: 1.5em;
@@ -62,7 +84,6 @@ span {
 }
 
 .well {
-  min-height: 6em;
   margin-bottom: 4em;
 }
 

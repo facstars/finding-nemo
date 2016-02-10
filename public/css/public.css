@@ -152,28 +152,6 @@ and (orientation : portrait) {
   float: right;
 }
 
-#leaveQueueBtn, .guest-number-btn, .guest-number-btn:hover {
-  color: #d72809;
-  border: 2px solid #d72809;
-  background-color: white;
-}
-
-#leaveQueueBtn {
-  position: relative;
-  top: 0.5em;
-  margin-top: 1.5em;
-}
-
-#queue-pos-num {
-    position: relative;
-    top:0.5em;
-    color: white;
-    font-size: 2em;
-    background-color: #d72809;
-    border-radius: 50%;
-    padding: 5px 14px;
-}
-
 .pos-text {
   padding-bottom: 1em;
 }
