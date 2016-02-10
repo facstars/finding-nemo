@@ -19,9 +19,6 @@ var testEndPoint = function(endpoint, method, statusCode, payload){
         server.stop(t.end);
     });
   });
-    test.onFinish(function() {
-        process.exit();
-    });
 };
 
 
@@ -30,6 +27,7 @@ testEndPoint("/restaurantSpecific/table2", "GET", 200);
 testEndPoint("/restaurant/restOverview", "GET", 200);
 testEndPoint("/restaurant/newRest", "GET", 200);
 testEndPoint("/logout", "GET", 200);
+testEndPoint("/signup", "POST", 200, {tel: 07817707989, password: "tegrab"});
 
 
 //user side tests
@@ -39,15 +37,26 @@ testEndPoint("/user/restList", "GET", 200);
 testEndPoint("/user/checkIn", "GET", 200);
 testEndPoint("/user/js/logout.js", "GET", 200);
 testEndPoint("/logout", "GET", 200);
-testEndPoint("/", "POST", 302, {tel: 07817707981});
+testEndPoint("/", "POST", 302,{
+    name: "jbomb",
+    tel: 07817707981,
+    password: "tet",
+    confirmPassword: "tet"
+  });
+testEndPoint("/", "POST", 302,{
+    name: "jbomb",
+    tel: 11111111111,
+    password: "tegrab",
+    confirmPassword: "tegrab"
+  });
+testEndPoint("/", "POST", 302, {tel: 07817707981, password: "tegrab"});
+testEndPoint("/", "POST", 302, {tel: 07817707989, password: "tegrab"});
 
 
 //other file
 testEndPoint("/css/public.css", "GET", 200);
 testEndPoint("/back.js", "GET", 200);
 testEndPoint("/favicon.png", "GET", 200);
-
-
 
 
 test(file + "POST returns 'SMS sent'", function(t){
@@ -67,3 +76,11 @@ test(file + "POST returns 'SMS sent'", function(t){
     server.stop(t.end);
   });
 });
+
+test.onFinish(function() {
+  process.exit();
+});
+
+function thing(){
+
+}

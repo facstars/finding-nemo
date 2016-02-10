@@ -82,6 +82,7 @@ function formHandler(form){
     confirmPassword: form.confirmPassword.value
   };
   request.open("POST", "/signup");
+  request.setRequestHeader('Content-Type', 'application/json');
   request.send(JSON.stringify(formObj));
 
 }
