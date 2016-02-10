@@ -94,6 +94,7 @@ html, body {
     width: 90%;
     margin-left: 5%;
   }
+}
 
 /*iphone5*/
 @media(max-width: 320px) {

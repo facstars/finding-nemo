@@ -5,14 +5,10 @@ loadAllRestDetails();
 function loadAllRestDetails(){
   var restTemplate = _.template($("#rest-template").html());
   var restDetails= new Firebase("https://blistering-torch-1660.firebaseio.com/restaurants/");
-  // "https://blistering-torch-1660.firebaseio.com/restaurants/"+ruid+"/waitlist/table"+tableNo
 
   restDetails.on("value", function(snapshot){
     var restDetailsObj=snapshot.val();
-
     var ruidsArray = Object.keys(restDetailsObj);
-
-
     var restDetailsHtml = ruidsArray.reduce(function(html,ruid){
       var waitlist = restDetailsObj[ruid].waitlist;
       var avWaitingTime;
