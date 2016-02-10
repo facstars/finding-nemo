@@ -1,17 +1,8 @@
 html, body {
     margin: 0;
     height: 100%;
-    font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;}
-
-/*nav {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  height: 6em;
-  background-color: white;
-  color: #BE0000;
-}*/
-
+    font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+  }
 
 ::-webkit-scrollbar {
     display: none;
@@ -24,14 +15,13 @@ html, body {
   overflow-y: scroll;
   margin-left: 10%;
   margin-top: 2em;
-  /*background-color: #bc1414;*/
   border-radius: 2%;
   opacity: 0.8;
 }
 
 .peopleDetails{
   width: 100%;
-  padding-left: 8%;
+  padding-left: 3%;
   list-style: none;
 }
 
@@ -47,7 +37,7 @@ html, body {
 }
 
 .personTel{
-  min-width: 7em;
+  min-width: 9em;
 }
 
 
@@ -93,6 +83,18 @@ html, body {
   display:none;
 }
 
+/*iPad Portrait*/
+@media(max-width: 768px) {
+
+  .personDetails > div{
+    font-size: 1.2em;
+  }
+
+  .listOfPeople{
+    width: 90%;
+    margin-left: 5%;
+  }
+
 /*iphone5*/
 @media(max-width: 320px) {
   .personDetails > div{
@@ -112,13 +114,10 @@ html, body {
 
 
 @media(max-width: 450px) {
-  .tableReadyButton, .seatedButton{
+  .tableReadyButton, .seatedButton, .cannotSeatButton, .noShowButton{
     font-size:13px;
   }
 
-  .cannotSeatButton, .noShowButton{
-    font-size:13px;
-  }
   .gap {
     display:block;
   }
