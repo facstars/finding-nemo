@@ -98,6 +98,35 @@ var validateRestLoginDetails = function(email,pw){
         console.log("User account deleted successfully!");
         $('#removeRestaurantModalForm')[0].reset();
         $('#removeModal').modal('hide');
+        removeQueueDetails(credentials.ruid);
       }
     });
+  };
+
+
+  function removeQueueDetails(ruid){
+    var Users = new Firebase ("https://blistering-torch-1660.firebaseio.com/users/");
+    Users.once("value", function(snapshot){
+      var userDetailsObj=snapshot.val();
+      var UserQueueDetailsObj=Object.keys(userDetailsObj).reduce(function(obj, uid){
+        if(userDetailsObj[uid].queueRuid==ruid){
+            changeQueueDetails(uid);
+        }
+      },{});
+    });
+  }
+
+  function changeQueueDetails(uid){
+      var User = new Firebase ("https://blistering-torch-1660.firebaseio.com/users/"+uid);
+      User.update({
+        alreadyOnWaitlist: false,
+        queueRuid: "" ,
+        queueTableNo: "",
+        queueTid: ""
+      });
+    }
+
+
+  var errorHandler = function(errorObject) {
+    console.log("The read failed: " + errorObject.code);
   };
