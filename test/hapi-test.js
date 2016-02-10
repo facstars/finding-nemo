@@ -61,7 +61,7 @@ testEndPoint("/favicon.png", "GET", 200);
 
 test(file + "POST returns 'SMS sent'", function(t){
   var payload = JSON.stringify({
-    tel:"07817707982"
+    tel:"07111111111"
   });
 
   var options = {
@@ -80,7 +80,3 @@ test(file + "POST returns 'SMS sent'", function(t){
 test.onFinish(function() {
   process.exit();
 });
-
-function thing(){
-
-}

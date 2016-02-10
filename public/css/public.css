@@ -1,12 +1,8 @@
-html {
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  margin: 0;
-  padding: 0;
-}
+html, body {
+    margin: 0;
+    height: 100%;
+    font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+  }
 
 a, a:hover {
   text-decoration: none;
@@ -62,21 +58,6 @@ nav {
   text-align:center;
 }
 
-
-@media only screen
-and (min-device-width : 375px)
-and (max-device-width : 667px)
-and (orientation : portrait) {
-  /*.title{
-    /*font-size: 20px;
-
-  }*/
-  /*.skipitLogo{
-    width:8em;
-
-  }*/
-}
-
 #passwordIncorrect{
   display:none;
   color: red;
@@ -101,12 +82,12 @@ and (orientation : portrait) {
 }
 
 .rest-details {
-  padding: 0;
+  padding-left: 0.3em;
   width: 100%;
   color: #dbddda;
   float: left;
   position: absolute;
-  top: 0em;
+  top: 0;
   background-color: rgba(0, 0, 0, 0.6);
 }
 
@@ -123,6 +104,7 @@ and (orientation : portrait) {
 
 .avWaitingTime {
   display: inline-block;
+  padding-right: 0.3em;
   float: right;
 }
 
@@ -132,7 +114,7 @@ and (orientation : portrait) {
 
 .footer {
   width: 100%;
-  height: 2.5em;
+  height: 5%;
   position: fixed;
   bottom: 0;
   background-color: #d72809;
@@ -163,4 +145,11 @@ and (orientation : portrait) {
 #passwordIncorrect{
   display:none;
   color: red;
+}
+
+@media(max-width: 768px) {
+
+  .restLogo{
+    height: auto;
+  }
 }
