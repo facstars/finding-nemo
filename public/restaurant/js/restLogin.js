@@ -1,9 +1,3 @@
-(function checkRuid(){
-  if(localStorage.getItem('RUID')){
-    window.location.replace('../restaurant/restOverview');
-  }
-})();
-
 var ref = new Firebase("https://blistering-torch-1660.firebaseio.com/restaurants");
 
 document.getElementById('restLoginForm').addEventListener('submit', function(e){
