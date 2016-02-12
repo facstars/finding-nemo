@@ -33,11 +33,12 @@ html, body {
 }
 
 .personName{
-  min-width: 10em;
+  width: 10em;
+  word-wrap: break-word;;
 }
 
 .personTel{
-  min-width: 9em;
+  width: 10em;
 }
 
 
