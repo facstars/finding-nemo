@@ -63,3 +63,11 @@ p {
   border-color: #f4e6e6;
   border: 0.3em
 }
+
+.forgotten-pw-text{
+  color: #aaaaaa;
+}
+
+.email-link{
+  color:#555;
+}
