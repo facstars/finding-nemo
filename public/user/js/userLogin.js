@@ -4,17 +4,17 @@
   }
 })();
 
-function clearInvalidLoginMsg(){
-  $("#incorrect-p")[0].innerHTML = "";
-}
 
 function checkRuid(){
   if(localStorage.getItem('RUID')){
     window.location.replace('../restaurant/restOverview');
+  } else {
+    window.location.replace('../restaurant/restLogin');
   }
-  else{
-    window.location.replace("../../restaurant/restLogin");
-  }
+}
+
+function clearInvalidLoginMsg(){
+  $("#incorrect-p")[0].innerHTML = "";
 }
 
 function getUrlVars()
