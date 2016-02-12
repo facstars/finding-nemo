@@ -84,6 +84,7 @@ span {
 }
 
 .well {
+  min-height: 6em;
   margin-bottom: 4em;
 }
 
