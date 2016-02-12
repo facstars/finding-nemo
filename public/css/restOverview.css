@@ -51,10 +51,11 @@ body{
 }*/
 
 .tablesSummary{
-  width: 50%;
-  height: auto;
-  margin-left: 20%;
-  margin-top: 2em;
+  width: 60%;
+  min-height: 100%;
+  margin:3em auto;
+  padding-bottom: 2em;
+
 }
 
 .waitlistTable{
@@ -100,6 +101,7 @@ body{
   bottom:0;
   height: 10%;
   font-size: 2em;
+  height: 2em;
 }
 
 .form-control{
